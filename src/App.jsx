@@ -1,11 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
+import RoutesComponent from "./routes";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-
   return (
-    <>
-      <h1>App Rede Âncora</h1>
-    </>
-  )
+    <BrowserRouter>
+      <RoutesComponent />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
