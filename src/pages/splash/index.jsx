@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <>
-      <Link to={'/login'}>
+      <Link to={'/home'}>
         <img src={Splash} alt="Imagem principal"/>
       </Link>
     </>
