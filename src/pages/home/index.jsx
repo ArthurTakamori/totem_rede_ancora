@@ -1,18 +1,19 @@
+import HeaderHome from "../../components/Header/Home";
+import Navbar from "../../components/Navbar";
 import Modal from "../../components/Modal";
 
 export default function Home({produtos}) {
   
   return (
     <>
-      <h1 className="col-md-9">Home</h1>
+      <div className="container-fluid">
 
-      {/* <button onClick={() => setProdutos({ 
-        nome: 'produto novo',
-      })}>
-        Clique aqui 
-      </button> */}
+        <HeaderHome />
+        <p>Home</p>
 
-      <Modal />
+        <Navbar />
+
+      </div>
     </>
   );
 }

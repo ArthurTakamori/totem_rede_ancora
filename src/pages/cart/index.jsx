@@ -1,7 +1,15 @@
+import HeaderHome from "../../components/Header/Home";
+
 export default function Cart() {
   return (
     <>
-      <h1 className="col-md-9">Cart</h1>
+      <div className="container-fluid">
+
+        <HeaderHome />
+
+        <p>Carrinho</p>
+        
+      </div>
     </>
   );
 }

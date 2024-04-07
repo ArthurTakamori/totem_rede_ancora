@@ -1,7 +1,17 @@
+import HeaderHome from "../../components/Header/Home";
+import Navbar from "../../components/Navbar";
+
 export default function Profile() {
   return (
     <>
-      <h1 className="col-md-9">Profile</h1>
+      <div className="container-fluid">
+
+        <HeaderHome />
+
+        <p>Profile</p>
+        <Navbar />
+
+      </div>
     </>
   );
 }
