@@ -1,33 +1,30 @@
 export default function Login() {
   return (
-    <div className="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div className="container-1 container-fluid text-center">
       <div
-        className="border border-primary mb-3"
-        style={{ width: "100%", height: "10%" }}
+        className="border border-primary mb-5"
+        style={{ height: "10%" }}
       ></div>
-      <div className="flex-grow-1 text-center">
+      <div className="d-grid mx-auto">
         <div>
           <h1>Entrar usando CPF</h1>
-          <p>Digite os números no campo abaixo</p>
+          <p className="text-uppercase opacity-50">
+            Digite os números no campo abaixo
+          </p>
         </div>
-        <div style={{ width: "386px", height: "492px" }}>
+        <div style={{ height: "492px" }}>
           <div>
-            <p>277.840.730-89</p>
+            <h2>277.840.730-89</h2>
             {/* Icon */}
           </div>
           <div
-            className="border border-primary"
-            style={{ width: "100%", height: "412px" }}
+            className="col-6 mx-auto border border-primary"
+            style={{ height: "412px" }}
           ></div>
           {/* "Teclado virtual" */}
         </div>
-        <div>
-          <button
-            className="btn btn-primary mt-3"
-            style={{ width: "100%", height: "103px" }}
-          >
-            Continuar
-          </button>
+        <div className="d-grid col-5 row-2 mx-auto h-75">
+          <button className="btn btn-primary">Continuar</button>
         </div>
       </div>
     </div>
