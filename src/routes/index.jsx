@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Splash from "../pages/splash";
 import Home from "../pages/home";
+import Identify from "../pages/identify";
 import Login from "../pages/login";
 import Profile from "../pages/profile";
 import Register from "../pages/register";
@@ -44,6 +45,7 @@ export default function RoutesComponent() {
   return (
     <Routes>
       <Route path="/" element={<Splash />} />
+      <Route path="/identify" element={<Identify />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home produtos={produtos}/>} />
