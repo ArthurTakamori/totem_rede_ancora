@@ -11,9 +11,7 @@ substitua as regras de estilo do Bootstrap, como `body { color: red; }`.
 Aqui estamos ajustando a font-family e background-color que serão aplicados ao corpo do site.
 */
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 $font-family-base: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica";
 $body-bg: #ebebeb;
@@ -23,24 +21,51 @@ $primary: #013c5e;
 @import "bootstrap/scss/bootstrap";
 
 //Reset
-html, body, div, span,
-h1, h2, h3, h4, h5, h6, p, 
-a, img, small, strong, ul, li, 
-form, label, table, caption, 
-tbody, tfoot, thead, tr, th, td,
-footer, header, menu, nav, section {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+small,
+strong,
+ul,
+li,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+footer,
+header,
+menu,
+nav,
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
 
 body {
-	line-height: 1.5;
+  line-height: 1.5;
 }
 
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
 
 button {
@@ -53,23 +78,28 @@ button {
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 a {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 //Body
 body {
   background-color: $body-bg;
-  background-image: linear-gradient(94deg, rgba(255,255,255,1) 0%, rgba(244,244,244,1) 100%);
+  background-image: linear-gradient(
+    94deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(244, 244, 244, 1) 100%
+  );
   background-repeat: no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 100%;
   min-height: 100vh;
+  user-select: none;
 }
 
 //
@@ -101,8 +131,8 @@ $white-ancora-1: #ffffff;
 //Conversar sobre
 .container-identify {
   height: 100vh;
-  border-top: .5rem solid $blue-ancora-2;
-  border-bottom: .5rem solid $blue-ancora-2;
+  border-top: 0.5rem solid $blue-ancora-2;
+  border-bottom: 0.5rem solid $blue-ancora-2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
