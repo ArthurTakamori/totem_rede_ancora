@@ -1,6 +1,5 @@
 import Splash from '../../assets/img/splash.png';
 import { Link } from "react-router-dom";
-import Button from '../../components/Button';
 
 export default function Home() {
   return (
@@ -8,7 +7,6 @@ export default function Home() {
       <Link to={'/identify'}>
         <img src={Splash} alt="Imagem principal"/>
       </Link>
-      <Button/>
     </>
   );
 }
