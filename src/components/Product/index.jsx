@@ -18,7 +18,10 @@ export default function Product({ products }) {
 const Card = ({ item }) => {
   const { img, name, subTitle, price, discount } = item;
   return (
-    <li className="card rounded-4 bg-white p-2" style={{ height: "auto" }}>
+    <li
+      className="card rounded-4 bg-white p-1 border-0"
+      style={{ height: "auto" }}
+    >
       <div
         className="card-image-container d-flex justify-content-center align-items-center rounded-4 bg-img"
         style={{ height: "15rem" }}
@@ -40,10 +43,10 @@ const Card = ({ item }) => {
         <p className="card-text opacity-75">{subTitle}</p>
         <div className="row align-items-center justify-content-between">
           <span className="card-text col-auto">
-            <span className="text-primary text-blue-ancora-2 fw-bold fs-3 me-2">
+            <span className="text-primary text-blue-ancora-2 fw-bold fs-4 me-2">
               {formatCurrency(price - discount)}
             </span>
-            <del className="text-muted">{formatCurrency(price)}</del>
+            <del className="text-muted fs-6">{formatCurrency(price)}</del>
           </span>
           <button className="mgc_add_fill btn btn-secondary col-auto bg-white border-2"></button>
         </div>

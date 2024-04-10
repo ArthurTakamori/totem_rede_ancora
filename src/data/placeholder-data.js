@@ -20,6 +20,6 @@ const shockAbsorber = {
   category: "Amortecedor",
 };
 
-const products = [tire, shockAbsorber];
+const products = [tire, shockAbsorber, tire, shockAbsorber];
 
 export { products, user };
