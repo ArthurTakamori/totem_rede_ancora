@@ -10,7 +10,7 @@ export default function Home() {
         <HeaderHome />
         <p>Home</p>
         <Product products={products} />
-        <Navbar className="navbar fixed-botton" />
+        <Navbar />
       </div>
     </>
   );
