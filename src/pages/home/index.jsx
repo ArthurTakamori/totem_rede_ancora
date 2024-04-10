@@ -8,7 +8,6 @@ export default function Home() {
     <>
       <div className="container-fluid d-flex flex-column vh-100">
         <HeaderHome />
-        <p>Home</p>
         <Product products={products} />
         <Navbar />
       </div>
