@@ -14,9 +14,46 @@ Aqui estamos ajustando a font-family e background-color que serão aplicados ao 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 $font-family-base: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica";
-$body-bg: #ebebeb;
-$body-color: #09244b;
-$primary: #013c5e;
+
+$body-bg:     #EBEBEB;
+$body-color:  #09244b;
+
+//Colors
+$white:       #FFF;
+$primary:     #013c5e;
+$red:         #CE0E2D;
+$gray-100:    #B1B1B1;
+
+//Form-control
+$input-font-size:              1.5rem;
+
+$input-btn-padding-y:          .675rem;
+$input-btn-padding-x:          1rem;
+
+$input-bg:                     $white;
+$input-border-color:           $primary;
+
+$input-border-radius:          0.15rem;
+$input-border-radius-sm:       0.225rem;
+$input-border-radius-lg:       0.325rem;
+
+$input-focus-bg:               $white;
+$input-focus-border-color:     0;
+$input-focus-color:            0;
+$input-focus-width:            1;
+$input-focus-box-shadow:       0;
+
+//Border
+$border-color:                 $gray-100;
+
+//Button
+$btn-padding-y-lg:            .8rem;
+$btn-padding-x-lg:            1.7rem;
+
+// $btn-border-radius:           0.15rem;
+// $btn-border-radius-sm:        0.225rem;
+$btn-border-radius-lg:        0.225rem;
+
 
 @import "bootstrap/scss/bootstrap";
 
@@ -110,6 +147,7 @@ body {
 // Color
 $blue-ancora-2: #09244b;
 $blue-ancora-1: #013c5e;
+
 $white-ancora-1: #ffffff;
 
 // Alteração de uma propriedade de uma classe do bootstrap,
@@ -142,4 +180,21 @@ $white-ancora-1: #ffffff;
 
 .brand {
   width: 150px;
+}
+
+.required::after {
+  content: ' *';
+  color: $red;
+}
+
+.active-link {
+  background-color: #013c5e;
+}
+
+.active-icon::before {
+  color: $white !important;
+}
+
+.inactive-icon::before {
+  color: $gray-100 !important;
 }
