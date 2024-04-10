@@ -1,18 +1,16 @@
 import HeaderHome from "../../components/Header/Home";
 import Navbar from "../../components/Navbar";
-import Modal from "../../components/Modal";
+import Product from "../../components/Product";
+import { products } from "../../data/placeholder-data";
 
-export default function Home({produtos}) {
-  
+export default function Home() {
   return (
     <>
-      <div className="container-fluid">
-
+      <div className="container-fluid d-flex flex-column vh-100">
         <HeaderHome />
         <p>Home</p>
-
-        <Navbar />
-
+        <Product products={products} />
+        <Navbar className="navbar fixed-botton" />
       </div>
     </>
   );
