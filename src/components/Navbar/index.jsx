@@ -27,8 +27,9 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="fixed-bottom p-4" style={{
-      height: '135px'
+    <div className="p-4" style={{
+      height: '135px',
+      marginTop: '45px'
     }}>
       <div className="row">
 
