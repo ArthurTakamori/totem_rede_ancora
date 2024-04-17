@@ -183,7 +183,7 @@ $white-ancora-1: #ffffff;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 main {
@@ -224,4 +224,13 @@ main {
 
 .dropdown-car-plate { 
   background-color: $bg-slate-100;
+}
+
+.keyboard {
+  color: $primary;
+}
+
+.keyboard:hover, .keyboard:hover::before {
+  background-color: $primary;
+  color: $white !important;
 }

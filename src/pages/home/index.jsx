@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import HeaderHome from "../../components/Header/Home";
 import Navbar from "../../components/Navbar";
 import Title from "../../components/Title";
-import Keyboard from "../../components/Keyboard";
 
 export default function Home() {
 
@@ -57,8 +56,6 @@ export default function Home() {
 
         <HeaderHome />
 
-        <Keyboard />
-
         <div className="d-flex justify-content-between align-items-center">
 
           <Title page={'Categorias'} />
@@ -77,7 +74,6 @@ export default function Home() {
 
           </div>
         </div>
-
 
         <main className="p-6 d-flex flex-column align-items-center">
 
