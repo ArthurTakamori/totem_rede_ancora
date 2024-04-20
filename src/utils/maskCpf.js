@@ -12,12 +12,12 @@ const maskCpf = (cpf) => {
 
 function hideCPF(cpfNumbers) {
   // Remover qualquer formatação que já possa existir
-  var cpf = cpfNumbers.replace(/[^\d]/g, "");
+  let cpf = cpfNumbers.replace(/[^\d]/g, "");
 
   // Substituir os números por asteriscos, exceto o último
-  var cpfEscondido = "";
+  let cpfEscondido = "";
 
-  for (var i = 0; i < cpf.length; i++) {
+  for (let i = 0; i < cpf.length; i++) {
     if (i == 3 || i == 6) {
       cpfEscondido += ".";
     } else if (i == 9) {
