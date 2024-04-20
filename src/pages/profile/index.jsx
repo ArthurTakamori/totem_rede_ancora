@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import Input from "../../components/Input";
 import Button from '../../components/Button';
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
+import Title from '../../components/Title';
 
 export default function Profile() {
   
@@ -18,80 +19,84 @@ export default function Profile() {
 
   return (
     <>
-      <div className="container-fluid p-8">
+      <div className="container-main">
 
-        <HeaderHome page={'Minha conta'} />
+        <HeaderHome />
+        <Title page={'Minha conta'} />
 
-        <form autoComplete="off" className="p-4 mt-4 mb-4">
-          
-          <Input props={{
-              required: true,
-              label: 'Nome completo',
-              value: name,
-              setValue: setName,
-              type: 'text',
-              name: 'name',
-            }}
-          />
+        <main>
 
-          <div className="position-relative">
+          <form autoComplete="off">
             
             <Input props={{
                 required: true,
-                label: 'CPF',
-                value: show ? cpf : notShow,
-                setValue: setCpf,
+                label: 'Nome completo',
+                value: name,
+                setValue: setName,
+                type: 'text',
+                name: 'name',
+              }}
+            />
+
+            <div className="position-relative">
+              
+              <Input props={{
+                  required: true,
+                  label: 'CPF',
+                  value: show ? cpf : notShow,
+                  setValue: setCpf,
+                  type: 'tel',
+                  name: 'cpf',
+                  mask: maskCpf
+                }}
+              />  
+
+              <button type="button" onClick={() => setShow(!show)}
+                      className="position-absolute"
+                      style={{
+                        top: '50px',
+                        right: '15px'
+                      }}>
+                <span
+                  className={`${
+                    show ? "mgc_eye_2_line" : "mgc_eye_close_line"
+                  } fs-1`}
+                />
+              </button>
+
+            </div>
+
+            <Input props={{
+                label: 'Telefone',
+                value: phone,
+                setValue: setPhone,
                 type: 'tel',
-                name: 'cpf',
-                mask: maskCpf
+                name: 'phone',
               }}
             />  
 
-            <button type="button" onClick={() => setShow(!show)}
-                    className="position-absolute"
-                    style={{
-                      top: '50px',
-                      right: '15px'
-                    }}>
-              <span
-                className={`${
-                  show ? "mgc_eye_2_line" : "mgc_eye_close_line"
-                } fs-1`}
-              />
-            </button>
+            <Input props={{
+                label: 'E-mail',
+                value: email,
+                setValue: setEmail,
+                type: 'email',
+                name: 'email',
+              }}
+            /> 
 
-          </div>
+            <div className="d-flex w-100 justify-content-end mt-4">
 
+              <Button props={{
+                name: 'Atualizar dados cadastrais',
+                type: 'submit'
+              }}/>
 
-          <Input props={{
-              label: 'Telefone',
-              value: phone,
-              setValue: setPhone,
-              type: 'tel',
-              name: 'phone',
-            }}
-          />  
-
-          <Input props={{
-              label: 'E-mail',
-              value: email,
-              setValue: setEmail,
-              type: 'email',
-              name: 'email',
-            }}
-          /> 
-
-          <div className="d-flex w-100 justify-content-end mt-4">
-
-            <Button props={{
-              name: 'Atualizar dados cadastrais',
-              type: 'submit'
-            }}/>
-
-          </div>
+            </div>
 
 
-        </form>
+          </form>
+
+        </main>
 
         <Navbar  />
 

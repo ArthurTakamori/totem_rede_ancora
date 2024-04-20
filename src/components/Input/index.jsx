@@ -1,5 +1,11 @@
+
+import { useState } from "react";
+import Keyboard from "../../components/Keyboard";
+
 export default function Input({props}) {
   const { label, value, setValue, type, name, required, mask } = props;
+
+  const [showKeyboard, setShowKeyboard] = useState(false);
 
   return (
     <>
@@ -17,6 +23,7 @@ export default function Input({props}) {
             className="form-control"
             name={name}
             id={name}
+            onClick={() => setShowKeyboard(true)}
           />
 
           <div id={name+"Help"} class="form-text text-uppercase mt-1">
@@ -24,6 +31,11 @@ export default function Input({props}) {
           </div>
 
       </div>
+
+      <Keyboard props={{
+        setModelValue: setValue,
+        showKeyboard: showKeyboard
+      }}/>
 
     </>
   );
