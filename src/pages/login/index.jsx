@@ -1,26 +1,34 @@
 import { useEffect, useState } from "react";
 import HeaderIdentify from "../../components/Header/Identify";
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
+import { handleLogin } from "../../utils/api/login";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [cpf, setCpf] = useState("");
-  const [show, setShow] = useState(true);
 
+  const BACKSPACE = 'backspace';
+
+  const keyboard = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    [null, 0, BACKSPACE]
+  ]
+
+  const [cpf, setCpf]   = useState("");
+  const [show, setShow] = useState(true);
   const navigate = useNavigate();
 
   let formatedCpf = maskCpf(cpf);
-  let notShow = hideCPF(cpf);
+  let notShow     = hideCPF(cpf);
 
   const handlePhysicalKeyboardInput = (event) => {
     const { key } = event;
-    console.log(key);
     if (!isNaN(key) && cpf.length < 11) setCpf(cpf + key);
     else if (key === "Backspace") setCpf(cpf.slice(0, -1));
   };
 
   const handleVirtualKeyboardInput = (event) => {
-    console.log(cpf.length);
     if (cpf.length >= 11) return;
 
     const { innerText } = event.target;
@@ -31,8 +39,21 @@ export default function Login() {
     setCpf(cpf.slice(0, -1));
   };
 
-  const handleLogin = () => {
-    cpf.length === 11 && navigate("/home");
+  const handleSubmitLogin = async () => {
+
+    if(cpf.length !== 11) {
+      return;
+    }
+
+    await handleLogin().then((response) => {
+
+      if(response === false) {
+        //Mensagem de erro de conexão com a API
+        return;
+      }
+
+      navigate("/home");
+    })
   };
 
   useEffect(() => {
@@ -45,6 +66,7 @@ export default function Login() {
 
   return (
     <div className="container-1 container-fluid text-center">
+
       <HeaderIdentify link="/identify" />
 
       <div className="d-grid mx-auto gap-4">
@@ -74,91 +96,43 @@ export default function Login() {
             style={{ height: "37vh" }}
           >
             <div className="h-100 bg-white">
-              <div className="row align-items-center h-25">
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  1
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  2
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  3
-                </div>
+
+            {keyboard.map((items, index) => (
+              <div key={index} className="row align-items-center h-25">
+                {items.map((key, subIndex) => (
+                  <div
+                    key={subIndex}
+                    className="col fs-2 fw-semibold" style={{cursor: 'pointer'}}
+                    onClick={key === BACKSPACE ? handleVirtualKeyboardDelete : handleVirtualKeyboardInput}
+                  >
+                    {(() => {
+
+                      if(key === BACKSPACE) {
+                        return <span className="mgc_delete_back_fill text-center rounded-2 d-flex align-items-center justify-content-center p-2 w-100 fs-3"></span>
+                      }
+
+                      return key
+
+                    })()}
+                  </div>
+                ))}
               </div>
-              <div className="row align-items-center h-25">
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  4
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  5
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  6
-                </div>
-              </div>
-              <div className="row align-items-center h-25">
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  7
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  8
-                </div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  9
-                </div>
-              </div>
-              <div className="row align-items-center h-25">
-                <div className="col fs-2 fw-semibold"></div>
-                <div
-                  className="col fs-2 fw-semibold"
-                  onClick={handleVirtualKeyboardInput}
-                >
-                  0
-                </div>
-                <div
-                  className="col fs-2 fw-semibold mgc_delete_back_line"
-                  onClick={handleVirtualKeyboardDelete}
-                />
-              </div>
+            ))}
             </div>
           </div>
-          {/* "Teclado virtual" */}
+
         </div>
+
         <div
           className="d-grid col-5 row-2 mx-auto"
-          style={{ height: "3.5rem" }}
-        >
-          <button onClick={handleLogin} className="btn btn-primary">
+          style={{ height: "3.5rem" }}>
+
+          <button type="button" onClick={handleSubmitLogin} className="btn btn-primary">
             Continuar
           </button>
+
         </div>
+
       </div>
     </div>
   );

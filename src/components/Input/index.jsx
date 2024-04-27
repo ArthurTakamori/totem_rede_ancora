@@ -1,17 +1,10 @@
-
-import { useState } from "react";
-import Keyboard from "../../components/Keyboard";
-
-export default function Input({props}) {
-  const { label, value, setValue, type, name, required, mask } = props;
-
-  const [showKeyboard, setShowKeyboard] = useState(false);
+export default function Input({ onChange, value, onBlur, name, label, required, type = 'text' }) {
 
   return (
     <>
       <div className="mb-3">
 
-          <label for={name} class="form-label required fs-5">
+          <label htmlFor={name} className="form-label required fs-5">
             {label}
           </label>
 
@@ -19,23 +12,20 @@ export default function Input({props}) {
             required={required}
             value={value}
             type={type}
-            onChange={e => setValue(mask ? mask(e.target.value) : e.target.value)}
+            onChange={onChange}
+            onBlur={onBlur}
             className="form-control"
             name={name}
             id={name}
-            onClick={() => setShowKeyboard(true)}
           />
 
-          <div id={name+"Help"} class="form-text text-uppercase mt-1">
+          {value}
+
+          <div id={name+"Help"} className="form-text text-uppercase mt-1">
             {required === true ? 'Obrigatório' : 'Opcional'}
           </div>
 
       </div>
-
-      <Keyboard props={{
-        setModelValue: setValue,
-        showKeyboard: showKeyboard
-      }}/>
 
     </>
   );

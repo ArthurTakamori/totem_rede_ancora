@@ -60,16 +60,16 @@ export default function Home() {
 
           <Title page={'Categorias'} />
 
-          <div class="dropdown">
-            <button class="dropdown-car-plate  dropdown-toggle p-2 rounded-1 d-flex align-items-center fs-5 fw-medium text-primary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"
+          <div className="dropdown">
+            <button className="dropdown-car-plate  dropdown-toggle p-2 rounded-1 d-flex align-items-center fs-5 fw-medium text-primary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"
             style={{width: '230px', height: '65px'}}>
 
               <span className="mgc_car_2_fill fs-2 px-3"></span>
               Placa do carro
             </button>
 
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><button class="dropdown-item" type="button">Action</button></li>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button className="dropdown-item" type="button">Action</button></li>
             </ul>
 
           </div>
@@ -79,11 +79,11 @@ export default function Home() {
 
           {categories.map((items, index) => (
 
-            <div className="row">
+            <div key={index} className="row">
 
-              {items.map((category, index) => (
+              {items.map((category, subIndex) => (
 
-                <Link className="card-category col rounded-1 d-flex flex-column justify-content-around align-items-center p-4 m-2 fw-medium fs-5 text-center" style={{ minHeight: '250px', width: '240px' }}>
+                <Link key={subIndex} className="card-category col rounded-1 d-flex flex-column justify-content-around align-items-center p-4 m-2 fw-medium fs-5 text-center" style={{ minHeight: '250px', width: '240px' }}>
 
                   <span className={`fs-1 ${category.icon}`}></span>
 
