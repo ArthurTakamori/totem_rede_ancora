@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Keyboard({ props }) {
-
-  const { setModelValue, showKeyboard } = props;
+export default function Keyboard({ setModelValue, showKeyboard }) {
 
   const [isVisible, setIsVisible] = useState(true);
 

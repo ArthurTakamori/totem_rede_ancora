@@ -1,14 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
-export default function Button({props}) {
-  const { name, type } = props;
-  
-  const navegar = useNavigate();
-  
-  const navegarParaPagina = () => {
-    navegar("/identify");
-  };
-
+export default function Button({ name, type }) {
   return (
     <>
       <button type={type} className="btn btn-primary btn-lg">

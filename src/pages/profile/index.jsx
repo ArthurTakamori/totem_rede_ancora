@@ -1,21 +1,27 @@
 import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import HeaderHome from "../../components/Header/Home";
 import Navbar from "../../components/Navbar";
 import Input from "../../components/Input";
 import Button from '../../components/Button';
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
 import Title from '../../components/Title';
+import { Controller } from 'react-hook-form';
 
 export default function Profile() {
-  
-  const [show, setShow] = useState(true);
 
-  const [ name, setName ]   = useState('Mariana');
-  const [ cpf, setCpf ]     = useState('12321313.121321');
-  const [ phone, setPhone ] = useState('119999-9999');
-  const [ email, setEmail ] = useState('teste@testem.com');
+  const [showCpf, setShowCpf] = useState(true);
 
-  let notShow = hideCPF(cpf);
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      fullName: '',
+      cpf: '',
+      phone: '',
+      email: ''
+    }
+  });
+
+  const onSubmit = data => console.log(data)
 
   return (
     <>
@@ -26,70 +32,99 @@ export default function Profile() {
 
         <main>
 
-          <form autoComplete="off">
-            
-            <Input props={{
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+
+            <Controller
+              control={control}
+              rules={{
                 required: true,
-                label: 'Nome completo',
-                value: name,
-                setValue: setName,
-                type: 'text',
-                name: 'name',
               }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  label="Nome completo"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+              name="fullName"
             />
+            {errors.fullName && <Text>This is required.</Text>}
 
             <div className="position-relative">
-              
-              <Input props={{
+
+              <Controller
+                control={control}
+                rules={{
                   required: true,
-                  label: 'CPF',
-                  value: show ? cpf : notShow,
-                  setValue: setCpf,
-                  type: 'tel',
-                  name: 'cpf',
-                  mask: maskCpf
+                  minLength: 14,
+                  maxLength: 14
                 }}
-              />  
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input 
+                    label={'CPF'}
+                    value={showCpf === false ? hideCPF(value) : value}
+                    onChange={(e) => onChange(maskCpf(e.target.value))}
+                  />  
+                )}
+                name="cpf"
+              />
+              {errors.cpf && <Text>This is required.</Text>}
 
-              <button type="button" onClick={() => setShow(!show)}
-                      className="position-absolute"
-                      style={{
-                        top: '50px',
-                        right: '15px'
-                      }}>
-                <span
-                  className={`${
-                    show ? "mgc_eye_2_line" : "mgc_eye_close_line"
-                  } fs-1`}
-                />
-              </button>
+              <div className="position-relative">
+                
+                <button type="button" onClick={() => setShowCpf(!showCpf)}
+                        className="position-absolute"
+                        style={{
+                          top: '-88px',
+                          right: '15px'
+                        }}>
+                  <span
+                    className={`${
+                      showCpf ? "mgc_eye_2_line" : "mgc_eye_close_line"
+                    } fs-1`}
+                  />
+                </button>
 
+              </div>
             </div>
 
-            <Input props={{
-                label: 'Telefone',
-                value: phone,
-                setValue: setPhone,
-                type: 'tel',
-                name: 'phone',
+            <Controller
+              control={control}
+              rules={{
+                required: true,
               }}
-            />  
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input 
+                  label={'Telefone'}
+                  value={value}
+                  onChange={onChange}
+                  type={'tel'}
+                />  
+              )}
+              name="phone"
+            />
+            {errors.phone && <Text>This is required.</Text>}
 
-            <Input props={{
-                label: 'E-mail',
-                value: email,
-                setValue: setEmail,
-                type: 'email',
-                name: 'email',
+            <Controller
+              control={control}
+              rules={{
+                required: true,
               }}
-            /> 
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input 
+                  label={'E-mail'}
+                  value={value}
+                  onChange={onChange}
+                  type={'email'}
+                />  
+              )}
+              name="email"
+            />
+            {errors.email && <Text>This is required.</Text>}
 
             <div className="d-flex w-100 justify-content-end mt-4">
 
-              <Button props={{
-                name: 'Atualizar dados cadastrais',
-                type: 'submit'
-              }}/>
+              <Button name={'Atualizar dados cadastrais'} type={'submit'} />
 
             </div>
 
@@ -98,7 +133,7 @@ export default function Profile() {
 
         </main>
 
-        <Navbar  />
+        <Navbar />
 
       </div>
     </>
