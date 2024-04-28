@@ -4,6 +4,8 @@ const user = {
 
 const tire = {
   img: "./src/assets/img/product_tire.png",
+  discription:
+    "O pneu RoadX RXMOTION H12 oferece segurança e performance em qualquer condição climática, seja no seco ou no molhado.",
   price: 239.5,
   discount: 10,
   name: "185/65R15 88H",

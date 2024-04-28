@@ -1,4 +1,5 @@
 import { formatCurrency } from "../../utils/formatCurrency";
+import AboutProduct from "../AboutProduct";
 import "./styles.scss";
 
 export default function Product({ products }) {
@@ -60,7 +61,7 @@ const Card = ({ item }) => {
               {formatCurrency(price)}
             </del>
           </span>
-          <button className="mgc_add_fill btn btn-secondary bg-white border-2 p-1"></button>
+          <AboutProduct />
         </div>
       </div>
     </li>

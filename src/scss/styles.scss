@@ -11,7 +11,7 @@ substitua as regras de estilo do Bootstrap, como `body { color: red; }`.
 Aqui estamos ajustando a font-family e background-color que serão aplicados ao corpo do site.
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 $font-family-base: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica";
 
@@ -23,8 +23,8 @@ $white: #fff;
 $primary: #013c5e;
 $red: #ce0e2d;
 $gray-100: #b1b1b1;
-$bg-slate-50: #F8FAFC;
-$bg-slate-100: #F1F5FC;
+$bg-slate-50: #f8fafc;
+$bg-slate-100: #f1f5fc;
 
 //Form-control
 $input-font-size: 1.5rem;
@@ -126,11 +126,11 @@ a {
 
 //Body
 body {
-  background: rgb(255,255,255);
+  background: rgb(255, 255, 255);
   background: linear-gradient(
-    180deg, 
-    rgba(255,255,255,1) 10%, 
-    rgba(238,236,236,1) 100%
+    180deg,
+    rgba(255, 255, 255, 1) 10%,
+    rgba(238, 236, 236, 1) 100%
   );
   background-repeat: no-repeat;
   background-size: cover;
@@ -183,7 +183,7 @@ $white-ancora-1: #ffffff;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 main {
@@ -216,13 +216,13 @@ main {
   background-color: $bg-slate-100;
 }
 
-.card-category:hover, 
+.card-category:hover,
 .card-category:hover span::before {
   background-color: $primary;
   color: $white;
 }
 
-.dropdown-car-plate { 
+.dropdown-car-plate {
   background-color: $bg-slate-100;
 }
 
@@ -230,7 +230,8 @@ main {
   color: $primary;
 }
 
-.keyboard:hover, .keyboard:hover::before {
+.keyboard:hover,
+.keyboard:hover::before {
   background-color: $primary;
   color: $white !important;
 }
