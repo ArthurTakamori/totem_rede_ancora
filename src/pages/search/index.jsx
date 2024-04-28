@@ -11,7 +11,7 @@ export default function Search() {
         <HeaderHome />
         <Title page={"Pesquisar"} />
 
-        <main>
+        <main className="d-flex align-items-center">
           <Product products={products} />
         </main>
 

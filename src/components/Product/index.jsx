@@ -19,7 +19,11 @@ const Card = ({ item }) => {
   return (
     <li
       className="card rounded-4 bg-white p-1 border-0"
-      style={{ height: "48%" }}
+      style={{
+        height: "48%",
+        aspectRatio: "4 / 5",
+        width: `calc((58vh/2)*.7)`,
+      }}
     >
       <div
         className="card-image-container d-flex justify-content-center align-items-center rounded-4 bg-img"
