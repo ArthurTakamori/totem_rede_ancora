@@ -10,7 +10,7 @@ import Search from "../pages/search";
 import { useState } from "react";
 
 //Criando Componente Produto do Carrinho - Arthur
-import ProductCart from "../components/Product/ProductCart"
+import ProductCard from "../components/Product/ProductCard"
 
 export default function RoutesComponent() {
 
@@ -56,7 +56,7 @@ export default function RoutesComponent() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Profile />} />
       {/* Criando Produtos do Carrinho - Arthur  */}
-      <Route path="/productCart" element={<ProductCart />} />
+      <Route path="/productCard" element={<ProductCard />} />
     </Routes>
   );
 }
