@@ -1,0 +1,18 @@
+.mgc_filter_line::before {
+  margin-right: 15px;
+  font-size: 5vh;
+  // translate: ();
+}
+.mgc_filter_line::after {
+  display: none;
+}
+
+.dropdown-toggle {
+  height: 100%;
+  border: 1px solid #013c5e;
+}
+
+button::after {
+  display: none;
+}
+

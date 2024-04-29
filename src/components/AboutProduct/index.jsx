@@ -10,7 +10,7 @@ const AboutProduct = () => {
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#aboutModal"
-        className="mgc_add_fill btn btn-secondary bg-white border-2 p-1"
+        className="mgc_add_fill btn btn-secondary bg-white border-2 p-1 custom-button"
       ></button>
 
       <div
@@ -35,6 +35,7 @@ const AboutProduct = () => {
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  style={{ fontSize: "1.5rem", padding: "0.5rem" }}
                 ></button>
               </div>
               <div className="modal-body pt-0">
