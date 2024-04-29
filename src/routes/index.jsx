@@ -8,9 +8,9 @@ import Register from "../pages/register";
 import Cart from "../pages/cart";
 import Search from "../pages/search";
 import { useState } from "react";
+import ProductCard from "../components/Product/ProductCard"
 
 //Criando Componente Produto do Carrinho - Arthur
-import ProductCard from "../components/Product/ProductCard"
 
 export default function RoutesComponent() {
 

@@ -2,7 +2,7 @@ import Amortecedor from '../../../assets/img/amortecedorProductCart.png'
 import Remover from '../../../assets/img/Botão remover.png'
 import "./styles.scss";
 
-export default function productCard(){
+export default function ProductCard(){
 
     const minus = document.getElementById("itemSubtraction")
     const num = document.getElementById("itemQuantity");
