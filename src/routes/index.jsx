@@ -8,9 +8,9 @@ import Register from "../pages/register";
 import Cart from "../pages/cart";
 import Search from "../pages/search";
 import { useState } from "react";
+import ProductCard from "../components/Product/ProductCard"
 
 //Criando Componente Produto do Carrinho - Arthur
-import ProductCart from "../components/Product/ProductCart"
 
 export default function RoutesComponent() {
 
@@ -56,7 +56,7 @@ export default function RoutesComponent() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Profile />} />
       {/* Criando Produtos do Carrinho - Arthur  */}
-      <Route path="/productCart" element={<ProductCart />} />
+      <Route path="/productCard" element={<ProductCard />} />
     </Routes>
   );
 }
