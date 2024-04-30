@@ -1,5 +1,13 @@
 @import "../../../scss/styles.scss";
 
+.btn-qtd::before {
+    color: $white !important;
+}
+
+.btn-delete:hover {
+    background-color: $bg-slate-100;
+}
+
 .sl-c-card__container {
     padding: 0px;
     width: 30rem;

@@ -1,63 +1,78 @@
-import Amortecedor from '../../../assets/img/amortecedorProductCart.png'
-import Remover from '../../../assets/img/Botão remover.png'
+import Amortecedor from '../../../assets/img/product_cart_amortecedor.png'
 import "./styles.scss";
 
-export default function ProductCard(){
+export default function ProductCard({
+    product, description, price, qtd, index, updateQuantity, deleteProduct
+}) {
 
-    const minus = document.getElementById("itemSubtraction")
-    const num = document.getElementById("itemQuantity");
-    const plus = document.getElementById("itemSum");
-    
-    let a = 1;
+    // const [qtd, updateQuantity] = useState('01')
 
-    plus.addEventListener("click", () => {
-        a++;
-        a = (a < 10) ? "0" + a : a;
-        num.innerText = a;
-    });
+    const increment = () => {
+        var newValue = parseInt(qtd) + 1;
+        updateQuantity(maskQtd(newValue), index)
+    }
 
-    minus.addEventListener("click", () => {
-        if (a > 1) {
-            a--;
-            a = (a < 10) ? "0" + a : a;
-            num.innerText = a;
-        }
-    })
+    const decrement = () => {
+        var newValue = parseInt(qtd) - 1;
+        newValue = newValue < 1 ? 1 : newValue
 
+        updateQuantity(maskQtd(newValue), index)
+    }
+
+    function maskQtd(qtd) {
+        return qtd < 10 ? `0${qtd}` : qtd;
+    }
 
     return (
         <>
-            <div className='d-flex justify-content-center border border-dark sl-c-card__container'>
-                <div className="d-flex align-items-center sl-c-card">
-                    <div className='d-flex justify-content-center img sl-c-card__container__image'>
-                        <img src={Amortecedor} alt="Imagem de Amortecedor" className='p-4 sl-c-card__product__image'/>
-                    </div>
-                    <div className='sl-c-card__container__info'>
-                        <div className='d-flex align-content-between p-3 sl-c-card__container__info__header'> 
-                            <h1 className='sl-c-card__container__info__header__title'>AMORTECEDOR</h1>
-                            <img src={Remover} alt="Lixeira para Remover" className='ms-auto sl-c-card__container__info__header__trash__icon'/>
-                        </div>    
-                            
-                        <div className='d-flex align-content-between p-3 sl-c-card__container__info__body'>
-                        <p className='p-0 sl-c-card__container__info__body__title'>MODELO ORIGINAL</p>
-                        </div>
-                            
-                        <div className='d-flex p-3 align-content-between flex-wrap sl-c-card__container__info__value'>
-                            <h2 className='pt-5 p-1 sl-c-card__container__info__value__price'>R$244,50</h2>
-                            <div className='d-flex ms-auto align-items-end sl-c-card__container__info__value__buttons'>
-                                <div className='d-flex justify-content-center px-2 bg-primary rounded-start sl-c-card__container__info__value__buttons__subtraction__frame'>
-                                    <p id='itemSubtraction'>-</p>
-                                </div>
-                                <div className='d-flex justify-content-center px-2 bg-white sl-c-card__container__info__value__buttons__quantity__frame'>
-                                    <p id='itemQuantity'>01</p>
-                                </div>
-                                <div className='d-flex justify-content-center px-2 bg-primary rounded-end sl-c-card__container__info__value__buttons__addition__frame'>
-                                    <p id='itemSum'>+</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
+
+            <div className='d-flex justify-content-center mb-4 rounded-1 overflow-hidden bg-white'>
+
+                <div style={{width: '250px'}} className='d-flex align-items-center justify-content-center p-4 bg-slate-50'>
+                    <img src={Amortecedor} alt="Imagem de Amortecedor" width={'30px'}/>
                 </div>
+                
+                <div className='w-100 d-flex flex-column justify-content-between'>
+
+                    <div className='d-flex align-items-center justify-content-between p-4 w-100'>
+
+                        <div className='text-uppercase'>
+                            <h2>{product}</h2>
+                            <p>{description}</p>
+                        </div>
+
+                        <button type='button' className='btn-delete p-3 bg-slate-50 rounded-circle d-flex align-items-center justify-content-center'
+                                onClick={() => deleteProduct(index)}>
+                            <span className='mgc_delete_2_line fs-3'></span>
+                        </button>
+
+                    </div>
+
+                    <div className='d-flex align-items-center justify-content-between p-4 w-100'>
+                        <p className='fs-3 fw-medium'>R${price}</p>
+
+                        <div className='d-flex'>
+
+                            <button type='button'
+                            className='bg-primary rounded-start p-3 d-flex align-items-center justify-content-center' onClick={decrement}>
+                                <span className='btn-qtd mgc_minimize_line fs-4'></span>
+                            </button>
+                            
+                            <div style={{minWidth: '65px'}} className='fs-3 p-2 bg-white d-flex align-items-center justify-content-center'>
+                                <span>
+                                    {qtd}
+                                </span>
+                            </div>
+
+                            <button type='button'
+                                    className='bg-primary rounded-end p-3 d-flex align-items-center justify-content-center'
+                                    onClick={increment}>
+                                <span className='btn-qtd mgc_add_line fs-4'></span>    
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </>
     )

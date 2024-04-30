@@ -21,7 +21,7 @@ async function login() {
 function createBodyLogin(params) {
 	const formData = new URLSearchParams();
 	for (const [key, value] of Object.entries(params)) {
-			formData.append(key, value);
+		formData.append(key, value);
 	}
 	return formData;
 }

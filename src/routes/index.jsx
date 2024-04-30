@@ -7,43 +7,27 @@ import Profile from "../pages/profile";
 import Register from "../pages/register";
 import Cart from "../pages/cart";
 import Search from "../pages/search";
+import Maintenance from "../pages/maintenance";
 import { useState } from "react";
-import ProductCard from "../components/Product/ProductCard"
 
 //Criando Componente Produto do Carrinho - Arthur
+import ProductCard from "../components/Product/ProductCard"
 
 export default function RoutesComponent() {
 
-  //Guardar qualquer dado
-  // int = 0
-  // boolean = true|false
-  // string = 'meu nome'
-  // objeto = { nome: 'meu nome' }
-  const [ filter, setFilter ] = useState('all')
-  
-  const produtos = useState([
+  const [products, setProducts] = useState([]);
+
+  /* 
     {
-      nome: 'Produto 1',
-      descricao: 'nananna',
-    },
-    {
-      nome: 'Produto 2',
-      descricao: 'memememm',
-    },
-  ]);
+      id: 1,
+      produto
+    }
+  */
 
-  //Exemplo apenas
-  const produtos2 = produtos.map((produto) => {
-    produto.nome = 'Produto'
-  });
+  // Criar uma random no superbusca ['categorias'] para quando o 
+  // usuario não selecionar nenhuma categoria
 
-  //Filtrar produtos search
-  const produtosFiltrados = produtos.filter((produto) => {
-    produto.nome === filter
-  });
 
-  console.log(produtos2);
-  console.log(produtosFiltrados);
 
   return (
     <Routes>
@@ -51,9 +35,10 @@ export default function RoutesComponent() {
       <Route path="/identify" element={<Identify />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home produtos={produtos}/>} />
+      <Route path="/home" element={<Home />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/maintenance" element={<Maintenance />} />
+      <Route path="/cart" element={<Cart products={products} />} />
       <Route path="/profile" element={<Profile />} />
       {/* Criando Produtos do Carrinho - Arthur  */}
       <Route path="/productCard" element={<ProductCard />} />

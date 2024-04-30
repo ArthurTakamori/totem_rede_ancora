@@ -15,7 +15,7 @@ export default function Navbar() {
       icon_disable: "mgc_search_2_line",
     },
     {
-      to: "/search",
+      to: "/maintenance",
       icon_able: "mgc_car_door_line",
       icon_disable: "mgc_car_door_line",
     },
