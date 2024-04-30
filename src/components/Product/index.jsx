@@ -5,7 +5,7 @@ import "./styles.scss";
 export default function Product({ products }) {
   return (
     <ul
-      className="d-flex flex-column flex-wrap gap-4 flex-grow-1 align-items-start overflow-x-auto overflow-y-none p-0"
+      className="d-flex flex-column flex-wrap gap-4 flex-grow-1 align-items-start overflow-x-auto overflow-y-none p-0 justify-content-around"
       style={{ height: "50vh" }}
     >
       {products?.map((item, index) => (
@@ -21,7 +21,7 @@ const Card = ({ item }) => {
     <li
       className="card rounded-4 bg-white p-1 border-0"
       style={{
-        height: "46%",
+        minHeight: "46%",
         aspectRatio: "5 / 5",
       }}
     >
