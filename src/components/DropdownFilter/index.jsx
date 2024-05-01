@@ -6,11 +6,12 @@ export default function DropdownFilter() {
     <div className="dropdown h-100">
       <button
         type="button"
-        className="mgc_filter_line btn dropdown-toggle border border-1 rounded-2 py-0 custom-button"
+        className="mgc_filter_line btn dropdown-toggle border border-1 rounded-1 py-0 custom"
         data-bs-toggle="dropdown"
         aria-expanded="false"
         data-bs-auto-close="outside"
       ></button>
+
       <div className="dropdown-menu p-4 bg-white">
         <div className="mb-3">
           <div className="form-check dropdown-item">

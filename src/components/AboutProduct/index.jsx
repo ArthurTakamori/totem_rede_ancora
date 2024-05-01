@@ -10,7 +10,7 @@ const AboutProduct = () => {
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#aboutModal"
-        className="mgc_add_fill btn btn-secondary bg-white border-2 p-1 custom-button"
+        className="mgc_add_fill btn btn-secondary bg-white border-1 p-1"
       ></button>
 
       <div
@@ -22,7 +22,7 @@ const AboutProduct = () => {
       >
         <div className="modal-dialog modal-dialog-bottom">
           <div
-            className="modal-content bg-white"
+            className="modal-content bg-white overflow-y-auto"
             style={{ width: "100vw", height: "75vh" }}
           >
             <div

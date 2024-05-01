@@ -1,9 +1,8 @@
 .mgc_filter_line::before {
-  margin-right: 15px;
-  font-size: 5vh;
-  // translate: ();
+  font-size: 2rem;
 }
-.mgc_filter_line::after {
+
+.dropdown-toggle:empty::after{
   display: none;
 }
 
@@ -16,3 +15,6 @@ button::after {
   display: none;
 }
 
+.custom{
+  width: 5rem;
+}
