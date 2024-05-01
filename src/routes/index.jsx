@@ -12,10 +12,10 @@ import Stored from "../pages/stored";
 import { useState } from "react";
 
 //Criando Componente Produto do Carrinho - Arthur
-import ProductCard from "../components/Product/ProductCard"
+import ProductCard from "../components/Product/ProductCard";
+import Dashboard from "../pages/Dashboard";
 
 export default function RoutesComponent() {
-
   const [products, setProducts] = useState([]);
 
   /* 
@@ -25,10 +25,8 @@ export default function RoutesComponent() {
     }
   */
 
-  // Criar uma random no superbusca ['categorias'] para quando o 
+  // Criar uma random no superbusca ['categorias'] para quando o
   // usuario não selecionar nenhuma categoria
-
-
 
   return (
     <Routes>
@@ -36,14 +34,17 @@ export default function RoutesComponent() {
       <Route path="/identify" element={<Identify />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/maintenance" element={<Maintenance />} />
-      <Route path="/cart" element={<Cart products={products} />} />
-      <Route path="/profile" element={<Profile />} />
-      {/* Criando Produtos do Carrinho - Arthur  */}
-      <Route path="/productCard" element={<ProductCard />} />
-      <Route path="/stored" element={<Stored />} />
+
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="" element={<Home />} />
+        <Route path="search" element={<Search />} />
+        <Route path="maintenance" element={<Maintenance />} />
+        <Route path="cart" element={<Cart products={products} />} />
+        <Route path="profile" element={<Profile />} />
+        {/* Criando Produtos do Carrinho - Arthur  */}
+        <Route path="productCard" element={<ProductCard />} />
+        <Route path="stored" element={<Stored />} />
+      </Route>
     </Routes>
   );
 }

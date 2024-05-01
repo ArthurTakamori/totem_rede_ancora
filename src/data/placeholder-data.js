@@ -1,9 +1,9 @@
 import { getUser } from "../state/userState.js";
 
-const user = getUser()
+const user = getUser();
 
 const tire = {
-  img: "./src/assets/img/product_tire.png",
+  img: "/src/assets/img/product_tire.png",
   discription:
     "O pneu RoadX RXMOTION H12 oferece segurança e performance em qualquer condição climática, seja no seco ou no molhado.",
   price: 239.5,
@@ -14,7 +14,7 @@ const tire = {
 };
 
 const shockAbsorber = {
-  img: "./src/assets/img/product_shock_absorber.png",
+  img: "/src/assets/img/product_shock_absorber.png",
   price: 244.5,
   discount: 20,
   name: "Amortecedor",
@@ -22,9 +22,9 @@ const shockAbsorber = {
   category: "Amortecedor",
 };
 
-const products = []
+const products = [];
 
-for(var i = 0; i < 10; i++) {
+for (var i = 0; i < 10; i++) {
   products.push(shockAbsorber);
   products.push(tire);
 }

@@ -61,7 +61,7 @@ export default function Login() {
         return;
       }
 
-      navigate("/home");
+      navigate("/dashboard");
     })
   };
 

@@ -22,7 +22,7 @@ export default function Identify() {
 
               </Link>
 
-              <Link to="/home" className="col rounded-1 d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2"
+              <Link to="/dashboard" className="col rounded-1 d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2"
               style={{ height: "250px" }}>
                 <span className="mgc_forward_2_line fs-1 p-2"></span>
                 <p className="fw-semibold">Pular etapa</p>

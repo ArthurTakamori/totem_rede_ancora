@@ -1,5 +1,3 @@
-import HeaderHome from "../../components/Header/Home";
-import Navbar from "../../components/Navbar";
 import Title from "../../components/Title";
 
 export default function Maintenance() {
@@ -7,13 +5,13 @@ export default function Maintenance() {
         <>
             <div className="container-main">
 
-                <HeaderHome />
+                
                 <Title page={'Meu veículo'} />
 
                 <main>
                 </main>
 
-                <Navbar />
+               
 
             </div>
         </>

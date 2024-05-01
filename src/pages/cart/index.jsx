@@ -1,5 +1,4 @@
 import { useState } from "react";
-import HeaderHome from "../../components/Header/Home";
 import ProductCard from "../../components/Product/ProductCard";
 import Title from "../../components/Title";
 import Button from "../../components/Button";
@@ -43,8 +42,6 @@ export default function Cart() {
   return (
     <>
       <div className="container-main">
-
-        <HeaderHome />
         
         <Title page={'Carrinho de compra'} />
 

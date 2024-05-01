@@ -17,6 +17,7 @@ export default function Product({ products }) {
 
 const Card = ({ item }) => {
   const { img, name, subTitle, price, discount } = item;
+  console.log(img)
   return (
     <li
       className="card rounded-4 bg-white p-1 border-0"
