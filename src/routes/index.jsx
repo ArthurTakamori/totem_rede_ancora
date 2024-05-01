@@ -8,6 +8,7 @@ import Register from "../pages/register";
 import Cart from "../pages/cart";
 import Search from "../pages/search";
 import Maintenance from "../pages/maintenance";
+import Stored from "../pages/stored";
 import { useState } from "react";
 
 //Criando Componente Produto do Carrinho - Arthur
@@ -42,6 +43,7 @@ export default function RoutesComponent() {
       <Route path="/profile" element={<Profile />} />
       {/* Criando Produtos do Carrinho - Arthur  */}
       <Route path="/productCard" element={<ProductCard />} />
+      <Route path="/stored" element={<Stored />} />
     </Routes>
   );
 }
