@@ -7,12 +7,12 @@ export default function Navbar() {
     {
       to: "/home",
       icon_able: "mgc_home_3_fill",
-      icon_disable: "mgc_home_3_line",
+      icon_disable: "mgc_home_3_fill",
     },
     {
       to: "/search",
-      icon_able: "mgc_search_2_line",
-      icon_disable: "mgc_search_2_line",
+      icon_able: "mgc_search_2_fill",
+      icon_disable: "mgc_search_2_fill",
     },
     {
       to: "/maintenance",
@@ -22,7 +22,12 @@ export default function Navbar() {
     {
       to: "/profile",
       icon_able: "mgc_user_3_fill",
-      icon_disable: "mgc_user_3_line",
+      icon_disable: "mgc_user_3_fill",
+    },
+    {
+      to: "/",
+      icon_able: "mgc_exit_fill",
+      icon_disable: "mgc_exit_fill",
     },
   ];
 
