@@ -29,7 +29,6 @@ function createBodyLogin(params) {
 /** Handle login */
 export const handleLogin = async () => {
 	const response = await login();
-	console.log(response);
 
 	if ('access_token' in response) {
 		localStorage.setItem('access_token', response['access_token']);

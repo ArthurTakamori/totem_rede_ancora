@@ -1,7 +1,10 @@
 import Logo from '../../../assets/img/logo_v1.png';
 import { Link } from 'react-router-dom';
+import { getUser } from '../../../state/userState';
 
 export default function HeaderHome() {
+
+  const user = getUser()
 
   return (
     <>
@@ -11,7 +14,7 @@ export default function HeaderHome() {
           <img src={Logo} alt='Logo Rede Ancora' className='brand'/>
 
           <div className="d-flex flex-column ms-4">
-            <h1 className="fs-3">Olá, Roberto Alves</h1>
+            <h1 className="fs-3">Olá, { user.name }</h1>
             <div>
               <span className="mgc_location_fill fs-5"></span>
               <p className="d-inline ms-2 fs-5">Rede Ancora - SP</p>

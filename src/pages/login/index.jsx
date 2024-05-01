@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import HeaderIdentify from "../../components/Header/Identify";
+import { setUser } from '../../state/userState.js';
+import { users } from '../../data/users.js';
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
 import { handleLogin } from "../../utils/api/login";
 import { useNavigate } from "react-router-dom";
@@ -39,11 +41,18 @@ export default function Login() {
     setCpf(cpf.slice(0, -1));
   };
 
+  const fetchUser = () => {
+    const randomIndex = Math.floor(Math.random() * users.length);
+    return users[randomIndex];
+  }
+
   const handleSubmitLogin = async () => {
 
     if(cpf.length !== 11) {
       return;
     }
+
+    setUser(fetchUser())
 
     await handleLogin().then((response) => {
 

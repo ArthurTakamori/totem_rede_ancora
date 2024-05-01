@@ -1,6 +1,6 @@
-const user = {
-  name: "Roberto Alencar",
-};
+import { getUser } from "../state/userState.js";
+
+const user = getUser()
 
 const tire = {
   img: "./src/assets/img/product_tire.png",
@@ -22,33 +22,11 @@ const shockAbsorber = {
   category: "Amortecedor",
 };
 
-const products = [
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-  tire,
-  shockAbsorber,
-];
+const products = []
+
+for(var i = 0; i < 10; i++) {
+  products.push(shockAbsorber);
+  products.push(tire);
+}
 
 export { products, user };

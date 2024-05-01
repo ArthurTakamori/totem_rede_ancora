@@ -7,17 +7,19 @@ import Button from '../../components/Button';
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
 import Title from '../../components/Title';
 import { Controller } from 'react-hook-form';
+import { getUser } from '../../state/userState';
 
 export default function Profile() {
 
   const [showCpf, setShowCpf] = useState(true);
+  const user = getUser()
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      fullName: '',
-      cpf: '',
-      phone: '',
-      email: ''
+      fullName: user.name,
+      cpf: user.cpf,
+      phone: user.phone,
+      email: user.email
     }
   });
 
