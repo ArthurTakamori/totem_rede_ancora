@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import Dashboard from "../pages/dashboard";
 import Splash from "../pages/splash";
-import Home from "../pages/home";
+import Home from "../pages/home"; 
 import Identify from "../pages/identify";
 import Login from "../pages/login";
 import Profile from "../pages/profile";
@@ -13,7 +14,6 @@ import { useState } from "react";
 
 //Criando Componente Produto do Carrinho - Arthur
 import ProductCard from "../components/Product/ProductCard";
-import Dashboard from "../pages/Dashboard";
 
 export default function RoutesComponent() {
   const [products, setProducts] = useState([]);

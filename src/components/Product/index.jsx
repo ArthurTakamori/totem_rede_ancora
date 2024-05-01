@@ -6,7 +6,7 @@ export default function Product({ products }) {
   return (
     <ul
       className="d-flex flex-column flex-wrap gap-4 flex-grow-1 align-items-start overflow-x-auto overflow-y-none p-0 justify-content-around"
-      style={{ height: "50vh" }}
+      style={{ height: "65vh" }}
     >
       {products?.map((item, index) => (
         <Card item={item} key={index} />
@@ -47,7 +47,7 @@ const Card = ({ item }) => {
         style={{ height: "40%" }}
       >
         <div className="h-50">
-          <h5 className="card-title mb-0" style={{ fontWeight: "400", fontSize: ".8rem" }}>
+          <h5 className="card-title mb-0 fs-5" style={{ fontWeight: "400" }}>
             {name}
           </h5>
           <p
@@ -55,7 +55,7 @@ const Card = ({ item }) => {
             style={{
               fontWeight: "300",
               marginTop: "-0.3rem",
-              fontSize: "calc(.7rem)",
+              fontSize: "calc(.8rem)",
             }}
           >
             {subTitle}
@@ -64,10 +64,10 @@ const Card = ({ item }) => {
 
         <div className="d-flex align-items-center justify-content-between h-50 gap-2">
           <span className="card-text flex-item flex-grow-1">
-            <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-6">
+            <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-5">
               {formatCurrency(price - discount)}
             </span>
-            <del className="text-muted" style={{ fontSize: ".5rem" }}>
+            <del className="text-muted" style={{ fontSize: ".6rem" }}>
               {formatCurrency(price)}
             </del>
           </span>
