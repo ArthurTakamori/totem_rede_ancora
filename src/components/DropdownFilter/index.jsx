@@ -1,7 +1,7 @@
 import "./styles.scss";
 
 export default function DropdownFilter() {
-  const placa = true;
+  // const placa = true;s
   return (
     <div className="dropdown h-100">
       <button
@@ -20,7 +20,7 @@ export default function DropdownFilter() {
               type="checkbox"
               value=""
               id="flexCheckDefault"
-              checked={placa}
+              // checked={placa}
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               Placa do veiculo

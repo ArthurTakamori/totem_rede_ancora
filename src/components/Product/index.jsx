@@ -1,6 +1,8 @@
 import { formatCurrency } from "../../utils/formatCurrency";
 import AboutProduct from "../AboutProduct";
+import Amortecedor from '../../assets/img/product_cart_amortecedor.png'
 import "./styles.scss";
+import generateProductPrices from "../../utils/generateProductPrices";
 
 export default function Product({ products }) {
   return (
@@ -16,8 +18,12 @@ export default function Product({ products }) {
 }
 
 const Card = ({ item }) => {
-  const { img, name, subTitle, price, discount } = item;
-  console.log(img)
+  const { nomeProduto, marca } = item;
+
+  const {originalPrice, discountedPrice} = generateProductPrices()
+
+  // const imageURL = `https://api-url/images/${product.imagemReal}`
+
   return (
     <li
       className="card rounded-4 bg-white p-1 border-0"
@@ -31,9 +37,9 @@ const Card = ({ item }) => {
         style={{ height: "60%" }}
       >
         <img
-          src={img}
+          src={Amortecedor}
           className="card-img-top"
-          alt={name}
+          alt={nomeProduto}
           style={{
             maxHeight: "70%",
             maxWidth: "100%",
@@ -48,7 +54,7 @@ const Card = ({ item }) => {
       >
         <div className="h-50">
           <h5 className="card-title mb-0 fs-5" style={{ fontWeight: "400" }}>
-            {name}
+            {nomeProduto}
           </h5>
           <p
             className="card-text opacity-75"
@@ -58,17 +64,17 @@ const Card = ({ item }) => {
               fontSize: "calc(.8rem)",
             }}
           >
-            {subTitle}
+            {marca}
           </p>
         </div>
 
         <div className="d-flex align-items-center justify-content-between h-50 gap-2">
           <span className="card-text flex-item flex-grow-1">
             <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-5">
-              {formatCurrency(price - discount)}
+              {formatCurrency(discountedPrice)}
             </span>
             <del className="text-muted" style={{ fontSize: ".6rem" }}>
-              {formatCurrency(price)}
+              {formatCurrency(originalPrice)}
             </del>
           </span>
           <AboutProduct />
@@ -77,4 +83,3 @@ const Card = ({ item }) => {
     </li>
   );
 };
-

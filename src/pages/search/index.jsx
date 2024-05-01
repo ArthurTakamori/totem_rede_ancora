@@ -3,35 +3,43 @@ import Product from "../../components/Product";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
 import { products as dataPlaceholder } from "../../data/placeholder-data";
+import debounce from "../../utils/debounce";
+import fetchProducts from "../../utils/api/fetchProducts";
 
 export default function Search() {
-  const [products] = useState([...dataPlaceholder]);
+  // const [products] = useState([...dataPlaceholder]);
 
   const [searchedProducts, setSearchedProducts] = useState([
     ...dataPlaceholder,
   ]);
 
-  const handleFindProducts = (event) => {
+  const searchProducts = async (event) => {
     const { value } = event.target;
-    console.log(value);
 
-    const filterProducts = products.filter((product) => {
-      return (
-        product.name.toLowerCase().includes(value.toLowerCase()) ||
-        product.subTitle.toLowerCase().includes(value.toLowerCase())
-      );
-    });
+    const normalizedValue = value
+      .toLowerCase()
+      .replace(/[^\w\s]/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
 
-    console.log(filterProducts);
-    setSearchedProducts([...filterProducts]);
+    const {pageResult} = await fetchProducts(normalizedValue);
+
+    const {data, vehicle} = pageResult
+
+
+
+    console.log(data);
+    setSearchedProducts(data);
   };
+
+  const handleSearch = debounce(searchProducts, 500);
 
   return (
     <>
       <div className="container-main px-4">
         <Title page={"Pesquisar"} />
 
-        <SearchBar handleFindProducts={handleFindProducts} />
+        <SearchBar handleSearch={handleSearch} />
 
         <main className="d-flex align-items-center p-0">
           <Product products={searchedProducts} />
