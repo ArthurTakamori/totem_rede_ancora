@@ -1,6 +1,6 @@
 import { formatCurrency } from "../../utils/formatCurrency";
 import AboutProduct from "../AboutProduct";
-import Amortecedor from '../../assets/img/product_cart_amortecedor.png'
+import Amortecedor from "../../assets/img/product_cart_amortecedor.png";
 import "./styles.scss";
 import generateProductPrices from "../../utils/generateProductPrices";
 
@@ -18,11 +18,13 @@ export default function Product({ products }) {
 }
 
 const Card = ({ item }) => {
-  const { nomeProduto, marca } = item;
+  const { imagemReal, nomeProduto, marca } = item;
 
-  const {originalPrice, discountedPrice} = generateProductPrices()
+  const { originalPrice, discountedPrice } = generateProductPrices();
 
-  // const imageURL = `https://api-url/images/${product.imagemReal}`
+  const imageURL = imagemReal
+    ? `https://catalogopdtstorage.blob.core.windows.net/imagens-prd/produto/${imagemReal}`
+    : Amortecedor;
 
   return (
     <li
@@ -37,7 +39,7 @@ const Card = ({ item }) => {
         style={{ height: "60%" }}
       >
         <img
-          src={Amortecedor}
+          src={imageURL}
           className="card-img-top"
           alt={nomeProduto}
           style={{
