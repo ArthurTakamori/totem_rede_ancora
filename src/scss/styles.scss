@@ -139,6 +139,13 @@ body {
   user-select: none;
 }
 
+// ::-webkit-scrollbar {
+//   display: none;
+// }
+
+// * {
+//   -ms-overflow-style: none;
+// }
 //
 // Para mais personalização, podem ser criadas mais variáveis e classes para aplicar aos elementos.
 //
@@ -158,6 +165,18 @@ $white-ancora-1: #ffffff;
 
 .bg-slate-50 {
   background-color: $bg-slate-50;
+}
+
+.dropdown-item {
+  padding: 0.875rem;
+  font-size: 1.5rem;
+  border-radius: .15rem;
+}
+
+.dropdown-item:hover, 
+.dropdown-item:focus {
+  background-color: $bg-slate-100;
+  color: $primary;
 }
 
 // Container para telas iniciais
@@ -226,9 +245,6 @@ main {
   color: $white;
 }
 
-.dropdown-car-plate {
-  background-color: $bg-slate-100;
-}
 
 .keyboard {
   color: $primary;

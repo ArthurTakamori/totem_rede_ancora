@@ -5,8 +5,13 @@ import Title from "../../components/Title";
 import { products as dataPlaceholder } from "../../data/placeholder-data";
 import debounce from "../../utils/debounce";
 import fetchProducts from "../../utils/api/fetchProducts";
+import DorpdownCar from "../../components/DropdownCar";
+import { getUser } from "../../state/userState";
+
 
 export default function Search() {
+  
+  const user = getUser();
   // const [products] = useState([...dataPlaceholder]);
 
   const [searchedProducts, setSearchedProducts] = useState([
@@ -36,12 +41,18 @@ export default function Search() {
 
   return (
     <>
-      <div className="container-main px-4">
-        <Title page={"Pesquisar"} />
+      <div className="container-main">
+
+        <div className="d-flex justify-content-between align-items-center mb-4">
+
+          <Title page={'Acessórios para Veículos'} />
+          <DorpdownCar cars={user.cars}/>
+
+        </div>
 
         <SearchBar handleSearch={handleSearch} />
 
-        <main className="d-flex align-items-center p-0">
+        <main className="d-flex align-items-center px-4">
           <Product products={searchedProducts} />
         </main>
       </div>

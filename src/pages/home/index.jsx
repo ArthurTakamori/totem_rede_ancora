@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
+import DorpdownCar from "../../components/DropdownCar";
 
 export default function Home() {
 
@@ -52,25 +53,8 @@ export default function Home() {
     <>
       <div className="container-main">
 
-        <div className="d-flex justify-content-between align-items-center">
-
-          <Title page={'Categorias'} />
-
-          <div className="dropdown">
-            <button className="dropdown-car-plate  dropdown-toggle p-2 rounded-1 d-flex align-items-center fs-5 fw-medium text-primary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"
-            style={{width: '230px', height: '65px'}}>
-
-              <span className="mgc_car_2_fill fs-2 px-3"></span>
-              Placa do carro
-            </button>
-
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><button className="dropdown-item" type="button">Action</button></li>
-            </ul>
-
-          </div>
-        </div>
-
+        <Title page={'Categorias'} />
+          
         <main className="p-6 d-flex flex-column align-items-center">
 
           {categories.map((items, index) => (

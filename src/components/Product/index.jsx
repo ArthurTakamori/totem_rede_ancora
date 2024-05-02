@@ -28,7 +28,7 @@ const Card = ({ item }) => {
 
   return (
     <li
-      className="card rounded-4 bg-white p-1 border-0"
+      className="card rounded-2 bg-white p-1 border-0"
       style={{
         minHeight: "46%",
         aspectRatio: "4 / 5",

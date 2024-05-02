@@ -22,7 +22,7 @@ const AboutProduct = () => {
       >
         <div className="modal-dialog modal-dialog-bottom">
           <div
-            className="modal-content bg-white overflow-y-auto"
+            className="modal-content bg-white overflow-y-auto rounded-0"
             style={{ width: "100vw", height: "75vh" }}
           >
             <div
