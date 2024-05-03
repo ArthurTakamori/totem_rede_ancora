@@ -26,9 +26,9 @@ export default function ProductCard({
     return (
         <>
 
-            <div className='d-flex justify-content-center mb-4 rounded-1 overflow-hidden bg-white'>
+            <div className='d-flex justify-content-center mb-4 rounded-1 overflow-hidden bg-white w-100'>
 
-                <div style={{width: '250px'}} className='d-flex align-items-center justify-content-center p-4 bg-slate-50'>
+                <div style={{width: '350px'}} className='d-flex align-items-center justify-content-center p-4 bg-slate-50'>
                     <img src={Amortecedor} alt="Imagem de Amortecedor" width={'30px'}/>
                 </div>
                 

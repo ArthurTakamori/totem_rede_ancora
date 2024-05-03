@@ -139,14 +139,14 @@ body {
   user-select: none;
 }
 
-// ::-webkit-scrollbar {
-//   display: none;
-// }
+::-webkit-scrollbar {
+  display: none;
+}
 
-// * {
-//   -ms-overflow-style: none;
-// }
-//
+* {
+  -ms-overflow-style: none;
+}
+
 // Para mais personalização, podem ser criadas mais variáveis e classes para aplicar aos elementos.
 //
 
@@ -210,8 +210,8 @@ $white-ancora-1: #ffffff;
 }
 
 main {
-  flex-grow: 1;
-  padding: 2rem;
+  overflow: hidden;
+  height: calc(100vh - 10rem);
 }
 
 .brand {

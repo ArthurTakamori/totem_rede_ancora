@@ -7,8 +7,7 @@ import generateProductPrices from "../../utils/generateProductPrices";
 export default function Product({ products }) {
   return (
     <ul
-      className="d-flex flex-column flex-wrap gap-4 flex-grow-1 align-items-start overflow-x-auto overflow-y-none p-0 justify-content-around"
-      style={{ height: "65vh" }}
+      className="row justify-content-center gap-3 no-gutters pb-5"
     >
       {products?.map((item, index) => (
         <Card item={item} key={index} />
@@ -28,11 +27,7 @@ const Card = ({ item }) => {
 
   return (
     <li
-      className="card rounded-2 bg-white p-1 border-0"
-      style={{
-        minHeight: "46%",
-        aspectRatio: "4 / 5",
-      }}
+      className="card rounded-2 bg-white p-1 border-0 col-md-4 col-12"
     >
       <div
         className="card-image-container d-flex justify-content-center align-items-center rounded-4 bg-img"

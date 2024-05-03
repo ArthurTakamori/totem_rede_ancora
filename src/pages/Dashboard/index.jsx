@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div className="container-main">
       <HeaderHome />
 
-      <main className="p-6 d-flex flex-column align-items-center">
+      <main>
         <Outlet />
       </main>
 

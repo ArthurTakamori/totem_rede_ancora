@@ -33,9 +33,10 @@ export default function Navbar() {
 
   return (
     <div
-      className="p-4"
+      className="fixed-bottom pt-4"
       style={{
         height: "135px",
+        backgroundColor: "#F0EEEE"
       }}
     >
       <div className="row">

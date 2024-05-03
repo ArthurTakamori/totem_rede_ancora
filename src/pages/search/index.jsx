@@ -41,21 +41,24 @@ export default function Search() {
 
   return (
     <>
-      <div className="container-main">
+  
+      <div className="d-flex justify-content-between align-items-center mb-4">
 
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        <Title page={'Acessórios para Veículos'} />
+        <DorpdownCar cars={user.cars}/>
 
-          <Title page={'Acessórios para Veículos'} />
-          <DorpdownCar cars={user.cars}/>
-
-        </div>
-
-        <SearchBar handleSearch={handleSearch} />
-
-        <main className="d-flex align-items-center px-4">
-          <Product products={searchedProducts} />
-        </main>
       </div>
+
+      <SearchBar handleSearch={handleSearch} />
+
+      <div className="overflow-y-auto px-5" style={{
+        height: 'calc(100% - 20rem)'
+      }}>
+
+        <Product products={searchedProducts} />
+
+      </div>
+
     </>
   );
 }

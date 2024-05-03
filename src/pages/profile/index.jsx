@@ -28,105 +28,101 @@ export default function Profile() {
 
   return (
     <>
-      <div className="container-main">
-        <Title page={"Minha conta"} />
+      <Title page={"Minha conta"} />
 
-        <main>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  label="Nome completo"
-                  value={value}
-                  onChange={onChange}
-                />
-              )}
-              name="fullName"
+      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="px-4">
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              label="Nome completo"
+              value={value}
+              onChange={onChange}
             />
-            {errors.fullName && <Text>This is required.</Text>}
+          )}
+          name="fullName"
+        />
+        {errors.fullName && <Text>This is required.</Text>}
 
-            <div className="position-relative">
-              <Controller
-                control={control}
-                rules={{
-                  required: true,
-                  minLength: 14,
-                  maxLength: 14,
-                }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input
-                    label={"CPF"}
-                    value={showCpf === false ? hideCPF(value) : value}
-                    onChange={(e) => onChange(maskCpf(e.target.value))}
-                  />
-                )}
-                name="cpf"
+        <div className="position-relative">
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 14,
+              maxLength: 14,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input
+                label={"CPF"}
+                value={showCpf === false ? hideCPF(value) : value}
+                onChange={(e) => onChange(maskCpf(e.target.value))}
               />
-              {errors.cpf && <Text>This is required.</Text>}
+            )}
+            name="cpf"
+          />
+          {errors.cpf && <Text>This is required.</Text>}
 
-              <div className="position-relative">
-                <button
-                  type="button"
-                  onClick={() => setShowCpf(!showCpf)}
-                  className="position-absolute"
-                  style={{
-                    top: "-88px",
-                    right: "15px",
-                  }}
-                >
-                  <span
-                    className={`${
-                      showCpf ? "mgc_eye_2_line" : "mgc_eye_close_line"
-                    } fs-1`}
-                  />
-                </button>
-              </div>
-            </div>
-
-            <Controller
-              control={control}
-              rules={{
-                required: true,
+          <div className="position-relative">
+            <button
+              type="button"
+              onClick={() => setShowCpf(!showCpf)}
+              className="position-absolute"
+              style={{
+                top: "-88px",
+                right: "15px",
               }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  label={"Telefone"}
-                  value={value}
-                  onChange={onChange}
-                  type={"tel"}
-                />
-              )}
-              name="phone"
-            />
-            {errors.phone && <Text>This is required.</Text>}
+            >
+              <span
+                className={`${
+                  showCpf ? "mgc_eye_2_line" : "mgc_eye_close_line"
+                } fs-1`}
+              />
+            </button>
+          </div>
+        </div>
 
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  label={"E-mail"}
-                  value={value}
-                  onChange={onChange}
-                  type={"email"}
-                />
-              )}
-              name="email"
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              label={"Telefone"}
+              value={value}
+              onChange={onChange}
+              type={"tel"}
             />
-            {errors.email && <Text>This is required.</Text>}
+          )}
+          name="phone"
+        />
+        {errors.phone && <Text>This is required.</Text>}
 
-            <div className="d-flex w-100 justify-content-end mt-4">
-              <Button name={"Atualizar dados cadastrais"} type={"submit"} />
-            </div>
-          </form>
-        </main>
-      </div>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              label={"E-mail"}
+              value={value}
+              onChange={onChange}
+              type={"email"}
+            />
+          )}
+          name="email"
+        />
+        {errors.email && <Text>This is required.</Text>}
+
+        <div className="d-flex w-100 justify-content-end mt-4">
+          <Button name={"Atualizar dados cadastrais"} type={"submit"} />
+        </div>
+      </form>
     </>
   );
 }

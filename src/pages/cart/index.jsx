@@ -18,6 +18,13 @@ export default function Cart() {
       description: 'Modelo original',
       price: '189.50',
       qtd: '01'
+    },
+    
+    {
+      name: 'Melhor que 2',
+      description: 'Modelo original',
+      price: '189.50',
+      qtd: '01'
     }
   ])
 
@@ -41,42 +48,46 @@ export default function Cart() {
 
   return (
     <>
-      <div className="container-main">
-        
-        <Title page={'Carrinho de compra'} />
 
-        <main>
+    <Title page={'Carrinho de compra'} />
 
-          {products.map((product, index) => (
-            <ProductCard key={index}
-              index={index}
-              product={product.name}
-              description={product.description}
-              price={product.price}
-              qtd={product.qtd}
-              updateQuantity={updateQuantity}
-              deleteProduct={deleteProduct}
-            />
-          ))}
+    <div className="overflow-y-auto px-5" style={{
+        height: 'calc(100% - 22rem)'
+      }}>
 
-        </main>
+        <div className="row justify-content-center gap-3 no-gutters pb-5">
 
-        <div
-          className="d-flex justify-content-between align-items-center"
-          style={{
-            height: "145px",
-            padding: '1.5rem 3rem'
-          }}
-        >
-          <div>
-            <span className="fs-1 fw-medium d-block block">{formatCurrency(total)}</span>
-            <span className="fs-4 d-block text-uppercase">Valor total</span>
-          </div>
+        {products.map((product, index) => (
+          <ProductCard key={index}
+            index={index}
+            product={product.name}
+            description={product.description}
+            price={product.price}
+            qtd={product.qtd}
+            updateQuantity={updateQuantity}
+            deleteProduct={deleteProduct}
+          />
+        ))}
 
-          <Button name={'Finalizar pedido'} type={'submit'} />
         </div>
 
+    </div>
+
+    <div
+      className="d-flex justify-content-between align-items-center"
+      style={{
+        height: "145px",
+        padding: '1.5rem 3rem'
+      }}
+    >
+      <div>
+        <span className="fs-1 fw-medium d-block block">{formatCurrency(total)}</span>
+        <span className="fs-4 d-block text-uppercase">Valor total</span>
       </div>
+
+      <Button name={'Finalizar pedido'} type={'submit'} />
+    </div>
+
     </>
   );
 }
