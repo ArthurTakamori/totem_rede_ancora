@@ -4,9 +4,18 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <>
-      <Link to={'/identify'}>
-        <img src={Splash} alt="Imagem principal"/>
-      </Link>
+      <div className='bg-primary w-100 min-vh-100'>
+
+     
+        <div class="container">
+
+            <Link to={'/identify'} className='row'>
+              <img src={Splash} alt="Imagem principal" className='img-fluid'/>
+            </Link>
+
+        </div>
+
+      </div>
     </>
   );
 }
