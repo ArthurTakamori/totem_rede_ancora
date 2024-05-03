@@ -32,7 +32,6 @@ export const handleLogin = async () => {
 
 	if ('access_token' in response) {
 		localStorage.setItem('access_token', response['access_token']);
-		localStorage.setItem('user', JSON.stringify(response['user']));
 		return true;
 	} 
 
