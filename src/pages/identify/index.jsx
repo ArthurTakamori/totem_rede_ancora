@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
+import { handleLogin } from "../../utils/api/login";
+import { useNavigate } from "react-router-dom";
 import HeaderIdentify from "../../components/Header/Identify";
 
 export default function Identify() {
+
+  const navigate = useNavigate()
+
+  const handleSkip = async () => {
+
+    await handleLogin().then((response) => {
+  
+      if(response === false) {
+        return;
+      }
+  
+      navigate("/dashboard");
+    })
+
+  };
+
+
   return (
     <div className="container-identify container-fluid text-center">
       <HeaderIdentify link="/"/>
@@ -18,15 +37,17 @@ export default function Identify() {
 
               <Link to="/login" className="col rounded-1 bg-primary d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2" style={{ height: "250px" }}>
                 <span className="mgc_badge_line fs-1 p-2"></span>
-                <p className="fw-semibold">Entrar usando CPF</p>
+                <p className="fw-semibold text-primary">Entrar usando CPF</p>
 
               </Link>
 
-              <Link to="/dashboard" className="col rounded-1 d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2"
-              style={{ height: "250px" }}>
+              <button type="button" className="col rounded-1 d-flex flex-column justify-content-around align-items-center p-4 bg-white border border-primary mx-2"
+              style={{ height: "250px" }}
+              onClick={handleSkip}>
                 <span className="mgc_forward_2_line fs-1 p-2"></span>
-                <p className="fw-semibold">Pular etapa</p>
-              </Link>
+                <p className="fw-semibold text-primary">Pular etapa</p>
+              </button>
+
             </div>
 
           </div>
