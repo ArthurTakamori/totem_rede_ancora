@@ -11,22 +11,18 @@ import Search from "../pages/search";
 import Maintenance from "../pages/maintenance";
 import Stored from "../pages/stored";
 import { useState } from "react";
-
-//Criando Componente Produto do Carrinho - Arthur
 import ProductCard from "../components/Product/ProductCard";
 
 export default function RoutesComponent() {
-  const [products, setProducts] = useState([]);
+  
+  const [family, setFamily] = useState({
+    
+  });
 
-  /* 
-    {
-      id: 1,
-      produto
-    }
-  */
-
-  // Criar uma random no superbusca ['categorias'] para quando o
-  // usuario não selecionar nenhuma categoria
+  const [products, setProducts] = useState({
+    id: '',
+    descricao: ''
+  });
 
   return (
     <Routes>
@@ -36,15 +32,15 @@ export default function RoutesComponent() {
       <Route path="/register" element={<Register />} />
 
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route path="" element={<Home />} />
-        <Route path="search" element={<Search />} />
+        <Route path="" element={<Home family={family} setFamily={setFamily} />} />
+        <Route path="search" element={<Search family={family} setFamily={setFamily} />} />
         <Route path="maintenance" element={<Maintenance />} />
         <Route path="cart" element={<Cart products={products} />} />
         <Route path="profile" element={<Profile />} />
         {/* Criando Produtos do Carrinho - Arthur  */}
         <Route path="productCard" element={<ProductCard />} />
-        <Route path="stored" element={<Stored />} />
       </Route>
+      <Route path="stored" element={<Stored />} />
     </Routes>
   );
 }

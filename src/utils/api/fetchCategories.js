@@ -1,20 +1,13 @@
-const BEARER_TOKEN = localStorage.access_token;
+import useFetchApi from '../../composables/useFetchApi.js';
 
-export default async function fetchProducts(pagina, itensPorPagina) {
+export default async function fetchCategories(pagina, itensPorPagina) {
 
-  return fetch(
-    "https://api-stg-catalogo.redeancora.com.br/superbusca/api/integracao/produto/familias/query",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${BEARER_TOKEN}`,
-      },
-      body: JSON.stringify({ 
-        "pagina": pagina, 
-        "itensPorPagina": itensPorPagina 
-      }),
-    }
-  ).then((data) => data.json());
+  return await useFetchApi("https://api-stg-catalogo.redeancora.com.br/superbusca/api/integracao/produto/familias/query", {
+    method: "POST",
+    body: { 
+      "pagina": pagina, 
+      "itensPorPagina": itensPorPagina 
+    },
+  })
 
 }

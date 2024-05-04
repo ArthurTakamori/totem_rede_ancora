@@ -1,5 +1,7 @@
 /** Function for consume API - Rede Ancora */
-async function login() {
+async function handleLogin() {
+
+	//PASSÍVEL DE LOOP PORQUE O USE FETCH API CALL O HANDLE LOGIN E DA LOOP -- PS APAGAR DEPOIS ESSE COMENTÁRIO
 
 	const formData = createBodyLogin({
 		client_id: '65tvh6rvn4d7uer3hqqm2p8k2pvnm5wx',
@@ -27,12 +29,11 @@ function createBodyLogin(params) {
 }
 
 /** Handle login */
-export const handleLogin = async () => {
-	const response = await login();
+export const handleAccessToken = async () => {
+	const response = await handleLogin();
 
 	if ('access_token' in response) {
-		localStorage.setItem('access_token', response['access_token']);
-		return true;
+		return response['access_token'];
 	} 
 
 	console.error('Error: ' + response.error)

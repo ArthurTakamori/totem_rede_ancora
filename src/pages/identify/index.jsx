@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { handleLogin } from "../../utils/api/login";
+import { handleAccessToken } from "../../utils/api/login";
 import { useNavigate } from "react-router-dom";
 import HeaderIdentify from "../../components/Header/Identify";
 
@@ -9,7 +9,7 @@ export default function Identify() {
 
   const handleSkip = async () => {
 
-    await handleLogin().then((response) => {
+    await handleAccessToken().then((response) => {
   
       if(response === false) {
         return;

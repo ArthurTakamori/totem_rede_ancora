@@ -3,7 +3,7 @@ import HeaderIdentify from "../../components/Header/Identify";
 import { setUser } from '../../state/userState.js';
 import { users } from '../../data/users.js';
 import { hideCPF, maskCpf } from "../../utils/maskCpf";
-import { handleLogin } from "../../utils/api/login";
+import { handleAccessToken } from "../../utils/api/login";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -54,7 +54,7 @@ export default function Login() {
 
     setUser(fetchUser())
 
-    await handleLogin().then((response) => {
+    await handleAccessToken().then((response) => {
 
       if(response === false) {
         //Mensagem de erro de conexão com a API
