@@ -9,8 +9,8 @@ export default function Product({ products }) {
     <ul
       className="row justify-content-center gap-3 no-gutters pb-5"
     >
-      {products?.map((item, index) => (
-        <Card item={item} key={index} />
+      {products?.map(({data: item}, index) => (
+        item.imagemReal && <Card item={item} key={index} />
       ))}
     </ul>
   );
@@ -21,9 +21,6 @@ const Card = ({ item }) => {
 
   const { originalPrice, discountedPrice } = generateProductPrices();
 
-  const imageURL = imagemReal
-    ? `https://catalogopdtstorage.blob.core.windows.net/imagens-prd/produto/${imagemReal}`
-    : Amortecedor;
 
   return (
     <li
@@ -34,7 +31,7 @@ const Card = ({ item }) => {
         style={{ height: "60%" }}
       >
         <img
-          src={imageURL}
+          src={imagemReal}
           className="card-img-top"
           alt={nomeProduto}
           style={{

@@ -9,13 +9,18 @@ import DorpdownCar from "../../components/DropdownCar";
 import { getUser } from "../../state/userState";
 
 export default function Search({family, setFamily}) {
+  const [products, setProducts] = useState([]);
+
+  const [filterOption, setFilterOptions] = useState({
+    linha: [],
+    familia: [],
+    marca: [],
+    codigo: ""
+  });
+  
   
   const user = getUser();
-  // const [products] = useState([...dataPlaceholder]);
 
-  const [searchedProducts, setSearchedProducts] = useState([
-    ...dataPlaceholder,
-  ]);
 
   const productsSearch = async (event) => {
     const { value } = event.target;
@@ -24,12 +29,14 @@ export default function Search({family, setFamily}) {
       .toLowerCase()
       .replace(/[^\w\s]/gi, "")
       .replace(/\s+/g, " ")
-      .trim();
+      .trim(); 
 
-    const { pageResult } = await fetchProducts(normalizedValue);
+    const { pageResult: {data} } = await fetchProducts(normalizedValue);
+
+    console.log(data)
     
-    setSearchedProducts(pageResult.data);
-    familiesFilter(pageResult.data);
+    setProducts(data)
+  
   };
 
   const familiesFilter = (products) => {
@@ -38,36 +45,37 @@ export default function Search({family, setFamily}) {
     );
   }
 
-  const handleSearch = debounce(productsSearch, 500);
+  
 
-  // useEffect(() => {
-  //   async function fetchData() {
+  useEffect(() => {
+    async function fetchData() {
+      console.log(family?.nome)
+      const { pageResult: {data} } = await fetchProducts(family?.nome);
 
-  //     const { pageResult } = await fetchProducts('A', '');
-  //     console.log(pageResult)
+      setProducts(data)
 
-  //   }
+    }
 
-  //   fetchData();    
-  // }, [])
+    fetchData();    
+  }, [])
 
   return (
     <>
   
       <div className="d-flex justify-content-between align-items-center mb-4">
 
-        <Title page={`${family.id} ${family.nome} Acessórios para Veículos`} />
+        <Title page={`${family.id ?? ""} ${family?.nome ?? ""} Acessórios para Veículos`} />
         <DorpdownCar cars={user.cars}/>
 
       </div>
 
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar productsSearch={productsSearch}/>
 
       <div className="overflow-y-auto px-5" style={{
         height: 'calc(100% - 20rem)'
       }}>
 
-        <Product products={searchedProducts} />
+        <Product products={products} />
 
       </div>
 

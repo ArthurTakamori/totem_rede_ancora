@@ -4,27 +4,9 @@ import Title from "../../components/Title";
 import fetchCategories from "../../utils/api/fetchCategories";
 import sortObject from "../../utils/sortObject";
 
-export default function Home({ family, setFamily }) {
+export default function Home({ family, setFamily, categories }) {
 
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const { data: families } = await fetchCategories(0, 1000);
-
-        const a = families.filter((family) => family.id < 36);
-        setCategories(sortObject(a, 'descricao'));
-          
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  
   const handleFamily = (family) => {
     console.log(family);
     setFamily({

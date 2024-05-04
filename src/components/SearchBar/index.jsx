@@ -1,7 +1,11 @@
+import debounce from "../../utils/debounce";
 import DropdownFilter from "../DropdownFilter";
 import "./styles.scss";
 
-const SearchBar = ({ handleSearch }) => {
+const SearchBar = ({ productsSearch }) => {
+
+  const handleSearch = debounce(productsSearch, 500);
+
   return (
     <div className="container-fluid d-flex mb-3 gap-2">
       <DropdownFilter />
