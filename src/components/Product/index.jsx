@@ -1,6 +1,6 @@
 import { formatCurrency } from "../../utils/formatCurrency";
 import AboutProduct from "../AboutProduct";
-import Amortecedor from "../../assets/img/product_cart_amortecedor.png";
+import LogoRedeAncora from "../../assets/img/logo_v1.png";
 import "./styles.scss";
 import generateProductPrices from "../../utils/generateProductPrices";
 
@@ -9,8 +9,8 @@ export default function Product({ products }) {
     <ul
       className="row justify-content-center gap-3 no-gutters pb-5"
     >
-      {products?.map(({data: item}, index) => (
-        item.imagemReal && <Card item={item} key={index} />
+      {products?.map(({ data: item }, index) => (
+        <Card item={item} key={index} />
       ))}
     </ul>
   );
@@ -30,8 +30,9 @@ const Card = ({ item }) => {
         className="card-image-container d-flex justify-content-center align-items-center rounded-4 bg-img"
         style={{ height: "60%" }}
       >
+
         <img
-          src={imagemReal}
+          src={imagemReal ? imagemReal : LogoRedeAncora}
           className="card-img-top"
           alt={nomeProduto}
           style={{
@@ -41,6 +42,9 @@ const Card = ({ item }) => {
             height: "auto",
           }}
         />
+
+
+
       </div>
       <div
         className="card-body p-2 d-flex flex-column justify-content-around"

@@ -56,7 +56,7 @@ export default function RoutesComponent() {
 
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="" element={<Home family={family} setFamily={setFamily} categories={categories}/>} />
-        <Route path="search" element={<Search family={family} />} />
+        <Route path="search" element={<Search family={family} categories={categories} />} />
         <Route path="maintenance" element={<Maintenance />} />
         <Route path="cart" element={<Cart products={products} />} />
         <Route path="profile" element={<Profile />} />
