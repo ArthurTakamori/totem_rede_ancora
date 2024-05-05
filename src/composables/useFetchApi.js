@@ -9,7 +9,7 @@ export default async function useFetchApi(url, props) {
         return;
     }
 
-    var jsonData = JSON.stringify(props.body)
+    const jsonData = JSON.stringify(props.body)
 
     return fetch(url, {
         ...props, 

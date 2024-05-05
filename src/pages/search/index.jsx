@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import Product from "../../components/Product";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
-import { products as dataPlaceholder } from "../../data/placeholder-data";
-import debounce from "../../utils/debounce";
 import fetchProducts from "../../utils/api/fetchProducts";
 import DorpdownCar from "../../components/DropdownCar";
 import { getUser } from "../../state/userState";
