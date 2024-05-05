@@ -1,6 +1,6 @@
 import useFetchApi from '../../composables/useFetchApi.js';
 
-export default async function fetchProducts(superbusca='TOYOTA', veiculoPlaca) {
+export default async function fetchProducts(superbusca='TOYOTA', veiculoPlaca, pagina=0, itensPorPagina=50) {
   
   return await useFetchApi("https://api-stg-catalogo.redeancora.com.br/superbusca/api/integracao/catalogo/produtos/query", {
     method: "POST",
@@ -9,8 +9,8 @@ export default async function fetchProducts(superbusca='TOYOTA', veiculoPlaca) {
         veiculoPlaca,
       },
       superbusca,
-      pagina: 0,
-      itensPorPagina: 30,
+      pagina,
+      itensPorPagina,
     },
   })
 }
