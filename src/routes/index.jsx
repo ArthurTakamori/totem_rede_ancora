@@ -16,17 +16,34 @@ import fetchCategories from "../utils/api/fetchCategories";
 import sortObject from "../utils/sortObject";
 
 export default function RoutesComponent() {
-  
-  const [family, setFamily] = useState({
-    
-  });
 
-  const [products, setProducts] = useState({
-    id: '',
-    descricao: ''
-  });
+  const [family, setFamily] = useState({});
 
   const [categories, setCategories] = useState([]);
+  
+  const [cartProducts, setCartProducts] = useState([
+    {
+      name: 'Amortecedor',
+      description: 'Modelo original',
+      price: '244.50',
+      qtd: '01'
+    },
+    {
+      name: 'Melhor que 2',
+      description: 'Modelo original',
+      price: '189.50',
+      qtd: '01'
+    },
+
+    {
+      name: 'Melhor que 2',
+      description: 'Modelo original',
+      price: '189.50',
+      qtd: '01'
+    }
+  ]);
+
+
 
 
   useEffect(() => {
@@ -37,7 +54,7 @@ export default function RoutesComponent() {
 
         const a = families.filter((family) => family.id < 36);
         setCategories(sortObject(a, 'descricao'));
-          
+
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
@@ -55,10 +72,10 @@ export default function RoutesComponent() {
       <Route path="/register" element={<Register />} />
 
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route path="" element={<Home family={family} setFamily={setFamily} categories={categories}/>} />
+        <Route path="" element={<Home family={family} setFamily={setFamily} categories={categories} />} />
         <Route path="search" element={<Search family={family} categories={categories} />} />
         <Route path="maintenance" element={<Maintenance />} />
-        <Route path="cart" element={<Cart products={products} />} />
+        <Route path="cart" element={<Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />} />
         <Route path="profile" element={<Profile />} />
         {/* Criando Produtos do Carrinho - Arthur  */}
         <Route path="productCard" element={<ProductCard />} />

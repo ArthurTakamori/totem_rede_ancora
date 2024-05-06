@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-export default function DorpdownCar({ cars }) {
+export default function DorpdownCar({ cars, productsSearch }) {
 
   return (
     <>
@@ -27,22 +27,20 @@ export default function DorpdownCar({ cars }) {
 
           <div className="dropdown-divider"></div>
 
-          {(() => {
-
-            if (cars.length > 0) {
-              return cars?.map((car, index) => (
-                <DropdownItemCar key={index} item={car}/>
+          {
+            cars.length > 0 ? (
+              cars?.map((car, index) => (
+                <DropdownItemCar key={index} item={car} productsSearch={productsSearch} />
               ))
-            }
-
-            return <div className="fw-medium px-3 fs-5 text-secondary">
-              Nenhum veículo encontrado!
-            </div>
-
-            })()}
+            )
+              : (
+                <div className="fw-medium px-3 fs-5 text-secondary">
+                  Nenhum veículo encontrado!
+                </div>)
+          }
 
           <div className="dropdown-divider"></div>
-          
+
           <DropdownItemModalCar />
 
         </div>
@@ -54,7 +52,16 @@ export default function DorpdownCar({ cars }) {
   );
 }
 
-const DropdownItemCar = ({ item }) => {
+const DropdownItemCar = ({ item, productsSearch }) => {
+
+  const handleCheckboxChange = (event) => {
+    const { value } = event.target
+
+    console.log("Checkbox clicado! Valor:", event.target.value);
+
+    return productsSearch({ veiculoPlaca: value })
+    
+  }
 
   return (
     <div className="dropdown-item">
@@ -63,8 +70,9 @@ const DropdownItemCar = ({ item }) => {
         <input
           className="form-check-input"
           type="checkbox"
-          value=""
+          value={item.license_plate}
           id="flexCheckDefault"
+          onChange={handleCheckboxChange}
         />
         <label className="form-check-label" htmlFor="flexCheckDefault">
           {item.license_plate}
@@ -85,6 +93,7 @@ const DropdownItemModalCar = () => {
         className="fw-medium text-uppercase fs-5 d-flex align-items-center gap-2 btn btn-primary w-100"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
+        onClick={(event) => console.log(event.target)}
       >
         <span className="search-icon mgc_search_2_line fs-3"></span>
         Buscar veículo
@@ -97,44 +106,44 @@ const ModalCar = () => {
 
   return (
     <div
-        className="modal modal-bottom fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-bottom">
+      className="modal modal-bottom fade"
+      id="exampleModal"
+      tabIndex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog modal-dialog-bottom">
 
-          <div className="modal-content bg-white overflow-y-auto rounded-0"
-           style={{ width: "100vw", height: "75vh" }}>
+        <div className="modal-content bg-white overflow-y-auto rounded-0"
+          style={{ width: "100vw", height: "75vh" }}>
 
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
-            </div>
+          <div className="modal-header">
+            <h1 className="modal-title fs-5" id="exampleModalLabel">
+              Modal title
+            </h1>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">...</div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" className="btn btn-primary">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

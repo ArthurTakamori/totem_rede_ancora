@@ -17,45 +17,45 @@ export default function Search({ family, setFamily, categories }) {
     marca: uniqueOptionsFromProduct(products, "marca"),
     codigoReferencia: false,
     categoriaAtiva: family.nome ?? "",
+    veiculoPlaca: ""
   };
 
   console.log(filterOption.marca)
   console.log(filterOption.linha)
-  console.log(filterOption.categoria)
+  console.log("categorias/familia", filterOption.categoria)
   console.log(products)
 
   const user = getUser();
 
 
-  const productsSearch = async (event) => {
-    const { value } = event.target;
+  const productsSearch = async (keyword) => {
 
-    const normalizedValue = value
-      .toLowerCase()
-      .replace(/[^\w\s]/gi, "")
-      .replace(/\s+/g, " ")
-      .trim();
+    // const { value } = event.target;
 
-    const { pageResult: { data } } = await fetchProducts(normalizedValue);
+    // const normalizedValue = keyword
+    //   .trim()
+    //   .replace(/[^\w\s]/gi, "")
+    //   .replace(/\s+/g, " ")
+    //   .toUpperCase();
 
-    console.log(data)
+    const { pageResult: { data } } = await fetchProducts(keyword);
 
     setProducts(data)
 
   };
 
-  const familiesFilter = (products) => {
-    return products.filter(
-      (product) => product.data?.familia?.id === Number(family.id)
-    );
-  }
+  // const familiesFilter = (products) => {
+  //   return products.filter(
+  //     (product) => product.data?.familia?.id === Number(family.id)
+  //   );
+  // }
 
 
 
   useEffect(() => {
     async function fetchData() {
-      console.log(family?.nome)
-      const { pageResult: { data } } = await fetchProducts(family?.nome);
+
+      const { pageResult: { data } } = await fetchProducts({superbusca: family?.nome});
 
       setProducts(data)
 
@@ -70,7 +70,7 @@ export default function Search({ family, setFamily, categories }) {
       <div className="d-flex justify-content-between align-items-center mb-4">
 
         <Title page={`${family.id ?? ""} ${family?.nome ?? ""} Acessórios para Veículos`} />
-        <DorpdownCar cars={user.cars} />
+        <DorpdownCar cars={user.cars} productsSearch={productsSearch}/>
 
       </div>
 
