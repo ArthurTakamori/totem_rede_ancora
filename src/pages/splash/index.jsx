@@ -7,7 +7,7 @@ export default function Home() {
       <div className='bg-primary w-100 min-vh-100'>
 
      
-        <div class="container">
+        <div className="container">
 
             <Link to={'/identify'} className='row'>
               <img src={Splash} alt="Imagem principal" className='img-fluid'/>
