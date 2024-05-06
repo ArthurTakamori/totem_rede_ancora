@@ -29,8 +29,9 @@ const uniqueOptionsFromProduct = (dados, chave) => {
 const extractUniqueFamilies = (productsArray) => {
     const uniqueFamilies = new Set();
     productsArray.forEach(item => {
-      if (item.data && item.data.familia && item.data.familia.description) {
-        uniqueFamilies.add(item.data.familia.description);
+        console.log(item)
+      if (item.data && item.data.familia && item.data.familia.descricao) {
+        uniqueFamilies.add(item.data.familia.descricao);
       }
     });
     return Array.from(uniqueFamilies);
