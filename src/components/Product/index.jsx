@@ -22,15 +22,16 @@ const Card = ({ item }) => {
 
   const { originalPrice, discountedPrice } = generateProductPrices();
 
-
   return (
-    <div className="col col-sm-6 col-md-4">
+    <div className="col col-sm-6 col-md-4" style={{
+      minHeight: '550px'
+    }}>
 
       <div class="rounded-2 overflow-hidden bg-white h-100">
 
         <div
           className="d-flex justify-content-center align-items-center rounded-2 bg-img p-3"
-          style={{ height: "60%" }}
+          style={{ height: "45%" }}
         >
 
           <img
@@ -49,7 +50,7 @@ const Card = ({ item }) => {
 
         <div
           className="p-3 d-flex flex-column justify-content-between"
-            style={{ height: "40%" }}
+            style={{ height: "55%" }}
           >
 
           <div>
@@ -69,7 +70,7 @@ const Card = ({ item }) => {
           <div className="d-flex flex-sm-wrap align-items-center justify-content-between gap-2">
 
             <span className="card-text flex-item flex-grow-1">
-              <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-4">
+              <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-3">
 
                 {formatCurrency(discountedPrice)}
               </span>
@@ -78,7 +79,7 @@ const Card = ({ item }) => {
               </del>
             </span>
             
-            <AboutProduct />
+            <AboutProduct product={item}/>
 
           </div>
         </div>

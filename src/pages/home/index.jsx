@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import Title from "../../components/Title";
 
 export default function Home({ setActiveFilter, categories }) {
+  
   const handleFamily = (family) => {
-    console.log(family);
     const newFamilyObject = {
       id: family.id,
       nome: family.descricao,
@@ -18,7 +18,7 @@ export default function Home({ setActiveFilter, categories }) {
 
   return (
     <>
-      <Title page={"Categorias"} />
+      <Title page={"Montadoras"} />
 
       <div
         className="overflow-y-auto px-5"
@@ -27,6 +27,7 @@ export default function Home({ setActiveFilter, categories }) {
         }}
       >
         <div className="row justify-content-center gap-3 no-gutters pb-5">
+          
           {categories.map((family, index) => (
             <Link
               to="/dashboard/search"

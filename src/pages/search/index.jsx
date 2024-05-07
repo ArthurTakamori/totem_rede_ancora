@@ -3,8 +3,6 @@ import Product from "../../components/Product";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
 import fetchProducts from "../../utils/api/fetchProducts";
-import DorpdownCar from "../../components/DropdownCar";
-import { getUser } from "../../state/userState";
 import {
   uniqueOptionsFromApplications,
   uniqueOptionsFromProduct,
@@ -13,15 +11,14 @@ import {
 
 export default function Search({
   activeFilter,
-  setActiveFilter,
   categories,
   user,
   setUse,
 }) {
-  const {family, license_plate, line, } = activeFilter;
+  // const { family, license_plate, line, } = activeFilter;
   const [products, setProducts] = useState([]);
 
-  const filterOption = {
+  /* const filterOption = {
     linha: uniqueOptionsFromApplications(products, "linha"),
     familia: [...categories],
     categoria: extractUniqueFamilies(products, "familia"),
@@ -29,7 +26,7 @@ export default function Search({
     codigoReferencia: false,
     categoriaAtiva: family.nome ?? "",
     veiculoPlaca: "",
-  };
+  }; */
 
   // console.log(filterOption.marca)
   // console.log(filterOption.linha)
@@ -72,25 +69,22 @@ export default function Search({
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <Title
-          page={`${family.id ?? ""} ${
-            family?.nome ?? ""
-          } Acessórios para Veículos`}
-        />
-        <DorpdownCar cars={user.cars} productsSearch={productsSearch} />
-      </div>
 
-      <SearchBar productsSearch={productsSearch} filterOption={filterOption} />
+      <Title page="Pesquisar" />
+
+      <SearchBar productsSearch={productsSearch} 
+                 user={user} />
 
       <div
         className="overflow-y-auto"
         style={{
           height: "calc(100% - 20rem)",
-        }}
-      >
+        }}>
+
         <Product products={products} />
+        
       </div>
+
     </>
   );
 }
