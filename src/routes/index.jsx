@@ -12,7 +12,7 @@ import Stored from "../pages/stored";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/Product/ProductCard";
 import Dashboard from "../pages/dashboard";
-import fetchCategories from "../utils/api/fetchCategories";
+import fetchAutomaker from "../utils/api/fetchAutomaker";
 import sortObject from "../utils/sortObject";
 
 export default function RoutesComponent() {
@@ -51,7 +51,7 @@ export default function RoutesComponent() {
     },
   ]);
 
-  const [categories, setCategories] = useState([]);
+  const [automakers, setAutomakers] = useState([]);
 
   const [activeFilter, setActiveFilter] = useState({
     automaker: "",
@@ -64,10 +64,10 @@ export default function RoutesComponent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: families } = await fetchCategories(0, 1000);
+        const { data: automakers } = await fetchAutomaker(0, 1000);
+        
+        setAutomakers(sortObject(automakers, "descricao"));
 
-        const a = families.filter((family) => family.id < 36);
-        setCategories(sortObject(a, "descricao"));
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
@@ -90,7 +90,7 @@ export default function RoutesComponent() {
             <Home
               activeFilter={activeFilter}
               setActiveFilter={setActiveFilter}
-              categories={categories}
+              automakers={automakers}
               user={user}
               setUser={setUser}
             />
@@ -101,10 +101,7 @@ export default function RoutesComponent() {
           element={
             <Search
               activeFilter={activeFilter}
-              setActiveFilter={setActiveFilter}
-              categories={categories}
               user={user}
-              setUser={setUser}
             />
           }
         />

@@ -11,11 +11,9 @@ import {
 
 export default function Search({
   activeFilter,
-  categories,
   user,
-  setUse,
 }) {
-  // const { family, license_plate, line, } = activeFilter;
+  const { automaker, license_plate, line } = activeFilter;
   const [products, setProducts] = useState([]);
 
   /* const filterOption = {
@@ -59,7 +57,7 @@ export default function Search({
     async function fetchData() {
       const {
         pageResult: { data },
-      } = await fetchProducts({ superbusca: family?.nome });
+      } = await fetchProducts({ superbusca: automaker?.descricao });
 
       setProducts(data);
     }

@@ -23,7 +23,7 @@ const Card = ({ item }) => {
   const { originalPrice, discountedPrice } = generateProductPrices();
 
   return (
-    <div className="col col-sm-6 col-md-4" style={{
+    <div className="col col-sm-6 col-md-4 col-lg-3" style={{
       minHeight: '550px'
     }}>
 

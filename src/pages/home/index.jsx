@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
 
-export default function Home({ setActiveFilter, categories }) {
+export default function Home({ setActiveFilter, automakers }) {
   
-  const handleFamily = (family) => {
-    const newFamilyObject = {
-      id: family.id,
-      nome: family.descricao,
-      subfamily: family.subFamilias,
+  const handleAutomaker = (car) => {
+    const newAutomaker = {
+      id: car.id,
+      nome: car.descricao,
     };
 
     setActiveFilter((prevState) => ({
       ...prevState,
-      family: newFamilyObject,
+      automaker: newAutomaker,
     }));
   };
 
@@ -26,27 +25,35 @@ export default function Home({ setActiveFilter, categories }) {
           height: "calc(100% - 12rem)",
         }}
       >
-        <div className="row justify-content-center gap-3 no-gutters pb-5">
+        <div className="row g-3">
           
-          {categories.map((family, index) => (
-            <Link
-              to="/dashboard/search"
-              key={index}
-              className="card-category col-md-4 col-lg-3 rounded-1 d-flex flex-column justify-content-around align-items-center p-4 fw-medium fs-5 text-center"
-              style={{ minHeight: "250px" }}
-              onClick={() => handleFamily(family)}
-            >
-              <span
-                className="fs-6 d-inline-block rounded-circle bg-primary text-white text-center d-flex align-items-center justify-content-center border border-primary"
-                style={{
-                  height: "2rem",
-                  width: "2rem",
-                }}
+          {automakers.map((car, index) => (
+
+            <div className="col col-sm-6 col-md-4" 
+            key={index}>
+
+              <Link
+                to="/dashboard/search"
+                className="w-full card-category rounded-1 d-flex flex-column justify-content-around align-items-center p-4 fw-medium fs-5 text-center"
+                style={{ minHeight: "250px" }}
+                onClick={() => handleAutomaker(car)}
               >
-                {index + 1}
-              </span>
-              {family.descricao}
-            </Link>
+                <span
+                  className="fs-6 d-inline-block rounded-circle bg-primary text-white text-center d-flex align-items-center justify-content-center border border-primary"
+                  style={{
+                    height: "2rem",
+                    width: "2rem",
+                  }}
+                >
+                  {index + 1}
+                </span>
+
+                {car.descricao}
+
+              </Link>
+
+            </div>
+
           ))}
         </div>
       </div>
