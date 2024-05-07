@@ -6,7 +6,7 @@ export default function Home({ setActiveFilter, automakers }) {
   const handleAutomaker = (car) => {
     const newAutomaker = {
       id: car.id,
-      nome: car.descricao,
+      name: car.descricao,
     };
 
     setActiveFilter((prevState) => ({

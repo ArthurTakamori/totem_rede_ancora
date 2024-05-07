@@ -16,7 +16,6 @@ import fetchAutomaker from "../utils/api/fetchAutomaker";
 import sortObject from "../utils/sortObject";
 
 export default function RoutesComponent() {
-  
   const [user, setUser] = useState({
     name: "Carlos Oliveira",
     email: "carlos.oliveira@example.com",
@@ -55,19 +54,15 @@ export default function RoutesComponent() {
 
   const [activeFilter, setActiveFilter] = useState({
     automaker: "",
-    family: {},
     license_plate: "",
-    line: "",
-    product: { name: "" },
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data: automakers } = await fetchAutomaker(0, 1000);
-        
-        setAutomakers(sortObject(automakers, "descricao"));
 
+        setAutomakers(sortObject(automakers, "descricao"));
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       }
@@ -98,12 +93,7 @@ export default function RoutesComponent() {
         />
         <Route
           path="search"
-          element={
-            <Search
-              activeFilter={activeFilter}
-              user={user}
-            />
-          }
+          element={<Search activeFilter={activeFilter} user={user} />}
         />
         <Route path="maintenance" element={<Maintenance />} />
         <Route

@@ -3,17 +3,9 @@ import Product from "../../components/Product";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
 import fetchProducts from "../../utils/api/fetchProducts";
-import {
-  uniqueOptionsFromApplications,
-  uniqueOptionsFromProduct,
-  extractUniqueFamilies,
-} from "../../utils/uniqueOptionFilter";
 
-export default function Search({
-  activeFilter,
-  user,
-}) {
-  const { automaker, license_plate, line } = activeFilter;
+export default function Search({ activeFilter, setActiveFilter, user }) {
+  const { automaker, license_plate } = activeFilter;
   const [products, setProducts] = useState([]);
 
   /* const filterOption = {
@@ -57,7 +49,7 @@ export default function Search({
     async function fetchData() {
       const {
         pageResult: { data },
-      } = await fetchProducts({ superbusca: automaker?.descricao });
+      } = await fetchProducts({ superbusca: automaker?.name });
 
       setProducts(data);
     }
@@ -67,24 +59,23 @@ export default function Search({
 
   return (
     <>
-
       <Title page="Pesquisar" />
 
-      <SearchBar productsSearch={productsSearch} 
-                 user={user} />
+      <SearchBar
+        productsSearch={productsSearch}
+        user={user}
+        license_plate={license_plate}
+        setActiveFilter={setActiveFilter}
+      />
 
       <div
         className="overflow-y-auto"
         style={{
           height: "calc(100% - 20rem)",
-        }}>
-
+        }}
+      >
         <Product products={products} />
-        
       </div>
-
     </>
   );
 }
-
-
