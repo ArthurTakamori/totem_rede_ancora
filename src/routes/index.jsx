@@ -16,6 +16,7 @@ import fetchCategories from "../utils/api/fetchCategories";
 import sortObject from "../utils/sortObject";
 
 export default function RoutesComponent() {
+  
   const [user, setUser] = useState({
     name: "Carlos Oliveira",
     email: "carlos.oliveira@example.com",

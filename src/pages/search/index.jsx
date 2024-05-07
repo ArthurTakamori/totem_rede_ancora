@@ -84,7 +84,7 @@ export default function Search({
       <SearchBar productsSearch={productsSearch} filterOption={filterOption} />
 
       <div
-        className="overflow-y-auto px-5"
+        className="overflow-y-auto"
         style={{
           height: "calc(100% - 20rem)",
         }}

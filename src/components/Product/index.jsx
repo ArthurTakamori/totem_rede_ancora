@@ -5,14 +5,15 @@ import "./styles.scss";
 import generateProductPrices from "../../utils/generateProductPrices";
 
 export default function Product({ products }) {
+
   return (
-    <ul
-      className="row justify-content-center gap-3 no-gutters pb-5"
-    >
-      {products?.map(({ data: item }, index) => (
-        <Card item={item} key={index} />
-      ))}
-    </ul>
+    <div class="p-4">
+      <div class="row row-cols-3 g-3">
+        {products?.map(({ data: item }, index) => (
+          <Card item={item} key={index} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -23,61 +24,67 @@ const Card = ({ item }) => {
 
 
   return (
-    <li
-      className="card rounded-2 bg-white p-1 border-0 col-md-4 col-12"
-    >
-      <div
-        className="card-image-container d-flex justify-content-center align-items-center rounded-4 bg-img"
-        style={{ height: "60%" }}
-      >
+    <div className="col col-sm-6 col-md-4">
 
-        <img
-          src={imagemReal ? imagemReal : LogoRedeAncora}
-          className="card-img-top"
-          alt={nomeProduto}
-          style={{
-            maxHeight: "70%",
-            maxWidth: "100%",
-            width: "auto",
-            height: "auto",
-          }}
-        />
+      <div class="rounded-2 overflow-hidden bg-white h-100">
 
+        <div
+          className="d-flex justify-content-center align-items-center rounded-2 bg-img p-3"
+          style={{ height: "60%" }}
+        >
 
-
-      </div>
-      <div
-        className="card-body p-2 d-flex flex-column justify-content-around"
-        style={{ height: "40%" }}
-      >
-        <div className="h-50">
-          <h5 className="card-title mb-0 fs-5" style={{ fontWeight: "400" }}>
-            {nomeProduto}
-          </h5>
-          <p
-            className="card-text opacity-75"
+          <img
+            src={imagemReal ? imagemReal : LogoRedeAncora}
+            className="card-img-top"
+            alt={nomeProduto}
             style={{
-              fontWeight: "300",
-              marginTop: "-0.3rem",
-              fontSize: "calc(.8rem)",
+              maxHeight: "70%",
+              maxWidth: "100%",
+              width: "auto",
+              height: "auto",
             }}
-          >
-            {marca}
-          </p>
+          />
+
         </div>
 
-        <div className="d-flex align-items-center justify-content-between h-50 gap-2">
-          <span className="card-text flex-item flex-grow-1">
-            <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-5">
-              {formatCurrency(discountedPrice)}
+        <div
+          className="p-3 d-flex flex-column justify-content-between"
+            style={{ height: "40%" }}
+          >
+
+          <div>
+            <h5 className="mb-0 fs-4" style={{ fontWeight: "400" }}>
+              {nomeProduto}
+            </h5>
+            <p
+              className="card-text opacity-75 fs-5  text-uppercase"
+              style={{
+                fontWeight: "300",
+              }}
+            >
+              {marca}
+            </p>
+          </div>
+
+          <div className="d-flex flex-sm-wrap align-items-center justify-content-between gap-2">
+
+            <span className="card-text flex-item flex-grow-1">
+              <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-4">
+
+                {formatCurrency(discountedPrice)}
+              </span>
+              <del className="text-muted" style={{ fontSize: ".rem" }}>
+                {formatCurrency(originalPrice)}
+              </del>
             </span>
-            <del className="text-muted" style={{ fontSize: ".6rem" }}>
-              {formatCurrency(originalPrice)}
-            </del>
-          </span>
-          <AboutProduct />
+            
+            <AboutProduct />
+
+          </div>
         </div>
+
       </div>
-    </li>
+
+    </div>
   );
 };

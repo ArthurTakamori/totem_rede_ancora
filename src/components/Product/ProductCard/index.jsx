@@ -1,4 +1,5 @@
 import Amortecedor from '../../../assets/img/product_cart_amortecedor.png'
+import QuantityCart from "../../QuantityCart";
 import "./styles.scss";
 
 export default function ProductCard({
@@ -6,22 +7,6 @@ export default function ProductCard({
 }) {
 
     // const [qtd, updateQuantity] = useState('01')
-
-    const increment = () => {
-        var newValue = parseInt(qtd) + 1;
-        updateQuantity(maskQtd(newValue), index)
-    }
-
-    const decrement = () => {
-        var newValue = parseInt(qtd) - 1;
-        newValue = newValue < 1 ? 1 : newValue
-
-        updateQuantity(maskQtd(newValue), index)
-    }
-
-    function maskQtd(qtd) {
-        return qtd < 10 ? `0${qtd}` : qtd;
-    }
 
     return (
         <>
@@ -49,27 +34,17 @@ export default function ProductCard({
                     </div>
 
                     <div className='d-flex align-items-center justify-content-between p-4 w-100'>
-                        <p className='fs-3 fw-medium'>R${price}</p>
+                        
+                        <p className='fs-3 fw-medium'>
+                            R${price}
+                        </p>
 
-                        <div className='d-flex'>
+                        <QuantityCart
+                            qtd={qtd}
+                            index={index}
+                            updateQuantity={updateQuantity}
+                        />
 
-                            <button type='button'
-                            className='bg-primary rounded-start p-3 d-flex align-items-center justify-content-center' onClick={decrement}>
-                                <span className='btn-qtd mgc_minimize_line fs-4'></span>
-                            </button>
-                            
-                            <div style={{minWidth: '65px'}} className='fs-3 p-2 bg-white d-flex align-items-center justify-content-center'>
-                                <span>
-                                    {qtd}
-                                </span>
-                            </div>
-
-                            <button type='button'
-                                    className='bg-primary rounded-end p-3 d-flex align-items-center justify-content-center'
-                                    onClick={increment}>
-                                <span className='btn-qtd mgc_add_line fs-4'></span>    
-                            </button>
-                        </div>
                     </div>
                 </div>
                 
