@@ -14,8 +14,8 @@ export default function DropdownFilter({ filterOption }) {
         data-bs-auto-close="outside"
       ></button>
 
-      <div className="dropdown-menu bg-white overflow-y-auto vh-10">
-        <div className="mb-3 ">
+      <div className="dropdown-menu bg-white overflow-y-auto vh-10" style={{ minWidth: '400px', maxHeight: '50vh' }}>
+        <div>
 
           {/* Fazer um filtro semelhante ao do mercado livre */}
 

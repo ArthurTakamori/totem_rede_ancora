@@ -5,9 +5,20 @@ import Title from "../../components/Title";
 import fetchProducts from "../../utils/api/fetchProducts";
 import DorpdownCar from "../../components/DropdownCar";
 import { getUser } from "../../state/userState";
-import { uniqueOptionsFromApplications, uniqueOptionsFromProduct, extractUniqueFamilies } from "../../utils/uniqueOptionFilter";
+import {
+  uniqueOptionsFromApplications,
+  uniqueOptionsFromProduct,
+  extractUniqueFamilies,
+} from "../../utils/uniqueOptionFilter";
 
-export default function Search({ family, setFamily, categories }) {
+export default function Search({
+  activeFilter,
+  setActiveFilter,
+  categories,
+  user,
+  setUse,
+}) {
+  const {family, license_plate, line, } = activeFilter;
   const [products, setProducts] = useState([]);
 
   const filterOption = {
@@ -17,19 +28,15 @@ export default function Search({ family, setFamily, categories }) {
     marca: uniqueOptionsFromProduct(products, "marca"),
     codigoReferencia: false,
     categoriaAtiva: family.nome ?? "",
-    veiculoPlaca: ""
+    veiculoPlaca: "",
   };
 
-  console.log(filterOption.marca)
-  console.log(filterOption.linha)
-  console.log("categorias/familia", filterOption.categoria)
-  console.log(products)
-
-  const user = getUser();
-
+  // console.log(filterOption.marca)
+  // console.log(filterOption.linha)
+  // console.log("categorias/familia", filterOption.categoria)
+  // console.log(products)
 
   const productsSearch = async (keyword) => {
-
     // const { value } = event.target;
 
     // const normalizedValue = keyword
@@ -38,10 +45,11 @@ export default function Search({ family, setFamily, categories }) {
     //   .replace(/\s+/g, " ")
     //   .toUpperCase();
 
-    const { pageResult: { data } } = await fetchProducts(keyword);
+    const {
+      pageResult: { data },
+    } = await fetchProducts(keyword);
 
-    setProducts(data)
-
+    setProducts(data);
   };
 
   // const familiesFilter = (products) => {
@@ -50,40 +58,39 @@ export default function Search({ family, setFamily, categories }) {
   //   );
   // }
 
-
-
   useEffect(() => {
     async function fetchData() {
+      const {
+        pageResult: { data },
+      } = await fetchProducts({ superbusca: family?.nome });
 
-      const { pageResult: { data } } = await fetchProducts({superbusca: family?.nome});
-
-      setProducts(data)
-
+      setProducts(data);
     }
 
     fetchData();
-  }, [])
+  }, []);
 
   return (
     <>
-
       <div className="d-flex justify-content-between align-items-center mb-4">
-
-        <Title page={`${family.id ?? ""} ${family?.nome ?? ""} Acessórios para Veículos`} />
-        <DorpdownCar cars={user.cars} productsSearch={productsSearch}/>
-
+        <Title
+          page={`${family.id ?? ""} ${
+            family?.nome ?? ""
+          } Acessórios para Veículos`}
+        />
+        <DorpdownCar cars={user.cars} productsSearch={productsSearch} />
       </div>
 
       <SearchBar productsSearch={productsSearch} filterOption={filterOption} />
 
-      <div className="overflow-y-auto px-5" style={{
-        height: 'calc(100% - 20rem)'
-      }}>
-
+      <div
+        className="overflow-y-auto px-5"
+        style={{
+          height: "calc(100% - 20rem)",
+        }}
+      >
         <Product products={products} />
-
       </div>
-
     </>
   );
 }
