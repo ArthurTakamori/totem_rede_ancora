@@ -29,7 +29,7 @@ export default function Home({ setActiveFilter, automakers }) {
           
           {automakers.map((car, index) => (
 
-            <div className="col col-sm-6 col-md-4" 
+            <div className="col col-sm-6 col-md-4 col-lg-3" 
             key={index}>
 
               <Link

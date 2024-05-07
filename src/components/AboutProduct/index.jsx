@@ -1,10 +1,12 @@
-import { products } from "../../data/placeholder-data";
 import { formatCurrency } from "../../utils/formatCurrency";
 import QuantityCart from "../QuantityCart";
 import "./styles.scss";
 
-const AboutProduct = () => {
-  const { img, discount, name, price, subTitle, discription } = products[0];
+const AboutProduct = ({product}) => {
+
+  const { imagemReal, nomeProduto, marca } = product;
+  console.log(product)
+
   return (
     <>
       <button
@@ -31,7 +33,6 @@ const AboutProduct = () => {
             <div className="h-100 d-flex flex-column w-100  overflow-y-auto">
               
               <div className="modal-body p-0 ">
-
               
                 <button
                   type="button"
@@ -46,7 +47,6 @@ const AboutProduct = () => {
                   }}
                 ></button>
 
-
                 <div className="h-100">
 
                   <div
@@ -55,11 +55,11 @@ const AboutProduct = () => {
                   >
 
                     <img
-                      src={img}
+                      src={imagemReal ? imagemReal : LogoRedeAncora}
                       className="card-img-top"
-                      alt={name}
+                      alt={nomeProduto}
                       style={{
-                        maxHeight: "60%",
+                        maxHeight: "70%",
                         maxWidth: "100%",
                         width: "auto",
                         height: "auto",
@@ -76,10 +76,10 @@ const AboutProduct = () => {
                         <h5
                           className="text-primary card-title mb-0 modal-title fs-2 text-uppercase"
                         >
-                          {name}
+                          {nomeProduto}
                         </h5>
                         <p className="card-text text-uppercase opacity-75 fs-5">
-                          {subTitle}
+                          {marca}
                         </p>
                       </div>
 
@@ -103,7 +103,7 @@ const AboutProduct = () => {
                         className="fs-6"
                         style={{ color: "#626262", fontWeight: "300" }}
                       >
-                        {discription}
+                        {/* {discription} */}
                       </p>
                       
                     </div>
@@ -119,7 +119,8 @@ const AboutProduct = () => {
                       </div>
 
                     </div>
-                </div>
+                  </div>
+                
 
               </div>
 
