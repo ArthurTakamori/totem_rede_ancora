@@ -1,4 +1,4 @@
-import useFetchApi from '../../composables/useFetchApi.js';
+import useFetchApi from '@/composables/useFetchApi.js';
 
 export default async function fetchAutomaker(pagina = 0, itensPorPagina = 100) {
 

@@ -1,4 +1,4 @@
-import StoredCartImg from '../../assets/img/stored_cart.png';
+import StoredCartImg from '@/assets/img/stored_cart.png';
 
 export default function Stored() {
 

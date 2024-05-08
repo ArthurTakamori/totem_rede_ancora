@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Product from "../../components/Product";
-import SearchBar from "../../components/SearchBar";
-import Title from "../../components/Title";
-import fetchProducts from "../../utils/api/fetchProducts";
-import LogoRedeAncora from "../../assets/img/logo_v1.png";
+import Product from "@/components/Product";
+import SearchBar from "@/components/SearchBar";
+import Title from "@/components/Title";
+import fetchProducts from "@/utils/api/fetchProducts";
+import LogoRedeAncora from "@/assets/img/logo_v1.png";
 
 export default function Search({
   searchTerm,

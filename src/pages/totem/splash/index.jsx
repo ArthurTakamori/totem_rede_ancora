@@ -1,4 +1,4 @@
-import Splash from '../../assets/img/splash.png';
+import Splash from '@/assets/img/splash.png';
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
      
         <div className="container">
 
-            <Link to={'/identify'} className='row'>
+            <Link to={'/totem/identify'} className='row'>
               <img src={Splash} alt="Imagem principal" className='img-fluid'/>
             </Link>
 

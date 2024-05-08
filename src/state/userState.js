@@ -1,4 +1,4 @@
-import { users } from "../data/users";
+import { users } from "@/data/users";
 
 var user = users[0]
 

@@ -1,7 +1,7 @@
-import { formatCurrency } from "../../utils/formatCurrency";
-import LogoRedeAncora from "../../assets/img/logo_v1.png";
+import { formatCurrency } from "@/utils/formatCurrency";
+import LogoRedeAncora from "@/assets/img/logo_v1.png";
 import "./styles.scss";
-import generateProductPrices from "../../utils/generateProductPrices";
+import generateProductPrices from "@/utils/generateProductPrices";
 import { useState } from "react";
 import QuantityCart from "../QuantityCart";
 
@@ -11,8 +11,8 @@ export default function Product({ products }) {
 
   return (
     <>
-      <div class="p-4">
-        <div class="row row-cols-3 g-3">
+      <div className="p-4">
+        <div className="row row-cols-3 g-3">
           {products?.map(({ data: item }, index) => (
             <Card key={index}
                   item={item} 
@@ -36,7 +36,7 @@ const Card = ({ item, setSelectedProduct }) => {
       minHeight: '550px'
     }}>
 
-      <div class="rounded-2 overflow-hidden bg-white h-100">
+      <div className="rounded-2 overflow-hidden bg-white h-100">
 
         <div
           className="d-flex justify-content-center align-items-center rounded-2 bg-img p-3"

@@ -1,5 +1,5 @@
-import debounce from "../../utils/debounce";
-import DorpdownCar from "../../components/DropdownCar";
+import debounce from "@/utils/debounce";
+import DorpdownCar from "@/components/DropdownCar";
 
 const SearchBar = ({ productsSearch, user, setSearchTerm }) => {
   const handleSearch = debounce((keyword) => {

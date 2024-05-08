@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ProductCard from "../../components/Product/ProductCard";
-import Title from "../../components/Title";
-import Button from "../../components/Button";
-import { formatCurrency } from "../../utils/formatCurrency";
+import ProductCard from "@/components/Product/ProductCard";
+import Title from "@/components/Title";
+import Button from "@/components/Button";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 export default function Cart({ cartProducts, setCartProducts }) {
 

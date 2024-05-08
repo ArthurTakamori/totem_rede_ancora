@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import HeaderIdentify from "../../components/Header/Identify";
-import { setUser } from '../../state/userState.js';
-import { users } from '../../data/users.js';
-import { hideCPF, maskCpf } from "../../utils/maskCpf";
-import { handleAccessToken } from "../../utils/api/login";
+import HeaderIdentify from "@/components/Header/Identify";
+import { setUser } from '@/state/userState.js';
+import { users } from '@/data/users.js';
+import { hideCPF, maskCpf } from "@/utils/maskCpf";
+import { handleAccessToken } from "@/utils/api/login";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -61,7 +61,7 @@ export default function Login() {
         return;
       }
 
-      navigate("/dashboard");
+      navigate("/totem/dashboard");
     })
   };
 
@@ -76,7 +76,7 @@ export default function Login() {
   return (
     <div className="container-1 container-fluid text-center">
 
-      <HeaderIdentify link="/identify" />
+      <HeaderIdentify link="/totem/identify" />
 
       <div className="d-grid mx-auto gap-4">
         <div>

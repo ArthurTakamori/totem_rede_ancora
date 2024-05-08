@@ -5,27 +5,27 @@ export default function Navbar() {
 
   const navLinks = [
     {
-      to: "/dashboard",
+      to: "/totem/dashboard",
       icon_able: "mgc_home_3_fill",
       icon_disable: "mgc_home_3_fill",
     },
     {
-      to: "/dashboard/search",
+      to: "/totem/dashboard/search",
       icon_able: "mgc_search_2_fill",
       icon_disable: "mgc_search_2_fill",
     },
     {
-      to: "/dashboard/maintenance",
+      to: "/totem/dashboard/maintenance",
       icon_able: "mgc_car_door_line",
       icon_disable: "mgc_car_door_line",
     },
     {
-      to: "/dashboard/profile",
+      to: "/totem/dashboard/profile",
       icon_able: "mgc_user_3_fill",
       icon_disable: "mgc_user_3_fill",
     },
     {
-      to: "/",
+      to: "/totem",
       icon_able: "mgc_exit_fill",
       icon_disable: "mgc_exit_fill",
     },

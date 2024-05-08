@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import { hideCPF, maskCpf } from "../../utils/maskCpf";
-import Title from "../../components/Title";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import { hideCPF, maskCpf } from "@/utils/maskCpf";
+import Title from "@/components/Title";
 import { Controller } from "react-hook-form";
-import { getUser } from "../../state/userState";
+import { getUser } from "@/state/userState";
 
 export default function Profile() {
   const [showCpf, setShowCpf] = useState(true);

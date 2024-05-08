@@ -1,5 +1,5 @@
-import Amortecedor from '../../../assets/img/product_cart_amortecedor.png'
-import QuantityCart from "../../QuantityCart";
+import Amortecedor from '@/assets/img/product_cart_amortecedor.png'
+import QuantityCart from "@/components/QuantityCart";
 import "./styles.scss";
 
 export default function ProductCard({

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { handleAccessToken } from "../../utils/api/login";
+import { handleAccessToken } from "@/utils/api/login";
 import { useNavigate } from "react-router-dom";
-import HeaderIdentify from "../../components/Header/Identify";
+import HeaderIdentify from "@/components/Header/Identify";
 
 export default function Identify() {
 
@@ -15,7 +15,7 @@ export default function Identify() {
         return;
       }
   
-      navigate("/dashboard");
+      navigate("/totem/dashboard");
     })
 
   };
@@ -23,7 +23,7 @@ export default function Identify() {
 
   return (
     <div className="container-identify container-fluid text-center">
-      <HeaderIdentify link="/"/>
+      <HeaderIdentify link="/totem"/>
 
       <section className="d-flex align-items-center justify-content-around flex-column h-50">
 
@@ -35,7 +35,7 @@ export default function Identify() {
 
             <div className="row">
 
-              <Link to="/login" className="col rounded-1 bg-primary d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2" style={{ height: "250px" }}>
+              <Link to="/totem/login" className="col rounded-1 bg-primary d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2" style={{ height: "250px" }}>
                 <span className="mgc_badge_line fs-1 p-2"></span>
                 <p className="fw-semibold text-primary">Entrar usando CPF</p>
 

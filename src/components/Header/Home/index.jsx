@@ -1,6 +1,6 @@
-import Logo from "../../../assets/img/logo_v1.png";
+import Logo from "@/assets/img/logo_v1.png";
 import { Link } from "react-router-dom";
-import { getUser } from "../../../state/userState";
+import { getUser } from "@/state/userState";
 
 export default function HeaderHome() {
   const user = getUser();
@@ -22,7 +22,7 @@ export default function HeaderHome() {
 
         <div className="position-relative">
           <Link
-            to="/dashboard/cart"
+            to="/totem/dashboard/cart"
             type="button"
             className="border border-2 border-primary p-3 rounded-circle d-flex align-items-center justify-content-center"
           >

@@ -1,59 +1,82 @@
-import { Link } from "react-router-dom";
-import Title from "../../components/Title";
-import { useEffect } from "react";
+import HeaderProject from "@/components/Header/Project";
+import FooterProject from "@/components/Footer/Project";
 
-export default function Home({ setSearchTerm, automakers }) {
-  const handleAutomaker = (car) => {
-    const newAutomaker = {
-      id: car.id,
-      name: car.descricao,
-    };
-
-    setSearchTerm((prevState) => ({
-      ...prevState,
-      automaker: newAutomaker,
-    }));
-  };
-
-  useEffect(() => {
-    setSearchTerm((prevState) => ({ ...prevState, superbusca: "" }));
-  }, []);
+export default function Home() {
 
   return (
     <>
-      <Title page={"Montadoras"} />
+      <div className="overflow-y-auto d-flex flex-column" style={{
+          minHeight: '100vh'
+      }}>
 
-      <div
-        className="overflow-y-auto px-5"
-        style={{
-          height: "calc(100% - 12rem)",
-        }}
-      >
-        <div className="row g-3">
-          {automakers.map((car, index) => (
-            <div className="col col-sm-6 col-md-4 col-lg-3" key={index}>
-              <Link
-                to="/dashboard/search"
-                className="w-full card-category rounded-1 d-flex flex-column justify-content-around align-items-center p-4 fw-medium fs-5 text-center"
-                style={{ minHeight: "250px" }}
-                onClick={() => handleAutomaker(car)}
-              >
-                <span
-                  className="fs-6 d-inline-block rounded-circle bg-primary text-white text-center d-flex align-items-center justify-content-center border border-primary"
-                  style={{
-                    height: "2rem",
-                    width: "2rem",
-                  }}
-                >
-                  {index + 1}
-                </span>
+          <HeaderProject />
 
-                {car.descricao}
-              </Link>
-            </div>
-          ))}
-        </div>
+          <div className="mt-4 flex-grow-1 px-5 d-flex align-items-center  justify-content-center">
+
+              <div className="row g-5 align-items-strecth">
+
+                <div className="col-6">
+                  <div className="h-100 border bg-white p-5 rounded-1">
+                    <h2 className="mb-4 fw-bold fs-5">
+                      Integrantes
+                    </h2>
+
+                    <div>
+                      <ul>
+                        <li className="d-flex">
+                          <Member name={'Arthur Takamori'}/>
+                        </li>
+                        <li></li>
+                        <li></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-6">
+                  <div className="h-100 border bg-white p-5 rounded-1">
+                    <h2 className="mb-4 fw-bold fs-5">
+                      Tecnologias utilizadas
+                    </h2>
+                  </div>
+                </div>
+                
+              </div>
+
+          </div>
+
+          <FooterProject />
+          
       </div>
     </>
   );
 }
+
+const Member = ({name}) => {
+  const firstLetterName = name.charAt(0)
+
+  return (
+    <>
+      <Avatar firstLetterName={firstLetterName}/>
+    </>
+  )
+}
+
+const Avatar = ({ firstLetterName }) => {
+
+  return (
+
+    <div className="rounded-circle border d-flex align-items-center justify-content-center p-4" style={{
+      width: '1.5rem',
+      height: '1.5rem',
+    }}>
+      
+      <span className="text-primary fw-bold">
+        {firstLetterName}
+      </span>
+    </div>
+    
+  );
+};
+  
+  
