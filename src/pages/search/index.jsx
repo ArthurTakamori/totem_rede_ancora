@@ -3,35 +3,19 @@ import Product from "../../components/Product";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
 import fetchProducts from "../../utils/api/fetchProducts";
+import LogoRedeAncora from "../../assets/img/logo_v1.png";
 
-export default function Search({ activeFilter, setActiveFilter, user }) {
-  const { automaker, license_plate } = activeFilter;
+export default function Search({
+  searchTerm,
+  setSearchTerm,
+  user,
+  loading,
+  setLoading,
+}) {
+  const { automaker, license_plate, superbusca } = searchTerm;
   const [products, setProducts] = useState([]);
 
-  /* const filterOption = {
-    linha: uniqueOptionsFromApplications(products, "linha"),
-    familia: [...categories],
-    categoria: extractUniqueFamilies(products, "familia"),
-    marca: uniqueOptionsFromProduct(products, "marca"),
-    codigoReferencia: false,
-    categoriaAtiva: family.nome ?? "",
-    veiculoPlaca: "",
-  }; */
-
-  // console.log(filterOption.marca)
-  // console.log(filterOption.linha)
-  // console.log("categorias/familia", filterOption.categoria)
-  // console.log(products)
-
   const productsSearch = async (keyword) => {
-    // const { value } = event.target;
-
-    // const normalizedValue = keyword
-    //   .trim()
-    //   .replace(/[^\w\s]/gi, "")
-    //   .replace(/\s+/g, " ")
-    //   .toUpperCase();
-
     const {
       pageResult: { data },
     } = await fetchProducts(keyword);
@@ -39,33 +23,42 @@ export default function Search({ activeFilter, setActiveFilter, user }) {
     setProducts(data);
   };
 
-  // const familiesFilter = (products) => {
-  //   return products.filter(
-  //     (product) => product.data?.familia?.id === Number(family.id)
-  //   );
-  // }
+  const filteredProducts = products.filter((product) => {
+    return product.data.aplicacoes.some(
+      (vehicle) =>
+        vehicle.montadora.toUpperCase() == automaker?.name?.toUpperCase()
+    );
+  });
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
+
       const {
         pageResult: { data },
-      } = await fetchProducts({ superbusca: automaker?.name });
+      } = await fetchProducts({
+        superbusca: superbusca ? superbusca : automaker?.name,
+        veiculoPlaca: license_plate,
+      }).finally(() => setLoading(false));
 
       setProducts(data);
     }
 
     fetchData();
-  }, []);
+  }, [superbusca]);
 
   return (
     <>
       <Title page="Pesquisar" />
+      {console.log("filteredProducts", filteredProducts)}
+      {console.log("products", products)}
 
       <SearchBar
         productsSearch={productsSearch}
         user={user}
         license_plate={license_plate}
-        setActiveFilter={setActiveFilter}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
 
       <div
@@ -74,7 +67,18 @@ export default function Search({ activeFilter, setActiveFilter, user }) {
           height: "calc(100% - 20rem)",
         }}
       >
-        <Product products={products} />
+        {loading ? (
+          <div className="container">
+            <div className="row justify-content-center align-items-center">
+              <div className="col-xs-6 text-center">
+                <img src={LogoRedeAncora} alt="Imagem" className="img-fluid" />
+                <h2>Carregando...</h2>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Product products={license_plate ? products : filteredProducts} />
+        )}
       </div>
     </>
   );

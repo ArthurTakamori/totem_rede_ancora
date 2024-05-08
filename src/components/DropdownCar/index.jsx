@@ -1,50 +1,48 @@
 import "./styles.scss";
 
-export default function DorpdownCar({ cars, productsSearch }) {
-
+export default function DorpdownCar({ cars, productsSearch, setSearchTerm }) {
   return (
     <>
       <div className="dropdown">
-
         <button
           type="button"
           className="dropdown-car-plate  dropdown-toggle p-2 rounded-1 d-flex align-items-center fs-5 fw-medium text-primary"
           data-bs-toggle="dropdown"
           aria-expanded="false"
           data-bs-auto-close="outside"
-          style={{ width: '250px', height: '65px' }}
+          style={{ width: "250px", height: "65px" }}
         >
-
           <span className="mgc_car_2_fill fs-2 px-3"></span>
           Placa do carro
         </button>
 
-        <div className="dropdown-menu bg-white w-100" style={{ minWidth: '400px' }}>
-
-          <div className="fs-5 p-0 ps-3">
-            Seus veículos
-          </div>
+        <div
+          className="dropdown-menu bg-white w-100"
+          style={{ minWidth: "400px" }}
+        >
+          <div className="fs-5 p-0 ps-3">Seus veículos</div>
 
           <div className="dropdown-divider"></div>
 
-          {
-            cars.length > 0 ? (
-              cars?.map((car, index) => (
-                <DropdownItemCar key={index} item={car} productsSearch={productsSearch} />
-              ))
-            )
-              : (
-                <div className="fw-medium px-3 fs-5 text-secondary">
-                  Nenhum veículo encontrado!
-                </div>)
-          }
+          {cars.length > 0 ? (
+            cars?.map((car, index) => (
+              <DropdownItemCar
+                key={index}
+                item={car}
+                productsSearch={productsSearch}
+                setSearchTerm={setSearchTerm}
+              />
+            ))
+          ) : (
+            <div className="fw-medium px-3 fs-5 text-secondary">
+              Nenhum veículo encontrado!
+            </div>
+          )}
 
           <div className="dropdown-divider"></div>
 
           <DropdownItemModalCar />
-
         </div>
-
       </div>
 
       <ModalCar />
@@ -52,20 +50,23 @@ export default function DorpdownCar({ cars, productsSearch }) {
   );
 }
 
-const DropdownItemCar = ({ item, productsSearch }) => {
-
+const DropdownItemCar = ({ item, productsSearch, setSearchTerm }) => {
   const handleCheckboxChange = (event) => {
-    const { value } = event.target
+    const { value, checked } = event.target;
+    const veiculoPlaca = checked ? value : "";
 
-    console.log("Checkbox clicado! Valor:", event.target.value);
+    setSearchTerm((prevState) => {
+      return {
+        ...prevState,
+        license_plate: veiculoPlaca,
+      };
+    });
 
-    return productsSearch({ veiculoPlaca: value })
-    
-  }
+    return productsSearch({ veiculoPlaca: veiculoPlaca });
+  };
 
   return (
     <div className="dropdown-item">
-
       <div className="form-check">
         <input
           className="form-check-input"
@@ -78,15 +79,12 @@ const DropdownItemCar = ({ item, productsSearch }) => {
           {item.license_plate}
         </label>
       </div>
-
     </div>
   );
 };
 
 const DropdownItemModalCar = () => {
-
   return (
-
     <div className="d-flex align-items-center justify-content-center px-2">
       <button
         type="button"
@@ -103,7 +101,6 @@ const DropdownItemModalCar = () => {
 };
 
 const ModalCar = () => {
-
   return (
     <div
       className="modal modal-bottom fade"
@@ -113,10 +110,10 @@ const ModalCar = () => {
       aria-hidden="true"
     >
       <div className="modal-dialog modal-dialog-bottom">
-
-        <div className="modal-content bg-white overflow-y-auto rounded-0"
-          style={{ width: "100vw", height: "75vh" }}>
-
+        <div
+          className="modal-content bg-white overflow-y-auto rounded-0"
+          style={{ width: "100vw", height: "75vh" }}
+        >
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
               Modal title
@@ -146,6 +143,3 @@ const ModalCar = () => {
     </div>
   );
 };
-
-
-

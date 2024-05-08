@@ -52,10 +52,16 @@ export default function RoutesComponent() {
 
   const [automakers, setAutomakers] = useState([]);
 
-  const [activeFilter, setActiveFilter] = useState({
-    automaker: "",
+  const [searchTerm, setSearchTerm] = useState({
+    automaker: {
+      id: null,
+      name: "",
+    },
     license_plate: "",
+    superbusca: "",
   });
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,8 +89,8 @@ export default function RoutesComponent() {
           path=""
           element={
             <Home
-              activeFilter={activeFilter}
-              setActiveFilter={setActiveFilter}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
               automakers={automakers}
               user={user}
               setUser={setUser}
@@ -93,7 +99,15 @@ export default function RoutesComponent() {
         />
         <Route
           path="search"
-          element={<Search activeFilter={activeFilter} user={user} />}
+          element={
+            <Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              user={user}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
         />
         <Route path="maintenance" element={<Maintenance />} />
         <Route

@@ -1,19 +1,23 @@
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
+import { useEffect } from "react";
 
-export default function Home({ setActiveFilter, automakers }) {
-  
+export default function Home({ setSearchTerm, automakers }) {
   const handleAutomaker = (car) => {
     const newAutomaker = {
       id: car.id,
       name: car.descricao,
     };
 
-    setActiveFilter((prevState) => ({
+    setSearchTerm((prevState) => ({
       ...prevState,
       automaker: newAutomaker,
     }));
   };
+
+  useEffect(() => {
+    setSearchTerm((prevState) => ({ ...prevState, superbusca: "" }));
+  }, []);
 
   return (
     <>
@@ -26,12 +30,8 @@ export default function Home({ setActiveFilter, automakers }) {
         }}
       >
         <div className="row g-3">
-          
           {automakers.map((car, index) => (
-
-            <div className="col col-sm-6 col-md-4 col-lg-3" 
-            key={index}>
-
+            <div className="col col-sm-6 col-md-4 col-lg-3" key={index}>
               <Link
                 to="/dashboard/search"
                 className="w-full card-category rounded-1 d-flex flex-column justify-content-around align-items-center p-4 fw-medium fs-5 text-center"
@@ -49,11 +49,8 @@ export default function Home({ setActiveFilter, automakers }) {
                 </span>
 
                 {car.descricao}
-
               </Link>
-
             </div>
-
           ))}
         </div>
       </div>
