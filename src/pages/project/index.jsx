@@ -97,7 +97,7 @@ export default function Project() {
                       <div>
                         <ul className="row g-5 align-items-stretch">
                           {members.map((member, index) => (
-                            <li className="col col-lg-4" key={index}>
+                            <li className="col-sm-12 col-lg-4" key={index}>
                               <Member member={member}/>
                             </li>
                           ))}
@@ -116,7 +116,7 @@ export default function Project() {
                       <div>
                         <ul className="row g-5 align-items-stretch">
                           {tecnologies.map((item, index) => (
-                            <li className="col col-lg-4" key={index}>
+                            <li className="col-sm-12 col-lg-4" key={index}>
                               <Tecnology tecnology={item}/>
                             </li>
                           ))}
