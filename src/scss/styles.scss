@@ -262,3 +262,10 @@ main {
   background-color: $primary;
   color: $white !important;
 }
+
+.project-card:hover {
+  transform: translateY(-5px);
+  transition-property: all; //all
+  transition-duration: 200ms;
+  transition-timing-function: ease; //other options are ease
+}

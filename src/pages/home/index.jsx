@@ -12,7 +12,7 @@ export default function Home() {
 
             <HeaderProject />
 
-            <div className="mt-4 flex-grow-1 px-5 d-flex justify-content-center">
+            <div className="mt-4 flex-grow-1 px-5 d-flex justify-content-center align-items-center">
 
                 <div className="border rounded-1 bg-white p-5">
 
@@ -32,7 +32,7 @@ export default function Home() {
                                         A jornada do cliente
                                     </h2>
 
-                                    <p className="lh-sm text-primary pe-5"
+                                    <p className="lh-sm text-primary pb-5 pe-lg-5 pb-lg-0"
                                         style={{
                                             textAlign: 'justify',
                                             fontSize: '.976rem'

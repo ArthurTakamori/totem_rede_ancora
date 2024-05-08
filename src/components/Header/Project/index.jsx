@@ -10,10 +10,10 @@ export default function HeaderProject() {
             <img src={FiapLogo} alt="Logo Rede Ancora" width={'100px'}/>
 
             <nav>
-                <ul className="d-flex gap-3">
+                <ul className="d-flex gap-4">
                     <li>
                         <Link to="/" className="fw-medium">
-                            Home
+                            Página inicial
                         </Link>
                     </li>
                     <li>
