@@ -10,11 +10,6 @@ export default function Navbar() {
       icon_disable: "mgc_home_3_fill",
     },
     {
-      to: "/totem/dashboard/search",
-      icon_able: "mgc_search_2_fill",
-      icon_disable: "mgc_search_2_fill",
-    },
-    {
       to: "/totem/dashboard/maintenance",
       icon_able: "mgc_car_door_line",
       icon_disable: "mgc_car_door_line",
