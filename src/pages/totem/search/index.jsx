@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Product from "@/components/Product";
 import SearchBar from "@/components/SearchBar";
 import Title from "@/components/Title";
 import fetchProducts from "@/utils/api/fetchProducts";
-import LogoRedeAncora from "@/assets/img/logo_v1.png";
-import { useNavigate } from "react-router-dom";
 
 export default function Search({
   searchTerm,

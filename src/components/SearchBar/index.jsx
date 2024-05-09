@@ -1,7 +1,20 @@
 import debounce from "@/utils/debounce";
 import DorpdownCar from "@/components/DropdownCar";
+import Keyboard from "../Keyboard";
+import { useState } from "react";
 
 const SearchBar = ({ productsSearch, user, setSearchTerm }) => {
+  const [showKeyboard, setShowKeyboard] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputFocus = () => {
+    setShowKeyboard(true);
+  };
+
+  const handleInputBlur = () => {
+    setShowKeyboard(false);
+  };
+
   const handleSearch = debounce((keyword) => {
     return setSearchTerm((prevState) => ({
       ...prevState,
@@ -16,13 +29,24 @@ const SearchBar = ({ productsSearch, user, setSearchTerm }) => {
         className="form-control border border-1 rounded-1 h-100"
         aria-label="Text input with dropdown button"
         placeholder="Realize sua busca aqui"
-        onChange={(event) => handleSearch(event.target.value)}
+        onFocus={handleInputFocus}
+        value={inputValue}
+        // onBlur={handleInputBlur}
+        onChange={(event) => {
+          setInputValue(event.target.value);
+          return handleSearch(event.target.value);
+        }}
       />
+      {console.log(inputValue)}
 
       <DorpdownCar
         cars={user.cars}
         productsSearch={productsSearch}
         setSearchTerm={setSearchTerm}
+      />
+      <Keyboard
+        showKeyboard={showKeyboard}
+        setModelValue={setInputValue}
       />
     </div>
   );
