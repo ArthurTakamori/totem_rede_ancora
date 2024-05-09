@@ -31,17 +31,17 @@ export default function Identify() {
             Escolha como se identificar
           </h2>
 
-          <div className="container mx-auto w-50">
+          <div className="container">
 
-            <div className="row">
+            <div className="row align-items-center justify-content-center">
 
-              <Link to="/totem/login" className="col rounded-1 bg-primary d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2" style={{ height: "250px" }}>
+              <Link to="/totem/login" className="col col-md-4 rounded-1 bg-primary d-flex flex-column justify-content-around p-4 bg-white border border-primary mx-2" style={{ height: "250px" }}>
                 <span className="mgc_badge_line fs-1 p-2"></span>
                 <p className="fw-semibold text-primary">Entrar usando CPF</p>
 
               </Link>
 
-              <button type="button" className="col rounded-1 d-flex flex-column justify-content-around align-items-center p-4 bg-white border border-primary mx-2"
+              <button type="button" className="col col-md-4 rounded-1 d-flex flex-column justify-content-around align-items-center p-4 bg-white border border-primary mx-2"
               style={{ height: "250px" }}
               onClick={handleSkip}>
                 <span className="mgc_forward_2_line fs-1 p-2"></span>

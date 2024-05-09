@@ -84,13 +84,11 @@ export default function Search({
         }}
       >
         {loading ? (
-          <div className="container">
-            <div className="row justify-content-center align-items-center">
-              <div className="col-xs-6 text-center">
-                <img src={LogoRedeAncora} alt="Imagem" className="img-fluid" />
-                <h2>Carregando...</h2>
-              </div>
+          <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+            <div className="spinner-border text-primary" style={{width: '4vw', height: '4vw', borderWidth: '0.475rem'}} role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
+            <small className="fs-5 fw-medium opacity-75">Preparando seu pit stop virtual...</small>
           </div>
         ) : (
           <Product products={license_plate ? products : filteredProducts} />
