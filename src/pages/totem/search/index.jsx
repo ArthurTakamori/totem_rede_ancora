@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import Title from "@/components/Title";
 import fetchProducts from "@/utils/api/fetchProducts";
 import LogoRedeAncora from "@/assets/img/logo_v1.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Search({
   searchTerm,
@@ -15,15 +15,8 @@ export default function Search({
 }) {
   const { automaker, license_plate, superbusca } = searchTerm;
   const [products, setProducts] = useState([]);
+
   const navigate = useNavigate();
-
-  const productsSearch = async (keyword) => {
-    const {
-      pageResult: { data },
-    } = await fetchProducts(keyword);
-
-    setProducts(data);
-  };
 
   const filteredProducts = products.filter((product) => {
     return product.data.aplicacoes.some(
@@ -38,39 +31,46 @@ export default function Search({
       : `a montadora: ${automaker.name}`
   }`;
 
+  const handleNavigateDashboard = () => {
+    setSearchTerm((prevState) => ({
+      ...prevState,
+      superbusca: "",
+      license_plate: "",
+    }));
+    navigate("/totem/dashboard");
+  };
+
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-
       const {
         pageResult: { data },
       } = await fetchProducts({
-        superbusca: superbusca ? superbusca : automaker?.name,
+        superbusca: superbusca || license_plate ? superbusca : automaker?.name,
         veiculoPlaca: license_plate,
-      }).finally(() => setLoading(false));
+      });
 
       setProducts(data);
     }
     if (!automaker.name && !license_plate) {
       navigate("/totem/dashboard");
     }
-    fetchData();
-  }, [automaker.name, superbusca, license_plate]);
+    fetchData().finally(() => setLoading(false));
+  }, [superbusca, license_plate]);
 
   return (
     <>
       <div className="d-flex justify-content-between">
         <Title page={titleText} />
-        <Link
-          to={"/totem/dashboard/"}
+        <button
+          onClick={handleNavigateDashboard}
           className="d-flex p-3 gap-3 align-items-center card-category rounded-1 fs-3 h-75"
         >
           Selecionar outra montadora <span className="mgc_back_fill fs-1" />
-        </Link>
+        </button>
       </div>
 
       <SearchBar
-        productsSearch={productsSearch}
         user={user}
         license_plate={license_plate}
         searchTerm={searchTerm}

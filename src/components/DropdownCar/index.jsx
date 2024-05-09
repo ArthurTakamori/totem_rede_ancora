@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-export default function DorpdownCar({ cars, productsSearch, setSearchTerm }) {
+export default function DorpdownCar({ cars, setSearchTerm }) {
   return (
     <>
       <div className="dropdown">
@@ -29,7 +29,6 @@ export default function DorpdownCar({ cars, productsSearch, setSearchTerm }) {
               <DropdownItemCar
                 key={index}
                 item={car}
-                productsSearch={productsSearch}
                 setSearchTerm={setSearchTerm}
               />
             ))
@@ -50,19 +49,16 @@ export default function DorpdownCar({ cars, productsSearch, setSearchTerm }) {
   );
 }
 
-const DropdownItemCar = ({ item, productsSearch, setSearchTerm }) => {
+const DropdownItemCar = ({ item, setSearchTerm }) => {
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
     const veiculoPlaca = checked ? value : "";
 
-    setSearchTerm((prevState) => {
-      return {
-        ...prevState,
-        license_plate: veiculoPlaca,
-      };
-    });
-
-    return productsSearch({ veiculoPlaca: veiculoPlaca });
+    setSearchTerm((prevState) => ({
+      ...prevState,
+      license_plate: veiculoPlaca,
+      // superbusca: "",
+    }));
   };
 
   return (

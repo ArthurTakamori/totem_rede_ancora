@@ -5,7 +5,6 @@ import "./styles.scss";
 const AboutProduct = ({product}) => {
 
   const { imagemReal, nomeProduto, marca } = product;
-  console.log(product)
 
   return (
     <>
