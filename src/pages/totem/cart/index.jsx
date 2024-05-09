@@ -1,11 +1,10 @@
-import { useState } from "react";
 import ProductCard from "@/components/Product/ProductCard";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { Link } from "react-router-dom";
 
 export default function Cart({ cartProducts, setCartProducts }) {
-
 
   function updateQuantity(newValue, index) {
     setCartProducts(prevProducts => {
@@ -23,7 +22,7 @@ export default function Cart({ cartProducts, setCartProducts }) {
     });
   }
 
-  const total = cartProducts.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.qtd) * parseFloat(currentValue.price)), 0);
+  const total = cartProducts.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.qtd) * parseFloat(currentValue.originalPrice)), 0);
 
   return (
     <>
@@ -34,15 +33,12 @@ export default function Cart({ cartProducts, setCartProducts }) {
         height: 'calc(100% - 22rem)'
       }}>
 
-        <div className="row justify-content-center gap-3 no-gutters pb-5">
+        <div className="d-flex flex-column gap-5 py-5">
 
           {cartProducts.map((product, index) => (
             <ProductCard key={index}
               index={index}
-              product={product.name}
-              description={product.description}
-              price={product.price}
-              qtd={product.qtd}
+              product={product}
               updateQuantity={updateQuantity}
               deleteProduct={deleteProduct}
             />
@@ -56,7 +52,7 @@ export default function Cart({ cartProducts, setCartProducts }) {
         className="d-flex justify-content-between align-items-center"
         style={{
           height: "145px",
-          padding: '1.5rem 3rem'
+          padding: '1.5rem 4rem'
         }}
       >
         <div>
@@ -64,7 +60,9 @@ export default function Cart({ cartProducts, setCartProducts }) {
           <span className="fs-4 d-block text-uppercase">Valor total</span>
         </div>
 
-        <Button name={'Finalizar pedido'} type={'submit'} />
+          <Link to="/totem/stored" className="btn btn-primary w-50 fs-3">
+          Finalizar pedido
+          </Link>
       </div>
 
     </>

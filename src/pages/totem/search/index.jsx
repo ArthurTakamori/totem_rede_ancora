@@ -3,7 +3,7 @@ import Product from "@/components/Product";
 import SearchBar from "@/components/SearchBar";
 import Title from "@/components/Title";
 import fetchProducts from "@/utils/api/fetchProducts";
-import LogoRedeAncora from "@/assets/img/logo_v1.png";
+import generateProductPrices from "@/utils/generateProductPrices";
 import { useNavigate } from "react-router-dom";
 
 export default function Search({
@@ -12,6 +12,7 @@ export default function Search({
   user,
   loading,
   setLoading,
+  setCartProducts,
 }) {
   const { automaker, license_plate, superbusca } = searchTerm;
   const [products, setProducts] = useState([]);
@@ -50,7 +51,15 @@ export default function Search({
         veiculoPlaca: license_plate,
       });
 
-      setProducts(data);
+      var products = data.map((response) => {
+        const { originalPrice, discountedPrice } = generateProductPrices();
+        response.data.originalPrice = originalPrice;
+        response.data.discountedPrice = discountedPrice;
+
+        return response;
+      })
+
+      setProducts(products);
     }
     if (!automaker.name && !license_plate) {
       navigate("/totem/dashboard");
@@ -91,7 +100,8 @@ export default function Search({
             <small className="fs-5 fw-medium opacity-75">Preparando seu pit stop virtual...</small>
           </div>
         ) : (
-          <Product products={license_plate ? products : filteredProducts} />
+          <Product products={license_plate ? products : filteredProducts}
+                   setCartProducts={setCartProducts}  />
         )}
       </div>
     </>

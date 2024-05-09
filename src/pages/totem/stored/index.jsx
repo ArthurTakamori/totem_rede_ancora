@@ -6,13 +6,16 @@ export default function Stored() {
 
     return (
         <>
-            <div className="container-main">
+            <div className="container-fluid"
+                 style={{
+                    height: '100vh'
+                 }}>
 
-                <main className='d-flex flex-column align-items-center justify-content-center'>
+                <section className='d-flex flex-column align-items-center justify-content-center h-100'>
 
                     <div class="d-flex flex-column align-items-center justify-content-center">
 
-                        <img src={StoredCartImg} alt='Compra finalizada ícone' width={'45%'}/>
+                        <img src={StoredCartImg} alt='Compra finalizada ícone' width={'25%'}/>
                     
                 
                         <div className='mt-5 flex-grow-1 d-flex flex-column align-items-center text-center'>
@@ -26,9 +29,7 @@ export default function Stored() {
 
                             </div>
 
-                            <div className='d-flex flex-column align-items-center justify-content-center mb-5' style={{
-                                maxWidth: '800px'
-                            }}>
+                            <div className='d-flex flex-column align-items-center justify-content-center w-75 mb-5'>
 
                                 <p style={{
                                     fontSize: '3.5vw'
@@ -46,14 +47,14 @@ export default function Stored() {
                             <small style={{
                                     fontSize: '2.5vw'
                                 }}>
-                                Até a próxima.
+                                Até a próxima 👋
                             </small>
                         </div>
                         
                     </div>
 
 
-                </main>
+                </section>
             </div>
         </>
     );
