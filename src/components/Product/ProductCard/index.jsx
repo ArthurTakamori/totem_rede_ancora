@@ -1,53 +1,65 @@
-import Amortecedor from '@/assets/img/product_cart_amortecedor.png'
+import LogoRedeAncora from "@/assets/img/logo_v1.png";
 import QuantityCart from "@/components/QuantityCart";
+import { formatCurrency } from "@/utils/formatCurrency";
 import "./styles.scss";
 
 export default function ProductCard({
-    product, description, price, qtd, index, updateQuantity, deleteProduct
+    product, index, updateQuantity, deleteProduct
 }) {
 
-    // const [qtd, updateQuantity] = useState('01')
+    const { imagemReal, nomeProduto, marca, qtd, originalPrice, codigoReferencia } = product;
 
     return (
         <>
 
-            <div className='d-flex justify-content-center mb-4 rounded-1 overflow-hidden bg-white w-100'>
+            <div className='row'>
 
-                <div style={{width: '350px'}} className='d-flex align-items-center justify-content-center p-4 bg-slate-50'>
-                    <img src={Amortecedor} alt="Imagem de Amortecedor" width={'30px'}/>
+                <div className="col-12 col-md-4 p-0">
+
+                    <div className='d-flex align-items-center justify-content-center bg-slate-50 p-5 h-100 w-100'>
+                        <img
+                            src={imagemReal ? imagemReal : LogoRedeAncora}
+                            className="card-img-top w-50"
+                            alt={nomeProduto}
+                        />
+                    </div>
                 </div>
-                
-                <div className='w-100 d-flex flex-column justify-content-between'>
 
-                    <div className='d-flex align-items-center justify-content-between p-4 w-100'>
+                <div className="col-12 col-md-8 bg-white p-0">
 
-                        <div className='text-uppercase'>
-                            <h2>{product}</h2>
-                            <p>{description}</p>
+                    <div className='w-100 h-100 d-flex flex-column justify-content-between gap-5 p-5'>
+
+                        <div className='d-flex align-items-center justify-content-between w-100'>
+
+                            <div className='text-uppercase'>
+                                <h2>{nomeProduto} ({codigoReferencia})</h2>
+                                <p className="fs-3">{marca}</p>
+                            </div>
+
+                            <button type='button' className='btn-delete p-4 bg-slate-50 rounded-circle d-flex align-items-center justify-content-center'
+                                onClick={() => deleteProduct(index)}>
+                                <span className='mgc_delete_2_line fs-1'></span>
+                            </button>
+
                         </div>
 
-                        <button type='button' className='btn-delete p-3 bg-slate-50 rounded-circle d-flex align-items-center justify-content-center'
-                                onClick={() => deleteProduct(index)}>
-                            <span className='mgc_delete_2_line fs-3'></span>
-                        </button>
+                        <div className='d-flex align-items-center justify-content-between w-100'>
 
+                            <p className='fs-1 fw-medium'>
+                                {formatCurrency(originalPrice)}
+                            </p>
+
+                            <QuantityCart
+                                qtd={qtd}
+                                index={index}
+                                updateQuantity={updateQuantity}
+                            />
+
+                        </div>
                     </div>
 
-                    <div className='d-flex align-items-center justify-content-between p-4 w-100'>
-                        
-                        <p className='fs-3 fw-medium'>
-                            R${price}
-                        </p>
-
-                        <QuantityCart
-                            qtd={qtd}
-                            index={index}
-                            updateQuantity={updateQuantity}
-                        />
-
-                    </div>
                 </div>
-                
+
             </div>
         </>
     )

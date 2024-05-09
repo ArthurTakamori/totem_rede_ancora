@@ -1,102 +1,97 @@
 import { formatCurrency } from "@/utils/formatCurrency";
 import LogoRedeAncora from "@/assets/img/logo_v1.png";
 import "./styles.scss";
-import generateProductPrices from "@/utils/generateProductPrices";
 import { useState } from "react";
 import QuantityCart from "../QuantityCart";
 
-export default function Product({ products }) {
+export default function Product({ products, setCartProducts }) {
 
-  const [ selectedProduct, setSelectedProduct ] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState({});
 
   return (
     <>
       <div className="p-4">
-        <div className="row row-cols-3 g-3">
+        <div className="row g-5">
           {products?.map(({ data: item }, index) => (
             <Card key={index}
-                  item={item} 
-                  setSelectedProduct={setSelectedProduct}/>
+              item={item}
+              setSelectedProduct={setSelectedProduct} />
           ))}
         </div>
       </div>
 
-      <ModalCart product={selectedProduct}/>
+      <ModalCart product={selectedProduct} setCartProducts={setCartProducts} />
     </>
   );
 }
 
 const Card = ({ item, setSelectedProduct }) => {
-  const { imagemReal, nomeProduto, marca } = item;
-
-  const { originalPrice, discountedPrice } = generateProductPrices();
+  const { imagemReal, nomeProduto, marca, originalPrice, discountedPrice, codigoReferencia } = item;
 
   return (
-    <div className="col col-sm-6 col-md-4 col-lg-3" style={{
+    <div className="col-auto justify-content-center flex-grow-1" style={{
       minHeight: '550px'
     }}>
 
-      <div className="rounded-2 overflow-hidden bg-white h-100">
+      <div className="rounded-4 bg-white h-100 border border-secondary border-opacity-25 overflow-hidden">
 
         <div
-          className="d-flex justify-content-center align-items-center rounded-2 bg-img p-3"
+          className="d-flex justify-content-center align-items-center rounded-2 px-4 pt-4"
           style={{ height: "45%" }}
         >
 
-          <img
-            src={imagemReal ? imagemReal : LogoRedeAncora}
-            className="card-img-top"
-            alt={nomeProduto}
-            style={{
-              maxHeight: "70%",
-              maxWidth: "100%",
-              width: "auto",
-              height: "auto",
-            }}
-          />
+          <div className="bg-img h-100 w-100 d-flex align-items-center justify-content-center rounded-4 p-5">
+            <img
+              src={imagemReal ? imagemReal : LogoRedeAncora}
+              className="card-img-top"
+              alt={nomeProduto}
+              style={{
+                maxHeight: "70%",
+                maxWidth: "100%",
+                width: "auto",
+                height: "auto",
+              }}
+            />
+
+          </div>
 
         </div>
 
         <div
-          className="p-3 d-flex flex-column justify-content-between"
-            style={{ height: "55%" }}
-          >
+          className="py-4 px-5 d-flex flex-column justify-content-between"
+          style={{ height: "55%" }}
+        >
 
           <div>
-            <h5 className="mb-0 fs-4" style={{ fontWeight: "400" }}>
-              {nomeProduto}
+            <h5 className="mb-0 fs-2 fw-medium">
+              {nomeProduto} ({codigoReferencia})
             </h5>
-            <p
-              className="card-text opacity-75 fs-5  text-uppercase"
-              style={{
-                fontWeight: "300",
-              }}
-            >
+            <p className="card-text opacity-75 fs-4  text-uppercase">
               {marca}
             </p>
           </div>
 
-          <div className="d-flex flex-sm-wrap align-items-center justify-content-between gap-2">
+          <div className="d-flex flex-sm-wrap align-items-center justify-content-between gap-2 pb-4">
 
             <span className="card-text flex-item flex-grow-1">
-              <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-3">
+              <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-1">
 
-                {formatCurrency(discountedPrice)}
+                {discountedPrice ? formatCurrency(discountedPrice) : '--'}
               </span>
-              <del className="text-muted" style={{ fontSize: ".rem" }}>
-                {formatCurrency(originalPrice)}
+              <del className="text-muted" style={{ fontSize: "1.5rem" }}>
+                {originalPrice ? formatCurrency(originalPrice) : '--'}
               </del>
             </span>
-            
-            <ButtonModalAddCart 
+
+            <ButtonModalAddCart
               product={{
-                ...item, 
-                ...{ 
+                ...item,
+                ...{
                   originalPrice: originalPrice,
                   discountedPrice: discountedPrice
                 }
-             }}
-              setSelectedProduct={setSelectedProduct}/>
+              }}
+              setSelectedProduct={setSelectedProduct} />
 
           </div>
         </div>
@@ -114,15 +109,28 @@ const ButtonModalAddCart = ({ product, setSelectedProduct }) => {
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#aboutModal"
-      className="mgc_add_fill btn btn-secondary bg-white border-1 p-3 rounded-1 fs-5"
+      className="mgc_add_fill btn btn-primary bg-white border-1 p-4 rounded-1 fs-2"
       onClick={() => setSelectedProduct(product)}
     ></button>
+    
   )
 };
 
-const ModalCart = ({product}) => {
+const ModalCart = ({ product, setCartProducts }) => {
 
-  const { imagemReal, nomeProduto, marca, originalPrice, discountedPrice } = product;
+  const { imagemReal, nomeProduto, marca, codigoReferencia, originalPrice, discountedPrice } = product;
+
+  const [qtd, setQtd] = useState('01')
+
+  const total = (parseInt(qtd) * parseFloat(product.discountedPrice));
+
+  function handleAddToCart() {
+    setCartProducts({
+      ...product,
+      price: total,
+      qtd: qtd,
+    })
+  }
 
   return (
     <div
@@ -135,32 +143,35 @@ const ModalCart = ({product}) => {
       <div className="modal-dialog modal-dialog-bottom">
 
         <div
-          className="modal-content bg-white rounded-0"
-          style={{ width: "100vw", height: "80vh" }}
+          className="modal-content bg-white rounded-0 position-relative"
+          style={{ width: "100vw", minHeight: '60vh' }}
         >
 
-          <div className="h-100 d-flex flex-column w-100  overflow-y-auto">
-            
-            <div className="modal-body p-0 ">
-            
+          <div className="modal-header border-0 p-0 position-relative">
               <button
-                type="button"
-                className="btn-close position-absolute"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                style={{ 
-                  fontSize: "1.5rem", 
-                  padding: "0.5rem",
-                  top: ".8rem",
-                  right: ".8rem"
-                }}
-              ></button>
+              type="button" 
+              className="btn-close position-absolute" 
+              id="#closeModalCart"
+              data-bs-dismiss="modal" 
+              aria-label="Close"
+              style={{
+                fontSize: "1.5rem",
+                zIndex: '9999',
+                right: '1rem',
+                top: '1rem'
+              }}
+            ></button>
+          </div>
 
-              <div className="h-100">
+          <div className="modal-body d-flex justify-content-center my-5 overflow-y-scroll">
+
+            <div className="row justify-content-center w-100">
+
+              <div className="h-100 col col-md-12 col-lg-8">
 
                 <div
-                  className="d-flex justify-content-center align-items-center rounded-1 bg-img"
-                  style={{ height: "40%" }}
+                  className="d-flex justify-content-center align-items-center rounded-3 bg-img p-5"
+                  style={{ height: "30%" }}
                 >
 
                   <img
@@ -168,24 +179,21 @@ const ModalCart = ({product}) => {
                     className="card-img-top"
                     alt={nomeProduto}
                     style={{
-                      maxHeight: "70%",
-                      maxWidth: "100%",
-                      width: "auto",
-                      height: "auto",
+                      maxWidth: "20%",
                     }}
                   />
 
                 </div>
 
-                <div className="d-flex flex-column justify-content-between h-full" style={{ height: "60%" }}>
+                <div className="d-flex flex-column justify-content-between h-full" style={{ height: "70%" }}>
 
                   <div className="p-4">
 
                     <div className="mb-3">
                       <h5
-                        className="text-primary card-title mb-0 modal-title fs-2 text-uppercase"
+                        className="text-primary card-title mb-0 modal-title fs-3 text-uppercase"
                       >
-                        {nomeProduto}
+                        {nomeProduto} ({codigoReferencia})
                       </h5>
                       <p className="card-text text-uppercase opacity-75 fs-5">
                         {marca}
@@ -194,47 +202,54 @@ const ModalCart = ({product}) => {
 
                     <div className="d-flex align-items-center justify-content-between mb-3">
 
-                      <span className="card-text flex-item flex-grow-1">
+                      <span className="card-text flex-grow-1">
                         <span
-                          className="text-primary text-blue-ancora-2 me-1 fs-2"
+                          className="text-primary text-blue-ancora-2 me-4 fs-2"
                           style={{ fontWeight: "900" }}
                         >
                           {discountedPrice ? formatCurrency(discountedPrice) : '--'}
                         </span>
-                        <del className="text-muted fs-5">
+                        <del className="text-muted fs-3">
                           {originalPrice ? formatCurrency(originalPrice) : '--'}
                         </del>
                       </span>
 
                     </div>
 
-                    <p
-                      className="fs-6"
-                      style={{ color: "#626262", fontWeight: "300" }}
-                    >
-                      {/* {discription} */}
-                    </p>
-                    
+
                   </div>
 
-                  <div className="d-flex w-100 justify-content-between p-4">
+                  <div className="row align-items-center g-5 px-4">
+                    
+                    <div className="col-12 col-xl-8 d-flex gap-5 align-items-center">
+                      
+                      <div>
+                          <span className="fs-4 d-block">Quantidade</span>
+                          <QuantityCart qtd={qtd} index={0} updateQuantity={setQtd} />
+                      </div>
 
-                      <QuantityCart />
-
-                      <button type="button" className="btn btn-primary px-5">
-                        Adicionar ao carrinho
-                      </button>
+                      <span className="fs-2 fw-medium d-block block mt-5">
+                        Subtotal: {formatCurrency(total)}
+                      </span>
 
                     </div>
 
+
+                    <button type="button" 
+                            className="col col-xs-12 col-md-12 col-xl-4 btn btn-primary px-5 py-3 fs-3 w-100"
+                            onClick={handleAddToCart}>
+                      Adicionar ao carrinho
+                    </button>
+
                   </div>
+
                 </div>
-              
+              </div>
 
             </div>
 
-            
           </div>
+
         </div>
 
       </div>

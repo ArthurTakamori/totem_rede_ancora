@@ -2,8 +2,10 @@ import Logo from "@/assets/img/logo_v1.png";
 import { Link } from "react-router-dom";
 import { getUser } from "@/state/userState";
 
-export default function HeaderHome() {
+export default function HeaderHome({ cartProductsCount }) {
   const user = getUser();
+
+  const countProducts = parseInt(cartProductsCount) > 99 ? '99+' : parseInt(cartProductsCount);
 
   return (
     <>
@@ -21,6 +23,7 @@ export default function HeaderHome() {
         </div>
 
         <div className="position-relative">
+
           <Link
             to="/totem/dashboard/cart"
             type="button"
@@ -28,6 +31,13 @@ export default function HeaderHome() {
           >
             <span className="mgc_shopping_cart_1_line fs-2"></span>
           </Link>
+
+           <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger fs-5" style={{
+            top: '10px',
+           }}>
+            {countProducts}
+            <span class="visually-hidden">Total produtos carrinho de compras</span>
+          </span>
         </div>
       </header>
     </>

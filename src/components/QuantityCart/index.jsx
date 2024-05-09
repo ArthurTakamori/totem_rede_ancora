@@ -19,23 +19,29 @@ export default function QuantityCart({ qtd, index, updateQuantity
     }
 
     return (
-        <div className='d-flex align-items-stretch'>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
 
             <button type='button'
-                className='bg-primary rounded-start p-3 d-flex align-items-center justify-content-center' onClick={decrement}>
-                <span className='btn-qtd mgc_minimize_line fs-4'></span>
+                className='btn btn-primary rounded-start-4' onClick={decrement}
+                style={{
+                    width: '8vw'
+                }}>
+                <span className='btn-qtd mgc_minimize_line fs-3'></span>
             </button>
 
-            <div style={{ minWidth: '65px' }} className='fs-3 p-2 bg-white d-flex align-items-center justify-content-center'>
+            <div className='flex-shrink-1 fs-1 p-2 w-50 bg-white d-flex align-items-center justify-content-center'>
                 <span>
                     {qtd}
                 </span>
             </div>
 
             <button type='button'
-                className='bg-primary rounded-end p-3 d-flex align-items-center justify-content-center'
-                onClick={increment}>
-                <span className='btn-qtd mgc_add_line fs-4'></span>
+                className='btn btn-primary rounded-end-4'
+                onClick={increment}
+                style={{
+                    width: '8vw'
+                }}>
+                <span className='btn-qtd mgc_add_line fs-1'></span>
             </button>
         </div>
     )

@@ -30,27 +30,12 @@ export default function RoutesComponent() {
     ],
   });
 
-  const [cartProducts, setCartProducts] = useState([
-    {
-      name: "Amortecedor",
-      description: "Modelo original",
-      price: "244.50",
-      qtd: "01",
-    },
-    {
-      name: "Melhor que 2",
-      description: "Modelo original",
-      price: "189.50",
-      qtd: "01",
-    },
+  const [cartProducts, setCartProducts] = useState([]);
 
-    {
-      name: "Melhor que 2",
-      description: "Modelo original",
-      price: "189.50",
-      qtd: "01",
-    },
-  ]);
+  function handleAddToCart(data) {
+    setCartProducts((content) => [...content, data])
+    document.getElementById('#closeModalCart').click();
+  }
 
   const [automakers, setAutomakers] = useState([]);
 
@@ -89,7 +74,7 @@ export default function RoutesComponent() {
       <Route path="/totem/login" element={<Login />} />
       <Route path="/totem/register" element={<Register />} />
 
-      <Route path="/totem/dashboard" element={<Dashboard />}>
+      <Route path="/totem/dashboard" element={<Dashboard cartProductsCount={cartProducts.length}/>}>
         <Route
           path=""
           element={
@@ -111,6 +96,7 @@ export default function RoutesComponent() {
               user={user}
               loading={loading}
               setLoading={setLoading}
+              setCartProducts={handleAddToCart}
             />
           }
         />
