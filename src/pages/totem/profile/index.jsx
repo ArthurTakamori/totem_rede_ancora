@@ -6,123 +6,56 @@ import { hideCPF, maskCpf } from "@/utils/maskCpf";
 import Title from "@/components/Title";
 import { Controller } from "react-hook-form";
 import { getUser } from "@/state/userState";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup"
 
-export default function Profile() {
-  const [showCpf, setShowCpf] = useState(true);
-  const user = getUser();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      fullName: user.name,
-      cpf: user.cpf,
-      phone: user.phone,
-      email: user.email,
-    },
-  });
+export default function Signing(){
+  
+const [userList, setUserList] = useState([])
+const {register, handleSubmit, formState:{errors}, setValue, setFocus} = useForm({})
 
-  const onSubmit = (data) => console.log(data);
+function userAdd(user){
+  setUserList([...userList, user])
+  console.log(user)
+}
 
-  return (
+  return(
     <>
-      <Title page={"Minha conta"} />
+      <Title page={"Minha Conta"}/>
 
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="px-4">
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              label="Nome completo"
-              value={value}
-              onChange={onChange}
-            />
-          )}
-          name="fullName"
-        />
-        {errors.fullName && <Text>This is required.</Text>}
-
-        <div className="position-relative">
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-              minLength: 14,
-              maxLength: 14,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                label={"CPF"}
-                value={showCpf === false ? hideCPF(value) : value}
-                onChange={(e) => onChange(maskCpf(e.target.value))}
-              />
-            )}
-            name="cpf"
+      <form onSubmit={handleSubmit(userAdd)} autoComplete="off" className="px-4">
+        <fieldset>
+          <label>Nome completo
+            <input type="text" 
+            {...register("nome")} 
           />
-          {errors.cpf && <Text>This is required.</Text>}
+          </label>
+          <label>CPF
+            <input type="text" 
+            {...register("cpf")}
+          />
+          </label>
+          <label>Telefone
+            <input type="text" 
+            {...register("telefone")}
+          />
+          </label>
+          <label>E-mail
+            <input type="text" 
+            {...register("email")}
+          />
+          </label>
 
-          <div className="position-relative">
-            <button
-              type="button"
-              onClick={() => setShowCpf(!showCpf)}
-              className="position-absolute"
-              style={{
-                top: "-88px",
-                right: "15px",
-              }}
-            >
-              <span
-                className={`${
-                  showCpf ? "mgc_eye_2_line" : "mgc_eye_close_line"
-                } fs-1`}
-              />
-            </button>
+          <div className="d-flex w-100 justify-content-end mt-4">
+            <Button name={"Atualizar dados cadastrais"} type="submit"/>
           </div>
-        </div>
-
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              label={"Telefone"}
-              value={value}
-              onChange={onChange}
-              type={"tel"}
-            />
-          )}
-          name="phone"
-        />
-        {errors.phone && <Text>This is required.</Text>}
-
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              label={"E-mail"}
-              value={value}
-              onChange={onChange}
-              type={"email"}
-            />
-          )}
-          name="email"
-        />
-        {errors.email && <Text>This is required.</Text>}
-
-        <div className="d-flex w-100 justify-content-end mt-4">
-          <Button name={"Atualizar dados cadastrais"} type={"submit"} />
-        </div>
+        </fieldset>
       </form>
     </>
-  );
+
+
+  
+  
+  )
 }
