@@ -21,6 +21,7 @@ const [userList, setUserList] = useState([])
 const [showCpf, setShowCpf] = useState(true);
 const {register, handleSubmit, formState:{errors}} = useForm({resolver:yupResolver(schema)})
 
+
 function userAdd(user){
   setUserList([...userList, user])
   console.log(user)
@@ -29,14 +30,19 @@ function userAdd(user){
   return(
     <>
       <Title page={"Minha Conta"}/>
-      <div className="col-12 col-md-12 bg-white">
+      <div className="col-12 col-md-12 bg-white ">
         <form onSubmit={handleSubmit(userAdd)} autoComplete="off" className="px-4 py-4">
           <fieldset className="d-flex flex-column gap-2">
           <div>
-              <label className="required">Nome completo</label>
-                <Input type="text"
+              {/* <label className="required">Nome completo</label>
+                <input type="text"
                 required={true}
                 {...register("name")}
+                /> */}
+                <Input
+                register = {register}
+                name = "name"
+                required
                 />
                 <span>{errors.name?.message}</span>
             </div>
@@ -56,7 +62,7 @@ function userAdd(user){
                   />
                   </button>
                 </div>
-                <Input type={showCpf === true ? 'text' : 'password'}
+                <input type={showCpf === true ? 'text' : 'password'}
                 required={true} 
                 {...register("cpf")}
                 />
@@ -65,7 +71,7 @@ function userAdd(user){
             
             <div>
               <label className="required">Telefone</label>
-                <Input type="number"
+                <input type="number"
                 required={true}
                 {...register("phone")}
                 />
@@ -74,7 +80,7 @@ function userAdd(user){
 
             <div>
               <label className="required">E-mail</label>
-                <Input type="text"
+                <input type="text"
                 required={true} 
                 {...register("email")}
                 />
@@ -83,7 +89,7 @@ function userAdd(user){
 
             <div>
               <label className="notRequired">Placa do Carro</label>
-                <Input type="text"
+                <input type="text"
                 required={false} 
                 {...register("license_plate")}
                 />
