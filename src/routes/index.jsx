@@ -22,7 +22,7 @@ export default function RoutesComponent() {
     name: "Carlos Oliveira",
     email: "carlos.oliveira@example.com",
     phone: "(11) 87654-3210",
-    cpf: "876.543.210-99",
+    cpf: "87654321099",
     cars: [
       {
         license_plate: "JKL-3456",
@@ -33,8 +33,8 @@ export default function RoutesComponent() {
   const [cartProducts, setCartProducts] = useState([]);
 
   function handleAddToCart(data) {
-    setCartProducts((content) => [...content, data])
-    document.getElementById('#closeModalCart').click();
+    setCartProducts((content) => [...content, data]);
+    document.getElementById("#closeModalCart").click();
   }
 
   const [automakers, setAutomakers] = useState([]);
@@ -71,10 +71,13 @@ export default function RoutesComponent() {
 
       <Route path="/totem" element={<Splash />} />
       <Route path="/totem/identify" element={<Identify />} />
-      <Route path="/totem/login" element={<Login />} />
+      <Route path="/totem/login" element={<Login setUser={setUser} />} />
       <Route path="/totem/register" element={<Register />} />
 
-      <Route path="/totem/dashboard" element={<Dashboard cartProductsCount={cartProducts.length}/>}>
+      <Route
+        path="/totem/dashboard"
+        element={<Dashboard cartProductsCount={cartProducts.length} />}
+      >
         <Route
           path=""
           element={
