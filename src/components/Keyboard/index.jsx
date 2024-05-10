@@ -18,6 +18,8 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
 
   const handleKeyPress = (key) => {
 
+    if(key === null) return; 
+    
     if (key === BACKSPACE) {
       setModelValue((current) => current.slice(0, -1));
       return;
