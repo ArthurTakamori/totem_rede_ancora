@@ -1,10 +1,12 @@
 import ProductCard from "@/components/Product/ProductCard";
 import Title from "@/components/Title";
-import Button from "@/components/Button";
+import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Link } from "react-router-dom";
 
 export default function Cart({ cartProducts, setCartProducts }) {
+
+  const navigate = useNavigate();
 
   function updateQuantity(newValue, index) {
     setCartProducts(prevProducts => {
@@ -24,10 +26,25 @@ export default function Cart({ cartProducts, setCartProducts }) {
 
   const total = cartProducts.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.qtd) * parseFloat(currentValue.discountedPrice)), 0);
 
+  const handleNavigateDashboard = () => {
+    navigate("/totem/dashboard");
+  };
+
   return (
     <>
 
-      <Title page={'Carrinho de compra'} />
+      <div className="d-flex flex-column align-items-start gap-4 px-4 mt-4">
+
+        <button onClick={handleNavigateDashboard} className="fw-medium text-primary fs-4 d-flex align-items-center justify-content-center gap-2">
+          <span className="mgc_arrow_left_line fs-2"></span>
+          Voltar
+        </button>
+
+        <h1 className="fw-medium fs-1">
+        Carrinho de compras
+        </h1>
+
+      </div>
 
       <div className="overflow-y-auto px-5" style={{
         height: 'calc(100% - 22rem)'
