@@ -76,7 +76,7 @@ export default function RoutesComponent() {
 
       <Route
         path="/totem/dashboard"
-        element={<Dashboard cartProductsCount={cartProducts.length} />}
+        element={<Dashboard user={user} cartProductsCount={cartProducts.length} />}
       >
         <Route
           path=""
