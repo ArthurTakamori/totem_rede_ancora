@@ -10,8 +10,8 @@ export default function Product({ products, setCartProducts }) {
 
   return (
     <>
-      <div className="p-4">
-        <div className="row row-cols-3 g-5">
+      <div className="p-5">
+        <div className="row row-cols-3 g-2 g-xl-4">
           {products?.map(({ data: item }, index) => (
             <Card key={index}
               item={item}
@@ -29,7 +29,7 @@ const Card = ({ item, setSelectedProduct }) => {
   const { imagemReal, nomeProduto, marca, originalPrice, discountedPrice, codigoReferencia } = item;
 
   return (
-    <div className="col-12 col-sm-6 col-lg-4 justify-content-center" style={{
+    <div className="col-12 col-sm-6 col-xl-4 justify-content-center" style={{
       minHeight: '550px'
     }}>
 
@@ -73,7 +73,7 @@ const Card = ({ item, setSelectedProduct }) => {
 
           <div className="d-flex flex-sm-wrap align-items-center justify-content-between gap-2 pb-4">
 
-            <span className="card-text flex-item flex-grow-1">
+            <span className="card-text flex-item flex-grow-1 d-flex flex-wrap align-items-center gap-1">
               <span className="text-primary text-blue-ancora-2 fw-bold me-1 fs-1">
 
                 {discountedPrice ? formatCurrency(discountedPrice) : '--'}

@@ -121,7 +121,7 @@ export default function Search({
       <div
         className="overflow-y-auto"
         style={{
-          height: "calc(100% - 20rem)",
+          height: "calc(100% - 22rem)",
         }}
       >
         {loading ? (

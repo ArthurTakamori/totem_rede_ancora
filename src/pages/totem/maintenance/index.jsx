@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MaintenanceProducts from "@/components/Product/MaintenanceProducts";
 import fetchProducts from "@/utils/api/fetchProducts";
 import generateProductPrices from "@/utils/generateProductPrices";
+import generateReplacementDate from "@/utils/generateReplacementDate";
 
 export default function Maintenance({
   user,
@@ -45,6 +46,9 @@ export default function Maintenance({
         response.data.originalPrice = originalPrice;
         response.data.discountedPrice = discountedPrice;
 
+        response.data.lastReplacement = generateReplacementDate(false);
+        response.data.nextReplacement = generateReplacementDate(true);
+
         return response;
       });
 
@@ -55,12 +59,6 @@ export default function Maintenance({
     const someLicensePlate = cars.some((car) => car.license_plate);
 
     if (cars.length == 0 || !someLicensePlate) {
-      /* 
-        oferecer opção de cadastrar veiculo, e redirecionar para 
-        dashboard/profile dependendo da opção.
-      */
-
-      // navigate("/totem/dashboard/profile");
       navigate("/totem/dashboard");
     }
 
@@ -69,45 +67,44 @@ export default function Maintenance({
 
   return (
     <>
-      <div className="container-main">
-        <Title page={`Meu veículo`} />
+      <Title page={`Saúde do meu veículo`} />
 
-        <div className="d-flex gap-2 align-items-center px-4">
-          <span className="bagde-search">
-            <span className="mgc_settings_3_line fs-4"></span>
-            Montadora: {vehicle?.montadora}
-          </span>
-          <span className="bagde-search">
-            <span className="mgc_car_3_line fs-4"></span>
-            Modelo: {vehicle?.modelo}
-          </span>
-          {/* <span className="bagde-search">
-            <span className="mgc_car_3_line fs-4"></span>
-            Veículo: {vehicle ? vehicle : "--"}
-          </span> */}
-        </div>
+      <div className="d-flex gap-2 align-items-center px-4 mb-4">
+        <span className="bagde-search">
+          <span className="mgc_settings_3_line fs-4"></span>
+          Montadora: {vehicle?.montadora}
+        </span>
+        <span className="bagde-search">
+          <span className="mgc_car_3_line fs-4"></span>
+          Modelo: {vehicle?.modelo}
+        </span>
+      </div>
 
-        <main>
-          {loading ? (
-            <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
-              <div
-                className="spinner-border text-primary"
-                style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
-              <small className="fs-5 fw-medium opacity-75">
-                Preparando seu pit stop virtual...
-              </small>
+      <div
+        className="overflow-y-auto py-4"
+        style={{
+          height: "calc(100% - 22rem)",
+        }}
+      >
+        {loading ? (
+          <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+            <div
+              className="spinner-border text-primary"
+              style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
             </div>
-          ) : (
-            <MaintenanceProducts
-              products={maintenanceProducts}
-              setCartProducts={setCartProducts}
-            />
-          )}
-        </main>
+            <small className="fs-5 fw-medium opacity-75">
+              Preparando seu pit stop virtual...
+            </small>
+          </div>
+        ) : (
+          <MaintenanceProducts
+            products={maintenanceProducts}
+            setCartProducts={setCartProducts}
+          />
+        )}
       </div>
     </>
   );

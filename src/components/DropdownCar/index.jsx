@@ -98,7 +98,7 @@ const DropdownItemModalCar = () => {
         data-bs-target="#modalLicenseCar"
       >
         <span className="search-icon mgc_search_2_line fs-3"></span>
-        Buscar veículo
+        Buscar outro
       </button>
     </div>
   );
