@@ -22,7 +22,7 @@ export default function Cart({ cartProducts, setCartProducts }) {
     });
   }
 
-  const total = cartProducts.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.qtd) * parseFloat(currentValue.originalPrice)), 0);
+  const total = cartProducts.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.qtd) * parseFloat(currentValue.discountedPrice)), 0);
 
   return (
     <>

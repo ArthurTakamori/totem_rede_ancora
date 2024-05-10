@@ -33,7 +33,16 @@ export default function RoutesComponent() {
   const [cartProducts, setCartProducts] = useState([]);
 
   function handleAddToCart(data) {
-    setCartProducts((content) => [...content, data]);
+
+    const indexProductCart = cartProducts.findIndex((product) => Number(product.id) === Number(data.id));
+
+    if(indexProductCart !== -1) {
+      const productStored = cartProducts[indexProductCart];
+      productStored.qtd = Number(productStored.qtd) + Number(data.qtd)
+    } else {
+      setCartProducts((content) => [...content, data]);
+    }
+
     document.getElementById("#closeModalCart").click();
   }
 
@@ -110,7 +119,7 @@ export default function RoutesComponent() {
           element={
             <Maintenance
               user={user}
-              setCartProducts={setCartProducts}
+              setCartProducts={handleAddToCart}
               loading={loading}
               setLoading={setLoading}
             />

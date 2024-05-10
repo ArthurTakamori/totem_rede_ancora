@@ -43,10 +43,6 @@ export default function Search({
         veiculoPlaca: license_plate,
       });
 
-      console.log(vehicle)
-
-      // montadora
-
       var products = data.map((response) => {
         const { originalPrice, discountedPrice } = generateProductPrices();
         response.data.originalPrice = originalPrice;
