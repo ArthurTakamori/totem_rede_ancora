@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 import Title from "@/components/Title";
 import { useEffect } from "react";
 import BannerImage from '@/assets/img/banner.png'
+import { DropdownItemModalCar, ModalCar } from '@/components/ModalLicenseCar'
+import { useNavigate } from "react-router-dom";
 
-export default function HomeTotem({ setSearchTerm, automakers }) {
+export default function HomeTotem({ setSearchTerm, searchTerm, automakers }) {
+  
+  const navigate = useNavigate();
+  const btnModalLicenseCar = document.getElementById('btnOpenModalLicenseCar');
+
   const handleAutomaker = (car) => {
     const newAutomaker = {
       id: car.id,
@@ -16,14 +22,18 @@ export default function HomeTotem({ setSearchTerm, automakers }) {
     }));
   };
 
+  const handleSetSearchTerm = (e) => {
+    e();
+    console.log(searchTerm)
+    navigate('/totem/dashboard/search')
+  }
+
   useEffect(() => {
     setSearchTerm((prevState) => ({ ...prevState, superbusca: "" }));
   }, []);
 
   return (
     <>
-
-      
 
       <div
         className="overflow-y-auto px-5"
@@ -34,10 +44,12 @@ export default function HomeTotem({ setSearchTerm, automakers }) {
         <div className="rounded-2 mt-4 bg-white border-0 overflow-hidden position-relative" style={{
           height: '32%',
           cursor: 'pointer'
-        }}>
+        }}
+        onClick={() => btnModalLicenseCar.click()}>
           <img src={BannerImage} alt="Logo Rede Ancora" className="position-absolute top-0 h-100 w-100"/>
 
         </div>
+        
         <a href="https://jornaldocarro.estadao.com.br/carros/nova-lei-das-placas-entra-em-vigor-e-gera-fake-news-na-inernet/" target="_blank" className="fs-6 fw-medium opacity-50">
           Crédito imagem placa do carro: Jornal do carro
         </a>
@@ -72,7 +84,14 @@ export default function HomeTotem({ setSearchTerm, automakers }) {
             </div>
           ))}
         </div>
+
       </div>
+
+      <div className="d-hidden">
+        <DropdownItemModalCar /> 
+      </div>
+
+      <ModalCar setSearchTerm={handleSetSearchTerm} />
     </>
   );
 }

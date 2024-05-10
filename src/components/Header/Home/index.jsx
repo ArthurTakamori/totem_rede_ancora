@@ -31,16 +31,11 @@ export default function HeaderHome({ user, cartProductsCount }) {
             <span className="mgc_shopping_cart_1_line fs-2"></span>
           </Link>
 
-          <span
-            className="position-absolute start-100 translate-middle badge rounded-pill bg-danger fs-5"
-            style={{
-              top: "10px",
-            }}
-          >
+           <span className="position-absolute start-100 translate-middle badge rounded-pill bg-danger fs-5" style={{
+            top: '10px',
+           }}>
             {countProducts}
-            <span className="visually-hidden">
-              Total produtos carrinho de compras
-            </span>
+            <span className="visually-hidden">Total produtos carrinho de compras</span>
           </span>
         </div>
       </header>
