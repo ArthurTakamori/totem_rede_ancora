@@ -11,7 +11,7 @@ export default function Product({ products, setCartProducts }) {
   return (
     <>
       <div className="p-4">
-        <div className="row g-5">
+        <div className="row row-cols-3 g-5">
           {products?.map(({ data: item }, index) => (
             <Card key={index}
               item={item}
@@ -29,7 +29,7 @@ const Card = ({ item, setSelectedProduct }) => {
   const { imagemReal, nomeProduto, marca, originalPrice, discountedPrice, codigoReferencia } = item;
 
   return (
-    <div className="col-auto justify-content-center flex-grow-1" style={{
+    <div className="col-12 col-sm-6 col-lg-4 justify-content-center" style={{
       minHeight: '550px'
     }}>
 

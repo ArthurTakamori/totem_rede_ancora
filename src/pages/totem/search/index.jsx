@@ -26,7 +26,7 @@ export default function Search({
     );
   });
 
-  const titleText = `Produtos para ${
+  const titleText = `${
     license_plate
       ? `o veiculo placa: ${license_plate}`
       : `a montadora: ${automaker.name}`
@@ -44,12 +44,15 @@ export default function Search({
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      const {
-        pageResult: { data },
-      } = await fetchProducts({
+      
+      const { pageResult: { data }, vehicle } = await fetchProducts({
         superbusca: superbusca || license_plate ? superbusca : automaker?.name,
         veiculoPlaca: license_plate,
       });
+
+      console.log(vehicle)
+
+      // montadora
 
       var products = data.map((response) => {
         const { originalPrice, discountedPrice } = generateProductPrices();
@@ -60,31 +63,67 @@ export default function Search({
       })
 
       setProducts(products);
+
+      if(license_plate) {
+        setSearchTerm((content) => ({
+          ...content,
+          automaker: {
+            id: "",
+            name: vehicle?.montadora,
+          }
+        }))
+      }
     }
+
     if (!automaker.name && !license_plate) {
       navigate("/totem/dashboard");
     }
+
     fetchData().finally(() => setLoading(false));
   }, [superbusca, license_plate]);
 
   return (
     <>
-      <div className="d-flex justify-content-between">
-        <Title page={titleText} />
-        <button
-          onClick={handleNavigateDashboard}
-          className="d-flex p-3 gap-3 align-items-center card-category rounded-1 fs-3 h-75"
-        >
-          Selecionar outra montadora <span className="mgc_back_fill fs-1" />
+      <div className="d-flex flex-column align-items-start gap-4 px-4 mt-4">
+
+        <button onClick={handleNavigateDashboard} className="fw-medium text-primary fs-4 d-flex align-items-center justify-content-center gap-2">
+          <span className="mgc_arrow_left_line fs-2"></span>
+          Voltar
         </button>
+
+        <h1 className="fw-medium fs-1">
+          Explorar produtos
+        </h1>
+
+        <div className="w-100">
+
+          <SearchBar
+            user={user}
+            license_plate={license_plate}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+
+        </div>
+        
       </div>
 
-      <SearchBar
-        user={user}
-        license_plate={license_plate}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
+      <div className="d-flex gap-2 align-items-center px-4">
+
+        <span className="bagde-search">
+          <span className="mgc_settings_3_line fs-4"></span>
+          Montadora: {automaker.name}
+        </span>
+        <span className="bagde-search">
+          <span className="mgc_car_3_line fs-4"></span>
+          Veículo: {license_plate ? license_plate : '--'}
+        </span>
+      
+      </div>
+
+      <span className="px-4 mt-5 d-block fs-3 fw-medium opacity-50">
+        Resultados
+      </span>
 
       <div
         className="overflow-y-auto"
