@@ -2,10 +2,10 @@ export default function Input({ onChange, value, onBlur, name, label, required, 
 
   return (
     <>
-      <div className="mb-3">
-
-          <label htmlFor={name} className="form-label required fs-5">
-            {label}
+      <div style={{}}>
+          
+          <label htmlFor={name} className="form-label fs-5 py-0">
+            {label} 
           </label>
 
           <input
