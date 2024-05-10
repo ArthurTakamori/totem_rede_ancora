@@ -52,7 +52,9 @@ export default function Maintenance({
       setVehicle(vehicle);
     }
 
-    if (cars.length == 0) {
+    const someLicensePlate = cars.some((car) => car.license_plate);
+
+    if (cars.length == 0 || !someLicensePlate) {
       /* 
         oferecer opção de cadastrar veiculo, e redirecionar para 
         dashboard/profile dependendo da opção.
@@ -73,11 +75,11 @@ export default function Maintenance({
         <div className="d-flex gap-2 align-items-center px-4">
           <span className="bagde-search">
             <span className="mgc_settings_3_line fs-4"></span>
-            Montadora: {vehicle.montadora}
+            Montadora: {vehicle?.montadora}
           </span>
           <span className="bagde-search">
             <span className="mgc_car_3_line fs-4"></span>
-            Modelo: {vehicle.modelo}
+            Modelo: {vehicle?.modelo}
           </span>
           {/* <span className="bagde-search">
             <span className="mgc_car_3_line fs-4"></span>
