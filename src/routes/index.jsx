@@ -76,7 +76,9 @@ export default function RoutesComponent() {
 
       <Route
         path="/totem/dashboard"
-        element={<Dashboard user={user} cartProductsCount={cartProducts.length} />}
+        element={
+          <Dashboard user={user} cartProductsCount={cartProducts.length} />
+        }
       >
         <Route
           path=""
@@ -103,7 +105,17 @@ export default function RoutesComponent() {
             />
           }
         />
-        <Route path="maintenance" element={<Maintenance />} />
+        <Route
+          path="maintenance"
+          element={
+            <Maintenance
+              user={user}
+              setCartProducts={setCartProducts}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route
           path="cart"
           element={

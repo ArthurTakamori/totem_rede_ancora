@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Product from "@/components/Product";
 import SearchBar from "@/components/SearchBar";
-import Title from "@/components/Title";
 import fetchProducts from "@/utils/api/fetchProducts";
 import generateProductPrices from "@/utils/generateProductPrices";
 
@@ -25,12 +24,6 @@ export default function Search({
         vehicle.montadora.toUpperCase() == automaker?.name?.toUpperCase()
     );
   });
-
-  const titleText = `${
-    license_plate
-      ? `o veiculo placa: ${license_plate}`
-      : `a montadora: ${automaker.name}`
-  }`;
 
   const handleNavigateDashboard = () => {
     setSearchTerm((prevState) => ({
