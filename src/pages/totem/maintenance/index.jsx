@@ -13,6 +13,7 @@ export default function Maintenance({
   setLoading,
 }) {
   const [maintenanceProducts, setMaintenanceProducts] = useState([]);
+  const [licenseCarNotFound, setLicenseCarNotFound] = useState(false);
   const [vehicle, setVehicle] = useState({});
   const [requestedCar, setRequestedCar] = useState(
     0
@@ -31,15 +32,19 @@ export default function Maintenance({
       setLoading(true);
 
       const {
-        pageResult: { data },
+        pageResult,
         vehicle,
       } = await fetchProducts({
         itensPorPagina: 5,
         veiculoPlaca: cars[requestedCar].license_plate,
       });
 
-      console.log(vehicle);
-      console.log(data);
+      if(!pageResult) {
+        setLicenseCarNotFound(true)
+        return;
+      };
+
+      const data = pageResult.data;
 
       let products = data.map((response) => {
         const { originalPrice, discountedPrice } = generateProductPrices();
@@ -51,6 +56,8 @@ export default function Maintenance({
 
         return response;
       });
+
+      console.log(products)
 
       setMaintenanceProducts(products);
       setVehicle(vehicle);
@@ -72,39 +79,53 @@ export default function Maintenance({
       <div className="d-flex gap-2 align-items-center px-4 mb-4">
         <span className="bagde-search">
           <span className="mgc_settings_3_line fs-4"></span>
-          Montadora: {vehicle?.montadora}
+          Montadora: {vehicle?.montadora ?? '--'}
         </span>
         <span className="bagde-search">
           <span className="mgc_car_3_line fs-4"></span>
-          Modelo: {vehicle?.modelo}
+          Modelo: {vehicle?.modelo ?? '--'}
         </span>
       </div>
 
+   
       <div
         className="overflow-y-auto py-4"
         style={{
           height: "calc(100% - 22rem)",
         }}
       >
-        {loading ? (
-          <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
-            <div
-              className="spinner-border text-primary"
-              style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
-              role="status"
-            >
-              <span className="visually-hidden">Loading...</span>
+
+        {(() => {
+          if (loading) {
+            return (
+              <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+                <div
+                  className="spinner-border text-primary"
+                  style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Carregando...</span>
+                </div>
+                <small className="fs-5 fw-medium opacity-75">
+                  Preparando seu pit stop virtual...
+                </small>
+              </div>
+            );
+          }
+
+          if(licenseCarNotFound) {
+            return <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+              <small className="fs-5 fw-medium opacity-75">
+                Veículo não encontrado!
+              </small>
             </div>
-            <small className="fs-5 fw-medium opacity-75">
-              Preparando seu pit stop virtual...
-            </small>
-          </div>
-        ) : (
-          <MaintenanceProducts
+          }
+
+          return <MaintenanceProducts
             products={maintenanceProducts}
             setCartProducts={setCartProducts}
-          />
-        )}
+          />;
+        })()}
       </div>
     </>
   );

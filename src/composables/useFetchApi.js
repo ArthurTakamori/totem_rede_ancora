@@ -19,5 +19,7 @@ export default async function useFetchApi(url, props) {
             ...props.headers
         },
         body: jsonData
-    }).then((data) => data.json());
+    }).then((response) => {
+        return response.ok === false ? response : response.json();
+    });
 }

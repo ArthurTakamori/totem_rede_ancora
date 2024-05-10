@@ -14,6 +14,7 @@ export default function Search({
   setCartProducts,
 }) {
   const { automaker, license_plate, superbusca } = searchTerm;
+  const [productsNotFound, setProductsNotFound] = useState(false);
   const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
@@ -37,11 +38,21 @@ export default function Search({
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
+      setProductsNotFound(false);
       
-      const { pageResult: { data }, vehicle } = await fetchProducts({
+      const { pageResult, vehicle } = await fetchProducts({
         superbusca: superbusca || license_plate ? superbusca : automaker?.name,
         veiculoPlaca: license_plate,
       });
+
+      const notFound = !pageResult || pageResult?.data.length === 0
+
+      if(notFound) {
+        setProductsNotFound(true)
+        return;
+      };
+
+      const data = pageResult.data;
 
       var products = data.map((response) => {
         const { originalPrice, discountedPrice } = generateProductPrices();
@@ -120,17 +131,37 @@ export default function Search({
           height: "calc(100% - 22rem)",
         }}
       >
-        {loading ? (
-          <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
-            <div className="spinner-border text-primary" style={{width: '4vw', height: '4vw', borderWidth: '0.475rem'}} role="status">
-              <span className="visually-hidden">Loading...</span>
+        {(() => {
+          if (loading) {
+            return (
+              <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+                <div
+                  className="spinner-border text-primary"
+                  style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
+                  role="status"
+                >
+                  <span className="visually-hidden">Carregando...</span>
+                </div>
+                <small className="fs-5 fw-medium opacity-75">
+                  Analisando situação do veículo...
+                </small>
+              </div>
+            );
+          }
+
+          if(productsNotFound || filteredProducts.length === 0 || products.length === 0) {
+            return <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+              <small className="fs-5 fw-medium opacity-75">
+                Produtos não encontrados!
+              </small>
             </div>
-            <small className="fs-5 fw-medium opacity-75">Preparando seu pit stop virtual...</small>
-          </div>
-        ) : (
-          <Product products={license_plate ? products : filteredProducts}
-                   setCartProducts={setCartProducts}  />
-        )}
+          }
+
+          return <Product
+            products={license_plate ? products : filteredProducts}
+            setCartProducts={setCartProducts}
+          />;
+        })()}
       </div>
     </>
   );

@@ -56,6 +56,13 @@ $btn-padding-x-lg: 1.7rem;
 // $btn-border-radius-sm:        0.225rem;
 $btn-border-radius-lg: 0.225rem;
 
+//Toast 
+
+$toast-max-width:                   70vw;
+$toast-padding-x:                   .75rem;
+$toast-padding-y:                   .5rem;
+$toast-font-size:                   2rem;
+
 @import "bootstrap/scss/bootstrap";
 
 //Reset
