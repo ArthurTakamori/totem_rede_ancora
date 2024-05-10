@@ -19,7 +19,7 @@ export default function QuantityCart({ qtd, index, updateQuantity
     }
 
     return (
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <div className="btn-group" role="group" aria-label="Basic outlined example">
 
             <button type='button'
                 className='btn btn-primary rounded-start-4' onClick={decrement}

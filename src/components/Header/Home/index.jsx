@@ -1,11 +1,9 @@
 import Logo from "@/assets/img/logo_v1.png";
 import { Link } from "react-router-dom";
-import { getUser } from "@/state/userState";
 
-export default function HeaderHome({ cartProductsCount }) {
-  const user = getUser();
-
-  const countProducts = parseInt(cartProductsCount) > 99 ? '99+' : parseInt(cartProductsCount);
+export default function HeaderHome({ user, cartProductsCount }) {
+  const countProducts =
+    parseInt(cartProductsCount) > 99 ? "99+" : parseInt(cartProductsCount);
 
   return (
     <>
@@ -14,7 +12,9 @@ export default function HeaderHome({ cartProductsCount }) {
           <img src={Logo} alt="Logo Rede Ancora" className="brand" />
 
           <div className="d-flex flex-column ms-4">
-            <h1 className="fs-3">Olá, {user.name}</h1>
+            <h1 className="fs-3">
+              Olá, {user?.name ? `${`, ${user.name}`}` : "Motorista"}
+            </h1>
             <div>
               <span className="mgc_location_fill fs-5"></span>
               <p className="d-inline ms-2 fs-5">Rede Ancora - SP</p>
@@ -23,7 +23,6 @@ export default function HeaderHome({ cartProductsCount }) {
         </div>
 
         <div className="position-relative">
-
           <Link
             to="/totem/dashboard/cart"
             type="button"
@@ -32,11 +31,11 @@ export default function HeaderHome({ cartProductsCount }) {
             <span className="mgc_shopping_cart_1_line fs-2"></span>
           </Link>
 
-           <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger fs-5" style={{
+           <span className="position-absolute start-100 translate-middle badge rounded-pill bg-danger fs-5" style={{
             top: '10px',
            }}>
             {countProducts}
-            <span class="visually-hidden">Total produtos carrinho de compras</span>
+            <span className="visually-hidden">Total produtos carrinho de compras</span>
           </span>
         </div>
       </header>
