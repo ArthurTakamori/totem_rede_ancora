@@ -1,33 +1,41 @@
-export default function Input({ onChange, value, onBlur, name, label, required, type = 'text', register }) {
-
+export default function Input({
+  label,
+  name,
+  value,
+  register,
+  defaultValue,
+  error,
+  required,
+  ...rest
+}) {
   return (
     <>
-      <div>
-          
-          <label htmlFor={name} className="form-label fs-5 py-0">
-            {label} 
-          </label>
+      <div className="form-control border-0">
+        <label
+          htmlFor={name}
+          className={`${required && "required"} form-label fs-5 py-0 w-100`}
+        >
+          {label}
+        </label>
 
-          <input
-            {...register(name)}
-            required={required}
-            value={value}
-            type={type}
-            onChange={onChange}
-            onBlur={onBlur}
-            className="form-control"
-            name={name}
-            id={name}
-          />
+        <input
+          id={name}
+          name={name}
+          defaultValue={defaultValue}
+          className="form-control"
+          required={required}
+          {...register(name)}
+          {...rest}
+        />
+        
+        {error && <span>{error?.message}</span>}
 
-          {value}
+        {value}
 
-          <div id={name+"Help"} className="form-text text-uppercase mt-1">
-            {required === true ? 'Obrigatório' : 'Opcional'}
-          </div>
-
+        <div id={name + "Help"} className="form-text text-uppercase mt-1">
+          {required === true ? "Obrigatório" : "Opcional"}
+        </div>
       </div>
-
     </>
   );
 }

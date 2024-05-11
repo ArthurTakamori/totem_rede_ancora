@@ -125,7 +125,10 @@ export default function RoutesComponent() {
             />
           }
         />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="profile"
+          element={<Profile user={user} setUser={setUser} />}
+        />
         {/* Criando Produtos do Carrinho - Arthur  */}
         <Route path="productCard" element={<ProductCard />} />
       </Route>
