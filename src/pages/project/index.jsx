@@ -48,17 +48,17 @@ export default function Project() {
     {
       name: 'Arthur Guilherme M. Takamori',
       rm: 'RM553809',
-      activies: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sit animi repellat! Eos provident et itaque'
+      activies: 'Trabalhou no planejamento da identidade visual e na construção da interface do aplicativo, mergulhando nas ferramentas CSS, Bootstrap e SASS, garantindo um design impactante e adaptável em todas as telas. Com JavaScript e React, contribuindo para a lógica de interação e criando o formulário de cadastro essencial para uma experiência de usuário fluida e contínua'
     },
     {
       name: 'Mariana Thainara Tojal',
       rm: 'RM553014',
-      activies: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sit animi repellat! Eos provident et itaqu'
+      activies: 'Encarregada de dar vida à interface do aplicativo, utilizou habilmente CSS, Bootstrap e SASS para criar um design cativante e responsivo em todos os dispositivos. Além disso, implementou filtros inteligentes para uma experiência de uso ágil e prática. Em parceria com JavaScript e React, contribuiu para a lógica de interação, garantindo uma experiência de usuário excepcional.' 
     },
     {
       name: 'Wesley da Costa Matos',
       rm: 'RM553488',
-      activies: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sit animi repellat! Eos provident et itaque'
+      activies: 'Conduziu a lógica de interação, utilizando JavaScript e React para criar uma experiência fluida e intuitiva para os usuários. Além disso, assumiu a liderança na integração com a API da Rede Ancora, utilizando o Fetch API para fornecer informações relevantes em tempo real, garantindo uma experiência de usuário dinâmica e envolvente.'
     }
   ]
 
