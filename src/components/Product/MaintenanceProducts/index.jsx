@@ -139,7 +139,6 @@ const ModalCart = ({ product, setCartProducts }) => {
   function handleAddToCart() {
     setCartProducts({
       ...product,
-      price: total,
       qtd: qtd,
     })
   }

@@ -2,6 +2,7 @@ import Logo from "@/assets/img/logo_v1.png";
 import { Link } from "react-router-dom";
 
 export default function HeaderHome({ user, cartProductsCount }) {
+
   const countProducts =
     parseInt(cartProductsCount) > 99 ? "99+" : parseInt(cartProductsCount);
 

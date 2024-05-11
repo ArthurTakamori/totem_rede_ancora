@@ -7,7 +7,7 @@ export default function ProductCard({
     product, index, updateQuantity, deleteProduct
 }) {
 
-    const { imagemReal, nomeProduto, marca, qtd, originalPrice, codigoReferencia } = product;
+    const { imagemReal, nomeProduto, marca, qtd, discountedPrice, codigoReferencia } = product;
 
     return (
         <>
@@ -46,7 +46,7 @@ export default function ProductCard({
                         <div className='d-flex align-items-center justify-content-between w-100'>
 
                             <p className='fs-1 fw-medium'>
-                                {formatCurrency(originalPrice)}
+                                {formatCurrency(discountedPrice)}
                             </p>
 
                             <QuantityCart

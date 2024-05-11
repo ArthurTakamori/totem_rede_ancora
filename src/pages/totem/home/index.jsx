@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import Title from "@/components/Title";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BannerImage from "@/assets/img/banner.png";
+import generateAtoZ from "@/utils/generateAtoZ";
 import { DropdownItemModalCar, ModalCar } from "@/components/ModalLicenseCar";
 
 export default function HomeTotem({ setSearchTerm, automakers }) {
+
+  const [ filterSelected, setFilterSelected ] = useState(null);
+  const [ automakersFiltered, setAutomakersFiltered ] = useState(null);
+
   const btnModalLicenseCar = document.getElementById("btnOpenModalLicenseCar");
 
   const handleAutomaker = (car) => {
@@ -18,6 +23,19 @@ export default function HomeTotem({ setSearchTerm, automakers }) {
       automaker: newAutomaker,
     }));
   };
+
+  const handleClickLetterFilter = (letter) => {
+    const data = automakers.filter(auto => auto.descricao.charAt(0).toUpperCase() === letter.toUpperCase());
+    
+    setFilterSelected(letter);
+    setAutomakersFiltered(data)
+  }
+
+  const cleanFilters = () => {
+    setFilterSelected(null);
+  }
+
+  const automakersData = filterSelected ? automakersFiltered : automakers;
 
   useEffect(() => {
     setSearchTerm((prevState) => ({ ...prevState, superbusca: "" }));
@@ -58,13 +76,42 @@ export default function HomeTotem({ setSearchTerm, automakers }) {
           <Title page={"Montadoras disponíveis"} />
         </div>
 
+        <div className="mx-4 d-flex flex-column align-items-start">
+          
+          <div className="row flex-grow-1 mb-4 border rounded-1 border-opacity-25 bg-white w-100">
+            {generateAtoZ().map((letter, index) => {
+              return <div className="col-auto flex-grow-1">
+                  <button type="button" class={`d-block w-100 p-3 fw-medium fs-3 text-primary ${filterSelected === letter ? 'fw-bold text-white bg-primary' : ''}`}
+                onClick={() => handleClickLetterFilter(letter)}>
+                  {letter}
+                </button>
+              </div>
+            })}
+          </div>
+
+          {(() => {
+            if (filterSelected) {
+              return (
+
+                <button type="button" className="mb-4"
+                        onClick={() => cleanFilters()}>
+                  <span className="bagde-search">
+                    <span className="mgc_close_fill fs-4"></span>
+                    Limpar filtros
+                  </span>
+                </button>
+              );
+            }
+          })()}
+        </div>
+
         <div
           className="row g-3 px-4"
           style={{
-            marginBottom: "5rem",
+            marginBottom: "8rem",
           }}
         >
-          {automakers.map((car, index) => (
+          {automakersData.map((car, index) => (
             <div className="col col-sm-6 col-md-4 col-lg-3" key={index}>
               <Link
                 to="/totem/dashboard/search"

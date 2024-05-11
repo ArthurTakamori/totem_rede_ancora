@@ -5,11 +5,11 @@ import { useState } from "react";
 import QuantityCart from "../QuantityCart";
 
 export default function Product({ products, setCartProducts }) {
-
   const [selectedProduct, setSelectedProduct] = useState({});
 
   return (
     <>
+            
       <div className="p-5">
         <div className="row row-cols-3 g-2 g-xl-4">
           {products?.map(({ data: item }, index) => (
@@ -20,7 +20,8 @@ export default function Product({ products, setCartProducts }) {
         </div>
       </div>
 
-      <ModalCart product={selectedProduct} setCartProducts={setCartProducts} />
+      <ModalCart product={selectedProduct} 
+                 setCartProducts={setCartProducts} />
     </>
   );
 }
@@ -127,7 +128,6 @@ const ModalCart = ({ product, setCartProducts }) => {
   function handleAddToCart() {
     setCartProducts({
       ...product,
-      price: total,
       qtd: qtd,
     })
   }

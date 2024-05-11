@@ -18,6 +18,20 @@ import fetchAutomaker from "@/utils/api/fetchAutomaker";
 import ProductCard from "@/components/Product/ProductCard";
 
 export default function RoutesComponent() {
+
+  const [ messageAlert, setMessageAlert ] = useState('');
+  
+  const toastBtn = document.getElementById('toastAlertBtn')
+  const toastAlert = document.getElementById('toastAlert')
+
+  if (toastBtn) {
+    toastBtn.addEventListener('click', () => {
+      const toast = new bootstrap.Toast(toastAlert)
+
+      toast.show()
+    })
+  }
+
   const [user, setUser] = useState({
     name: "Carlos Oliveira",
     email: "carlos.oliveira@example.com",
@@ -33,7 +47,18 @@ export default function RoutesComponent() {
   const [cartProducts, setCartProducts] = useState([]);
 
   function handleAddToCart(data) {
-    setCartProducts((content) => [...content, data]);
+
+    const indexProductCart = cartProducts.findIndex((product) => Number(product.id) === Number(data.id));
+
+    if(indexProductCart !== -1) {
+      const productStored = cartProducts[indexProductCart];
+      productStored.qtd = Number(productStored.qtd) + Number(data.qtd)
+    } else {
+      setCartProducts((content) => [...content, data]);
+    }
+
+    setMessageAlert('Produto adicionado ao carrinho com sucesso!')
+    setTimeout(() => toastBtn.click(), 200);
     document.getElementById("#closeModalCart").click();
   }
 
@@ -66,6 +91,7 @@ export default function RoutesComponent() {
 
   return (
     <Routes>
+
       <Route path="/" element={<Home />} />
       <Route path="/project" element={<Project />} />
 
@@ -77,7 +103,9 @@ export default function RoutesComponent() {
       <Route
         path="/totem/dashboard"
         element={
-          <Dashboard user={user} cartProductsCount={cartProducts.length} />
+          <Dashboard user={user} 
+                     cartProductsCount={cartProducts.length}
+                     messageAlert={messageAlert} />
         }
       >
         <Route
@@ -110,7 +138,7 @@ export default function RoutesComponent() {
           element={
             <Maintenance
               user={user}
-              setCartProducts={setCartProducts}
+              setCartProducts={handleAddToCart}
               loading={loading}
               setLoading={setLoading}
             />

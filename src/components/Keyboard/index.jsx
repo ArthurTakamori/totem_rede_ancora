@@ -9,7 +9,7 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
   const ENTER = "enter";
 
   const keys = [
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
     ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
     ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
     [null, "z", "x", "c", "v", "b", "n", "m", BACKSPACE],
@@ -18,6 +18,8 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
 
   const handleKeyPress = (key) => {
 
+    if(key === null) return; 
+    
     if (key === BACKSPACE) {
       setModelValue((current) => current.slice(0, -1));
       return;

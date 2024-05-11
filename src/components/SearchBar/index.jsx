@@ -20,7 +20,7 @@ const SearchBar = ({ productsSearch, user, setSearchTerm }) => {
       ...prevState,
       superbusca: keyword,
     }));
-  }, 500);
+  }, 2000);
 
   const handleEnterKeyboard = () => {
     handleInputBlur();
