@@ -1,7 +1,7 @@
 import { bottom } from "@popperjs/core";
 import { useEffect, useState } from "react";
 
-export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeyboard, maxLength, modelValue, uppercase, preventSpace }) {
+export default function Keyboard({ modelValue, setModelValue, showKeyboard, handleEnterKeyboard, maxLength, uppercase, preventSpace, isInput }) {
   const [isVisible, setIsVisible] = useState(true);
 
   const BACKSPACE = "backspace";
@@ -19,6 +19,48 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
   const handleKeyPress = (key) => {
 
     if(key === null) return; 
+
+    if(isInput === true) {
+      handleIsInput(key);
+      return;
+    }
+
+    handleIsNotInput(key);
+
+  };
+
+  const handleIsInput = (key) => {
+
+    if (key === BACKSPACE) {
+      setModelValue(modelValue.slice(0, -1));
+      return;
+    }
+
+    if (key === ENTER) {
+      handleEnterKeyboard()
+      return;
+    }
+
+    if(modelValue) {
+      if(modelValue.length === maxLength) return;
+    }
+    
+    if (key === SPACE) {
+      if(preventSpace === true) return;
+       
+      setModelValue(modelValue + " ");
+      return;
+    }
+
+    console.log(uppercase)
+
+    const newValue = uppercase ? key.toUpperCase() : key;
+
+    setModelValue(modelValue + newValue);
+
+  }
+
+  const handleIsNotInput = (key) => {
     
     if (key === BACKSPACE) {
       setModelValue((current) => current.slice(0, -1));
@@ -44,7 +86,8 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
     const newValue = uppercase ? key.toUpperCase() : key;
 
     setModelValue((current) => current + newValue);
-  };
+
+  }
 
   const handleClick = (event) => {
     if (event.target.className.includes("container-main")) {
@@ -75,9 +118,13 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
         style={{zIndex: '2001'}}
       >
         <div
-          className="bg-white border w-100 text-white d-flex align-items-strech justify-content-center shadow-lg py-4 px-3"
+          className="bg-white border w-100 text-white d-flex flex-column align-items-strech justify-content-center shadow-lg py-4 px-3"
           style={{ minHeight: "40vh", zIndex: "20" }}
         >
+          <div className="text-primary bg-slate-50 p-3 mx-5 border border-secondary border-opacity-25 rounded-1 fs-2 fw-medium mb-4">
+            <span className="opacity-50">Resultado: </span>
+            {modelValue}
+          </div>
           <div className="flex-grow-1 d-flex flex-column justify-content-around">
             {keys.map((items, index) => (
               <ul
@@ -92,7 +139,9 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
                     key={subIndex}
                     className={`m-2 d-flex rounded-1
                         ${index + 1 === keys.length ? "" : "col"} 
-                        ${key === SPACE ? "w-100" : ""}`}
+                        ${key === SPACE ? "w-100" : ""}
+                        ${uppercase ? 'text-uppercase' : ''}
+                        `}
                     style={{ minHeight: "60px", minWidth: "20px" }}
                     onClick={() => handleKeyPress(key)}
                   >
@@ -105,7 +154,7 @@ export default function Keyboard({ setModelValue, showKeyboard, handleEnterKeybo
 
                       if (key === BACKSPACE) {
                         return (
-                          <span className="mgc_delete_back_fill text-center rounded-2 keyboard d-flex align-items-center justify-content-center p-2 w-100 fs-2"></span>
+                          <span className="mgc_delete_back_fill text-center rounded-2 keyboard d-flex align-items-center justify-content-center p-4 w-100 fs-2"></span>
                         );
                       }
 

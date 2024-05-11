@@ -50,6 +50,7 @@ const SearchBar = ({ productsSearch, user, setSearchTerm }) => {
       <Keyboard
         showKeyboard={showKeyboard}
         setModelValue={setInputValue}
+        modelValue={inputValue}
         handleEnterKeyboard={handleEnterKeyboard}
       />
     </div>

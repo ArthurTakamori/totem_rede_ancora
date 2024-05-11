@@ -155,7 +155,8 @@ export default function RoutesComponent() {
         />
         <Route
           path="profile"
-          element={<Profile user={user} setUser={setUser} />}
+          element={<Profile user={user} setUser={setUser}
+          setMessageAlert={setMessageAlert} />}
         />
         {/* Criando Produtos do Carrinho - Arthur  */}
         <Route path="productCard" element={<ProductCard />} />

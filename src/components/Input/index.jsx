@@ -6,14 +6,15 @@ export default function Input({
   defaultValue,
   error,
   required,
+  showKeyboard,
   ...rest
 }) {
   return (
     <>
-      <div className="form-control border-0">
+      <div className="border-0">
         <label
           htmlFor={name}
-          className={`${required && "required"} form-label fs-5 py-0 w-100`}
+          className={`${required && "required"} form-label fs-4 py-0 w-100`}
         >
           {label}
         </label>
@@ -22,15 +23,14 @@ export default function Input({
           id={name}
           name={name}
           defaultValue={defaultValue}
-          className="form-control"
+          className="form-control w-100"
           required={required}
           {...register(name)}
           {...rest}
+          onClick={() => showKeyboard()}
         />
         
-        {error && <span>{error?.message}</span>}
-
-        {value}
+        {error ? <small className="fs-5 text-danger mt-2 d-block">{error?.message}</small> : ''}
 
         <div id={name + "Help"} className="form-text text-uppercase mt-1">
           {required === true ? "Obrigatório" : "Opcional"}

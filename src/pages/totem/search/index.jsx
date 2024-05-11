@@ -131,6 +131,7 @@ export default function Search({
           height: "calc(100% - 22rem)",
         }}
       >
+        
         {(() => {
           if (loading) {
             return (
@@ -162,6 +163,7 @@ export default function Search({
             setCartProducts={setCartProducts}
           />;
         })()}
+
       </div>
     </>
   );
