@@ -5,7 +5,7 @@ import FooterProject from "@/components/Footer/Project";
 export default function Home() {
 
     return (
-      <>
+    <>
         <div className="overflow-y-auto d-flex flex-column" style={{
             minHeight: '100vh'
         }}>
@@ -28,20 +28,22 @@ export default function Home() {
                                     <img src={Logo} alt="Logo Rede Ancora" width={'80px'}/>
 
                                     <div style={{
-                                        marginTop: '3rem'
+                                        marginTop: '2rem'
                                     }}>
 
                                         <h2 className="mb-4 fw-bold fs-3">
                                             A jornada do cliente
                                         </h2>
 
-                                        <p className="lh-sm text-primary pb-5 pe-lg-5 pb-lg-0"
+                                        <p className="lh-base text-primary pb-5 pe-lg-5 pb-lg-0"
                                             style={{
                                                 textAlign: 'justify',
                                                 fontSize: '.976rem'
                                             }}>
 
-                                            Apresentamos uma solução para a Rede Ancora, visando simplificar o processo de consulta e compra de produtos para veículos pelos clientes das lojas. A proposta busca facilitar a experiência do cliente, permitindo uma seleção mais eficiente e personalizada de produtos. Além disso, a plataforma propõe a captura de informações dos clientes para comunicação futura, oferta de produtos e aumento das vendas. Essa abordagem promete não apenas melhorar a experiência do cliente, mas também impulsionar as vendas e o engajamento com a marca.
+                                            {/* Apresentamos uma solução para a Rede Ancora, visando simplificar o processo de consulta e compra de produtos para veículos pelos clientes das lojas. A proposta busca facilitar a experiência do cliente, permitindo uma seleção mais eficiente e personalizada de produtos. Além disso, a plataforma propõe a captura de informações dos clientes para comunicação futura, oferta de produtos e aumento das vendas. Essa abordagem promete não apenas melhorar a experiência do cliente, mas também impulsionar as vendas e o engajamento com a marca. */}
+                                            Apresentamos uma solução inovadora para a Rede Ancora, que revoluciona o processo de consulta e compra de produtos para veículos, proporcionando uma experiência excepcional aos clientes. Com nossa plataforma intuitiva, os clientes têm acesso a uma ampla e personalizada seleção de produtos, tornando a busca pelo item ideal mais eficiente do que nunca. Além disso, nossa tecnologia captura informações valiosas dos clientes para comunicações futuras personalizadas e ofertas relevantes, prometendo impulsionar vendas e engajamento com a marca. Prepare-se para uma jornada de sucesso onde cada interação com sua marca é memorável e gratificante.
+                                            
                                         
                                         </p>
                                     </div>
@@ -57,14 +59,12 @@ export default function Home() {
                                     <iframe className="embed-responsive-item rounded-1" src="https://www.youtube.com/embed/pJPZaYjcLgo?si=fkY24fOedRFjRtYa" title="Pitch - Rede Ancora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 </div>
 
-                                <p className="d-block text-primary fw-medium mt-4">
-                                    Link: 
+                                <span className="d-block mt-4"></span> 
                                     <a href="https://youtu.be/pJPZaYjcLgo?si=0UC7hx9QD4y_oybU" 
                                                 target="_blank" 
-                                                className="link-opacity-100-hover ml-4">
-                                        Pitch Rede Ancora
+                                                className="link-opacity-100-hover ml-4 text-primary fw-medium"> 
+                                        Link: Pitch Rede Ancora
                                     </a>
-                                </p>
 
                             </div>
 
@@ -78,7 +78,6 @@ export default function Home() {
             <FooterProject />
             
         </div>
-      </>
+    </>
     );
-  }
-  
+}
