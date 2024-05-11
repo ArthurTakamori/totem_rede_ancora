@@ -5,6 +5,7 @@ import MaintenanceProducts from "@/components/Product/MaintenanceProducts";
 import fetchProducts from "@/utils/api/fetchProducts";
 import generateProductPrices from "@/utils/generateProductPrices";
 import generateReplacementDate from "@/utils/generateReplacementDate";
+import DropdownMaintenence from "@/components/DropdownMaintenence";
 
 export default function Maintenance({
   user,
@@ -74,17 +75,26 @@ export default function Maintenance({
 
   return (
     <>
-      <Title page={`Saúde do meu veículo`} />
+      <div className="d-flex align-items-center justify-content-between">
 
-      <div className="d-flex gap-2 align-items-center px-4 mb-4">
-        <span className="bagde-search">
-          <span className="mgc_settings_3_line fs-4"></span>
-          Montadora: {vehicle?.montadora ?? '--'}
-        </span>
-        <span className="bagde-search">
-          <span className="mgc_car_3_line fs-4"></span>
-          Modelo: {vehicle?.modelo ?? '--'}
-        </span>
+        <div>
+
+          <Title page={`Saúde do meu veículo`} />
+
+          <div className="d-flex gap-2 align-items-center px-4 mb-4">
+            <span className="bagde-search">
+              <span className="mgc_settings_3_line fs-4"></span>
+              Montadora: {vehicle?.montadora ?? '--'}
+            </span>
+            <span className="bagde-search">
+              <span className="mgc_car_3_line fs-4"></span>
+              Modelo: {vehicle?.modelo ?? '--'}
+            </span>
+          </div>
+        </div>
+
+        <DropdownMaintenence />
+
       </div>
 
    
