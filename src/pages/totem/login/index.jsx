@@ -57,8 +57,6 @@ export default function Login({ setUser }) {
 
     const user = findUser ?? newUser;
 
-    console.log(user);
-
     return user;
   };
 
@@ -83,7 +81,7 @@ export default function Login({ setUser }) {
   }, [cpf]);
 
   return (
-    <div className="container-1 container-fluid text-center">
+    <div className="container-login container-fluid text-center">
       <HeaderIdentify link="/totem/identify" />
 
       <div className="d-grid mx-auto gap-4">

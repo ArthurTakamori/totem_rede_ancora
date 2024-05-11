@@ -43,7 +43,6 @@ export default function Profile({ user, setUser, setMessageAlert }) {
   
   const toastBtn = document.getElementById('toastAlertBtn')
 
-  console.log(setMessageAlert)
   const maxLengthLicenseCar = 3;
 
   const {

@@ -2,7 +2,7 @@ import "./styles.scss";
 import Keyboard from "../Keyboard";
 import { useState } from "react";
 
-export default function DorpdownCar({ cars, setSearchTerm }) {
+export default function DropdownCar({ cars, setSearchTerm }) {
   return (
     <>
       <div className="dropdown">

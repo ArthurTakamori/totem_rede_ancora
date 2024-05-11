@@ -14,7 +14,7 @@ export default function HeaderHome({ user, cartProductsCount }) {
 
           <div className="d-flex flex-column ms-4">
             <h1 className="fs-3">
-              Olá, {user?.name ? `${`${user.name}`}` : "Motorista"}
+              Olá {user?.name ? `${`${user.name}`}` : "Motorista"}
             </h1>
             <div>
               <span className="mgc_location_fill fs-5"></span>

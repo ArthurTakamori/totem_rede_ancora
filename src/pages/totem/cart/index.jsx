@@ -1,5 +1,4 @@
 import ProductCard from "@/components/Product/ProductCard";
-import Title from "@/components/Title";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Link } from "react-router-dom";

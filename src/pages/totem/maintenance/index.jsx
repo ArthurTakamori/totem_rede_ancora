@@ -17,18 +17,11 @@ export default function Maintenance({
   const [licenseCarNotFound, setLicenseCarNotFound] = useState(false);
   const [vehicle, setVehicle] = useState({});
   const { cars } = user;
-  const [selectedCar, setSelectedCar] = useState(
-    cars[0]?.license_plate
-    // valor de index, ou nome da placa, para incluir na busca.
-    // state para armazenar qual carro o cliente quer ver.
-    // por padrão o primeiro do array cars (index 0).
-    // pode ser alterado por um botao radio.
-  );
+  const [selectedCar, setSelectedCar] = useState( cars[0]?.license_plate);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(selectedCar);
     async function fetchData() {
       setLoading(true);
 

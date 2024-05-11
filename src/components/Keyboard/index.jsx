@@ -1,4 +1,3 @@
-import { bottom } from "@popperjs/core";
 import { useEffect, useState } from "react";
 
 export default function Keyboard({ modelValue, setModelValue, showKeyboard, handleEnterKeyboard, maxLength, uppercase, preventSpace, isInput }) {
@@ -51,8 +50,6 @@ export default function Keyboard({ modelValue, setModelValue, showKeyboard, hand
       setModelValue(modelValue + " ");
       return;
     }
-
-    console.log(uppercase)
 
     const newValue = uppercase ? key.toUpperCase() : key;
 

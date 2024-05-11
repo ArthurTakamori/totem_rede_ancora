@@ -4,19 +4,15 @@ export default function generateProductPrices(
   minDiscountPercentage=.1,
   maxDiscountPercentage=.65
 ) {
-  // Generate random original price
   const originalPrice =
     Math.random() * (maxOriginalPrice - minOriginalPrice) + minOriginalPrice;
 
-  // Generate random discount percentage
   const discountPercentage =
     Math.random() * (maxDiscountPercentage - minDiscountPercentage) +
     minDiscountPercentage;
 
-  // Calculate discounted price
   const discountedPrice = originalPrice * (1 - discountPercentage);
 
-  // Round prices to two decimal places
   const roundedOriginalPrice = originalPrice;
   const roundedDiscountedPrice = discountedPrice;
 

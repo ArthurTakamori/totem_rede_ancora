@@ -1,16 +1,3 @@
-/* 
-Personalização das variáveis e classes padrão do Sass do Bootstrap
-
-A maioria das variáveis no Bootstrap são definidas com a flag `!default`,
-permitindo substituir os valores padrão antes de importar os arquivos Sass de origem do Bootstrap.
-Essa é a melhor maneira de personalizar o CSS sem escrever novos estilos.
-
-Por exemplo, podemos alterar `$body-color` ou adicionar mais CSS que
-substitua as regras de estilo do Bootstrap, como `body { color: red; }`.
-
-Aqui estamos ajustando a font-family e background-color que serão aplicados ao corpo do site.
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 $font-family-base: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica";
@@ -52,12 +39,9 @@ $border-color: $gray-100;
 $btn-padding-y-lg: 0.8rem;
 $btn-padding-x-lg: 1.7rem;
 
-// $btn-border-radius:           0.15rem;
-// $btn-border-radius-sm:        0.225rem;
 $btn-border-radius-lg: 0.225rem;
 
 //Toast 
-
 $toast-max-width:                   70vw;
 $toast-padding-x:                   .75rem;
 $toast-padding-y:                   .5rem;
@@ -131,7 +115,6 @@ a {
   text-decoration: none;
 }
 
-//Body
 body {
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -154,16 +137,6 @@ body {
   -ms-overflow-style: none;
 }
 
-// .parent {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-column-gap: 0px;
-//   grid-row-gap: 0px;
-// }
-
-// Para mais personalização, podem ser criadas mais variáveis e classes para aplicar aos elementos.
-//
-
 // Novas variaveis
 // Color
 $blue-ancora-2: #09244b;
@@ -171,8 +144,6 @@ $blue-ancora-1: #013c5e;
 
 $white-ancora-1: #ffffff;
 
-// Alteração de uma propriedade de uma classe do bootstrap,
-// As demais propriedades são mantidas, para não precisar reescrever tudo.
 .btn-primary {
   color: $white-ancora-1;
 }
@@ -193,8 +164,7 @@ $white-ancora-1: #ffffff;
   color: $primary;
 }
 
-// Container para telas iniciais
-.container-1 {
+.container-login {
   height: 100vh;
   border-top: 8px solid $blue-ancora-2;
   border-bottom: 8px solid $blue-ancora-2;
@@ -203,7 +173,6 @@ $white-ancora-1: #ffffff;
   overflow: hidden;
 }
 
-//Conversar sobre
 .container-identify {
   height: 100vh;
   border-top: 0.5rem solid $blue-ancora-2;
@@ -275,9 +244,9 @@ main {
 
 .project-card:hover {
   transform: translateY(-5px);
-  transition-property: all; //all
+  transition-property: all;
   transition-duration: 200ms;
-  transition-timing-function: ease; //other options are ease
+  transition-timing-function: ease;
 }
 
 .modal.modal-bottom .modal-dialog.modal-dialog-bottom {

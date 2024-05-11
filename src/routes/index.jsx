@@ -160,7 +160,6 @@ export default function RoutesComponent() {
           element={<Profile user={user} setUser={setUser}
           setMessageAlert={setMessageAlert} />}
         />
-        {/* Criando Produtos do Carrinho - Arthur  */}
         <Route path="productCard" element={<ProductCard />} />
       </Route>
       <Route path="/totem/stored" element={<Stored />} />
