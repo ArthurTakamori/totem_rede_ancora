@@ -1,8 +1,15 @@
 import StoredCartImg from '@/assets/img/stored_cart.png';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Stored() {
 
     const turn = Math.floor(Math.random() * 101);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setTimeout(() => navigate("/totem"), 5000)
+    }, [])
 
     return (
         <>
@@ -48,6 +55,10 @@ export default function Stored() {
                                     fontSize: '2.5vw'
                                 }}>
                                 Até a próxima 👋
+                            </small>
+
+                            <small className='mt-4'>
+                                Redirecionando...
                             </small>
                         </div>
                         

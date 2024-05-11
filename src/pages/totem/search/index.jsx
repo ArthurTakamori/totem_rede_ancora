@@ -164,10 +164,15 @@ export default function Search({
           }
 
           return (
-            <Product
-              products={license_plate ? products : filteredProducts}
-              setCartProducts={setCartProducts}
-            />
+            <>
+              <Product
+                products={license_plate ? products : filteredProducts}
+                setCartProducts={setCartProducts}
+              />
+              <div style={{
+                marginBottom: '10rem'
+              }}></div>
+            </>
           );
         })()}
 

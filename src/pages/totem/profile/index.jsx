@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { users } from "@/data/users.js";
 import Keyboard from "@/components/Keyboard";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required("O nome é obrigatório."),
@@ -40,6 +41,7 @@ export default function Profile({ user, setUser, setMessageAlert }) {
   const [showCpf, setShowCpf] = useState(true);
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [ fieldSelected, setField ] = useState(null);
+  const navigate = useNavigate();
   
   const toastBtn = document.getElementById('toastAlertBtn')
 
@@ -114,6 +116,7 @@ export default function Profile({ user, setUser, setMessageAlert }) {
   const handleClickSubmit = () => {
     setMessageAlert('Dados alterados com sucesso!')
     setTimeout(() => toastBtn.click(), 200);
+    navigate("/totem/dashboard");
   }
 
   return (

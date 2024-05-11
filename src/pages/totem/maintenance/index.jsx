@@ -121,10 +121,15 @@ export default function Maintenance({
           }
 
           return (
-            <MaintenanceProducts
-              products={maintenanceProducts}
-              setCartProducts={setCartProducts}
-            />
+            <>
+              <MaintenanceProducts
+                products={maintenanceProducts}
+                setCartProducts={setCartProducts}
+              />
+              <div style={{
+                marginBottom: '10rem'
+              }}></div>
+            </>
           );
         })()}
       </div>
