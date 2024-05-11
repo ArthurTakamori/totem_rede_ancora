@@ -1,10 +1,13 @@
 import "./styles.scss";
 
-export default function DropdownMaintenence({ cars, setSearchTerm }) {
+export default function DropdownMaintenence({
+  cars,
+  setSelectedCar,
+  selectedCar,
+}) {
   return (
     <>
       <div className="dropdown">
-
         <button
           type="button"
           className="bg-white dropdown-toggle p-2 rounded-1 d-flex align-items-center fs-5 fw-medium text-primary border border-secondary border-opacity-25"
@@ -25,37 +28,31 @@ export default function DropdownMaintenence({ cars, setSearchTerm }) {
 
           <div className="dropdown-divider"></div>
 
-          {/* {cars.length > 0 ? (
+          {cars ? (
             cars?.map((car, index) => (
               <DropdownItemCar
                 key={index}
                 item={car}
-                setSearchTerm={setSearchTerm}
+                setSelectedCar={setSelectedCar}
+                selectedCar={selectedCar}
               />
             ))
           ) : (
             <div className="fw-medium px-3 fs-5 text-secondary">
               Nenhum veículo encontrado!
             </div>
-          )} */}
-
+          )}
         </div>
       </div>
-
     </>
   );
 }
 
-const DropdownItemCar = ({ item, setSearchTerm }) => {
-  
+const DropdownItemCar = ({ item, setSelectedCar, selectedCar }) => {
   const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    const veiculoPlaca = checked ? value : "";
+    const { value } = event.target;
 
-    setSearchTerm((prevState) => ({
-      ...prevState,
-      license_plate: veiculoPlaca,
-    }));
+    setSelectedCar(value);
   };
 
   return (
@@ -63,10 +60,13 @@ const DropdownItemCar = ({ item, setSearchTerm }) => {
       <div className="form-check">
         <input
           className="form-check-input"
-          type="checkbox"
+          name="carSelection"
+          type="radio"
           value={item.license_plate}
-          id="flexCheckDefault"
+          id={item.license_plate}
           onChange={handleCheckboxChange}
+          checked={selectedCar === item.license_plate}
+          defaultChecked={selectedCar === item.license_plate}
         />
         <label className="form-check-label" htmlFor="flexCheckDefault">
           {item.license_plate}
