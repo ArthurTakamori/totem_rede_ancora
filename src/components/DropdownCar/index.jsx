@@ -44,12 +44,7 @@ export default function DorpdownCar({ cars, setSearchTerm }) {
           <div className="dropdown-divider"></div>
 
           <DropdownItemModalCar />
-
-          {/* <DropdownItemModalCar>
-              <span className="search-icon mgc_search_2_line fs-3"></span>
-              Buscar veículo
-          </DropdownItemModalCar> */}
-
+          
         </div>
       </div>
 
