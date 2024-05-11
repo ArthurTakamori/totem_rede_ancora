@@ -54,7 +54,7 @@ export default function Home() {
                             <div className="col-12 col-lg-6 h-100">
 
                                 <div className="ratio ratio-16x9">
-                                    <iframe className="embed-responsive-item rounded-1" src="https://www.youtube.com/embed/pJPZaYjcLgo?si=fkY24fOedRFjRtYa" title="Pitch - Rede Ancora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    <iframe className="embed-responsive-item rounded-1" src="https://www.youtube.com/embed/pJPZaYjcLgo?si=fkY24fOedRFjRtYa" title="Pitch - Rede Ancora" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 </div>
 
                                 <p className="d-block text-primary fw-medium mt-4">

@@ -39,18 +39,18 @@ export default function Search({
     async function fetchData() {
       setLoading(true);
       setProductsNotFound(false);
-      
+
       const { pageResult, vehicle } = await fetchProducts({
         superbusca: superbusca || license_plate ? superbusca : automaker?.name,
         veiculoPlaca: license_plate,
       });
 
-      const notFound = !pageResult || pageResult?.data.length === 0
+      const notFound = !pageResult || pageResult?.data.length === 0;
 
-      if(notFound) {
-        setProductsNotFound(true)
+      if (notFound) {
+        setProductsNotFound(true);
         return;
-      };
+      }
 
       const data = pageResult.data;
 
@@ -60,18 +60,18 @@ export default function Search({
         response.data.discountedPrice = discountedPrice;
 
         return response;
-      })
+      });
 
       setProducts(products);
 
-      if(license_plate) {
+      if (license_plate) {
         setSearchTerm((content) => ({
           ...content,
           automaker: {
             id: "",
             name: vehicle?.montadora,
-          }
-        }))
+          },
+        }));
       }
     }
 
@@ -85,40 +85,35 @@ export default function Search({
   return (
     <>
       <div className="d-flex flex-column align-items-start gap-4 px-4 mt-4">
-
-        <button onClick={handleNavigateDashboard} className="fw-medium text-primary fs-4 d-flex align-items-center justify-content-center gap-2">
+        <button
+          onClick={handleNavigateDashboard}
+          className="fw-medium text-primary fs-4 d-flex align-items-center justify-content-center gap-2"
+        >
           <span className="mgc_arrow_left_line fs-2"></span>
           Voltar
         </button>
 
-        <h1 className="fw-medium fs-1">
-          Explorar produtos
-        </h1>
+        <h1 className="fw-medium fs-1">Explorar produtos</h1>
 
         <div className="w-100">
-
           <SearchBar
             user={user}
             license_plate={license_plate}
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           />
-
         </div>
-        
       </div>
 
       <div className="d-flex gap-2 align-items-center px-4">
-
         <span className="bagde-search">
           <span className="mgc_settings_3_line fs-4"></span>
           Montadora: {automaker.name}
         </span>
         <span className="bagde-search">
           <span className="mgc_car_3_line fs-4"></span>
-          Veículo: {license_plate ? license_plate : '--'}
+          Veículo: {license_plate ? license_plate : "--"}
         </span>
-      
       </div>
 
       <span className="px-4 mt-5 d-block fs-3 fw-medium opacity-50">
@@ -137,7 +132,11 @@ export default function Search({
               <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
                 <div
                   className="spinner-border text-primary"
-                  style={{ width: "4vw", height: "4vw", borderWidth: "0.475rem" }}
+                  style={{
+                    width: "4vw",
+                    height: "4vw",
+                    borderWidth: "0.475rem",
+                  }}
                   role="status"
                 >
                   <span className="visually-hidden">Carregando...</span>
@@ -149,18 +148,26 @@ export default function Search({
             );
           }
 
-          if(productsNotFound || filteredProducts.length === 0 || products.length === 0) {
-            return <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
-              <small className="fs-5 fw-medium opacity-75">
-                Produtos não encontrados!
-              </small>
-            </div>
+          if (
+            productsNotFound ||
+            filteredProducts.length === 0 ||
+            products.length === 0
+          ) {
+            return (
+              <div className="h-100 d-flex flex-column gap-5 align-items-center justify-content-center">
+                <small className="fs-5 fw-medium opacity-75">
+                  Produtos não encontrados!
+                </small>
+              </div>
+            );
           }
 
-          return <Product
-            products={license_plate ? products : filteredProducts}
-            setCartProducts={setCartProducts}
-          />;
+          return (
+            <Product
+              products={license_plate ? products : filteredProducts}
+              setCartProducts={setCartProducts}
+            />
+          );
         })()}
       </div>
     </>
